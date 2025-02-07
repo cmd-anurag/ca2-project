@@ -6,31 +6,33 @@
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <title>Medicare</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chicle&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navigation Starts-->
     <!-- Top Bar -->
-    <div id="top" class="bg-blue-400 text-base text-white py-3 flex items-center justify-between w-full px-4">
-        <div class="text-center sm:text-left">Working Hour: 08:00 AM to 09:00 PM | Email: info@domainname.com</div>
+    <div id="top" class="bg-blue-400 text-base text-white py-3 flex lg:items-center lg:justify-between w-full px-4">
+        <div class="text-center text-sm lg:text-lg text-left w-2/3">Working Hour: 08:00 AM to 09:00 PM | Email: info@domainname.com</div>
         <div class="flex items-center gap-2">
             <i class="fa-brands fa-facebook"></i>
-            <span> | Contact: +123 (456) 789</span>
+            <span class="text-sm"> | Contact: +123 (456) 789</span>
         </div>
     </div>
 
     <!-- Navigation Bar -->
-    <nav class="flex items-center justify-between px-6 py-5 w-full bg-white shadow-md">
-        <div id="logo" class="text-2xl font-bold text-black">Medicare</div>
+    <nav class="flex items-center justify-between px-10 lg:px-16 py-6 w-full bg-white">
+        <div id="logo" class="lg:text-5xl text-3xl font-bold text-black font-[Chicle]">SwitftHealth</div>
 
         <!-- Desktop Navigation Links -->
         <div class="hidden md:flex lg:gap-6 text-black">
-            <div class="hover:text-blue-500 cursor-pointer py-1 px-1">Home</div>
-            <div class="hover:text-blue-500 cursor-pointer py-1 px-1">Hospitals</div>
-            <div class="hover:text-blue-500 cursor-pointer py-1 px-1">About Us</div>
-            <div class="hover:text-blue-500 cursor-pointer py-1 px-1">Services</div>
-            <div class="hover:text-blue-500 cursor-pointer py-1 px-1">Contact Us</div>
-            <div class="hover:text-blue-500 cursor-pointer py-1 px-1">Sign Up / Log In</div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer py-1 px-1">Home</div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer py-1 px-1">Hospitals</div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer py-1 px-1">About Us</div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer py-1 px-1">Services</div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer py-1 px-1">Contact Us</div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer py-1 px-1">Sign Up / Log In</div>
         </div>
 
         <!-- CTA Button -->
@@ -56,7 +58,7 @@
         <div class="hover:text-blue-500 cursor-pointer py-2">Services</div>
         <div class="hover:text-blue-500 cursor-pointer py-2">Contact Us</div>
         <div class="hover:text-blue-500 cursor-pointer py-2">Sign Up / Log In</div>
-        <div class="bg-blue-500 text-white hover:bg-black cursor-pointer py-3 px-5 font-bold rounded-full text-center mt-3">
+        <div class="bg-blue-500 text-white hover:bg-blue-950 cursor-pointer px-2 py-3 text-sm font-bold rounded-full text-center mt-3 duration-200">
             Book Appointment
         </div>
     </div>
@@ -69,16 +71,16 @@
     class="bg-[url('https://improvementacademy.org/wp-content/uploads/2022/03/How-we-can-help-Nurses-and-Midwives-2048x855.jpg')] 
            rounded-[50px] h-150 ms-5 me-5 bg-cover bg-center flex items-center p-10">
     
-        <div class="w-1/2 p-5">
-            <div class="text-m text-blue-600">Your Health, Our Priority</div>
+        <div class="lg:w-1/2 p-5">
+            <div class="text-sm lg:text-lg text-blue-600">Your Health, Our Priority</div>
             <br>
-            <div class="text-6xl text-black font-bold">Expert medical care you can rely on</div>
+            <div class="lg:text-6xl text-2xl text-black font-bold font-[Sour_Gummy]">Expert medical care you can rely on</div>
             <br>
-            <div class="text-xl text-gray-600 mt-2">Experience healthcare you can trust. Our dedicated team provides compassionate, high-quality care.</div>
+            <div class="lg:text-xl text-[15px] text-gray-600 mt-2">Experience healthcare you can trust. Our dedicated team provides compassionate, high-quality care.</div>
             <br>
             <div class="flex gap-6 items-center">
-                <div class="bg-blue-500 text-white hover:bg-black cursor-pointer py-3 px-5 rounded-full font-bold bg-black">Book A Appointment</div>
-                <div class="bg-blue-500 text-white hover:bg-black cursor-pointer py-3 px-5 rounded-full font-bold bg-black">About Us</div>
+                <div class="bg-blue-500 text-white hover:bg-blue-950 duration-200 cursor-pointer lg:py-3 lg:px-5 px-3 py-3 text-sm text-center rounded-full font-bold bg-black">Book an Appointment</div>
+                <div class="bg-blue-500 text-white hover:bg-blue-950 duration-200 cursor-pointer lg:py-3 lg:px-5 px-3 py-3 text-sm text-center rounded-full font-bold bg-black">About Us</div>
             </div>
         </div>
     </div>
