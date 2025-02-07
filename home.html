@@ -13,9 +13,13 @@
 </head>
 <body>
     <!-- Navigation Starts-->
-    <div id="top" class="bg-blue-400 text-l text-white py-3 flex items-center justify-between w-full">
-        <div class="ms-4">Working Hour:08:00am to 09:00pm | Email:info@domainname.com</div>
-        <div class="me-4">f I | Contact:+123 (456) 789</div>
+    <!-- Top Bar -->
+    <div id="top" class="bg-blue-400 text-base text-white py-3 flex items-center justify-between w-full px-4">
+        <div class="text-center sm:text-left">Working Hour: 08:00 AM to 09:00 PM | Email: info@domainname.com</div>
+        <div class="flex items-center gap-2">
+            <i class="fa-brands fa-facebook"></i>
+            <span> | Contact: +123 (456) 789</span>
+        </div>
     </div>
 
     <nav id="nav" class="flex items-center justify-between lg:px-15 sm:px-3 py-7 w-full">
@@ -33,6 +37,20 @@
         </div>
     </nav>
 
+    <!-- Mobile Dropdown Menu (Hidden by Default) -->
+    <div id="mobile-menu" class="hidden bg-white shadow-md p-4 absolute top-16 right-4 w-48 rounded-lg">
+        <div class="hover:text-blue-500 cursor-pointer py-2">Home</div>
+        <div class="hover:text-blue-500 cursor-pointer py-2">Hospitals</div>
+        <div class="hover:text-blue-500 cursor-pointer py-2">About Us</div>
+        <div class="hover:text-blue-500 cursor-pointer py-2">Services</div>
+        <div class="hover:text-blue-500 cursor-pointer py-2">Contact Us</div>
+        <div class="hover:text-blue-500 cursor-pointer py-2">Sign Up / Log In</div>
+        <div class="bg-blue-500 text-white hover:bg-black cursor-pointer py-3 px-5 font-bold rounded-full text-center mt-3">
+            Book Appointment
+        </div>
+    </div>
+  
+  
     <!-- Navigation Ends-->
 
     <!-- Banner Starts -->
@@ -75,7 +93,7 @@
             
             <div class="flex items-center gap-x-5 my-5">
                 <div class="w-14">
-                    <div class="text-6xl"><i class="fa-solid fa-vials"></i></div>
+                    <div class="text-6xl"><i class="fa-solid fa-user-doctor"></i></div>
                 </div>
                 <div class="w-3/4">
                     <div class="text-xl text-gray-700 font-bold mt-2">Specialist Doctors</div>
@@ -100,6 +118,6 @@
 
 
     
-    
+      <script src="./home.js"></script>
 </body>
 </html>
