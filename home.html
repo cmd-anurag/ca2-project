@@ -11,54 +11,49 @@
 <body>
     <!-- Navigation Starts-->
     <!-- Top Bar -->
-    <div id="top" class="bg-blue-400 text-base text-white py-3 flex items-center justify-between w-full px-4">
-        <div class="text-center sm:text-left">Working Hour: 08:00 AM to 09:00 PM | Email: info@domainname.com</div>
-        <div class="flex items-center gap-2">
+    <div class="bg-blue-400 text-white text-sm py-3 px-4 flex flex-col sm:flex-row sm:items-center sm:justify-between">
+        <div class="text-center sm:text-left">Working Hour: 08:00 AM - 09:00 PM | Email: info@domainname.com</div>
+        <div class="flex items-center gap-2 justify-center sm:justify-start mt-2 sm:mt-0">
             <i class="fa-brands fa-facebook"></i>
-            <span> | Contact: +123 (456) 789</span>
+            <span>| Contact: +123 (456) 789</span>
         </div>
     </div>
 
     <!-- Navigation Bar -->
-    <nav class="flex items-center justify-between px-6 py-5 w-full bg-white shadow-md">
-        <div id="logo" class="text-2xl font-bold text-black">Medicare</div>
+    <nav class="bg-white shadow-md py-4 px-6 flex items-center justify-between">
+        <div class="text-2xl font-bold text-black">Medicare</div>
 
-        <!-- Desktop Navigation Links -->
-        <div class="hidden md:flex lg:gap-6 text-black">
-            <div class="hover:text-blue-500 cursor-pointer py-1 px-1">Home</div>
-            <div class="hover:text-blue-500 cursor-pointer py-1 px-1">Hospitals</div>
-            <div class="hover:text-blue-500 cursor-pointer py-1 px-1">About Us</div>
-            <div class="hover:text-blue-500 cursor-pointer py-1 px-1">Services</div>
-            <div class="hover:text-blue-500 cursor-pointer py-1 px-1">Contact Us</div>
-            <div class="hover:text-blue-500 cursor-pointer py-1 px-1">Sign Up / Log In</div>
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex gap-6 text-black">
+            <a href="#" class="hover:text-blue-500">Home</a>
+            <a href="#" class="hover:text-blue-500">Hospitals</a>
+            <a href="#" class="hover:text-blue-500">About Us</a>
+            <a href="#" class="hover:text-blue-500">Services</a>
+            <a href="#" class="hover:text-blue-500">Contact Us</a>
+            <a href="#" class="hover:text-blue-500">Sign Up / Log In</a>
         </div>
 
-        <!-- CTA Button -->
+        <!-- CTA Button (Desktop Only) -->
         <div class="hidden md:block">
-            <div class="bg-blue-500 text-white hover:bg-black cursor-pointer py-3 px-5 font-bold rounded-full text-center">
-                Book Appointment
-            </div>
+            <button class="bg-blue-500 text-white hover:bg-black py-3 px-5 rounded-full font-bold">Book Appointment</button>
         </div>
 
-        <!-- Mobile Menu (Three Dots) -->
-        <div class="md:hidden">
-            <button id="mobile-menu-btn" class="text-black text-3xl">
-                &#8942;  <!-- Three dots (vertical ellipsis) -->
-            </button>
-        </div>
+        <!-- Mobile Menu Button -->
+        <button id="menu-btn" class="md:hidden text-3xl">&#8942;</button>
     </nav>
 
-    <!-- Mobile Dropdown Menu (Hidden by Default) -->
+    <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden bg-white shadow-md p-4 absolute top-16 right-4 w-48 rounded-lg">
-        <div class="hover:text-blue-500 cursor-pointer py-2">Home</div>
-        <div class="hover:text-blue-500 cursor-pointer py-2">Hospitals</div>
-        <div class="hover:text-blue-500 cursor-pointer py-2">About Us</div>
-        <div class="hover:text-blue-500 cursor-pointer py-2">Services</div>
-        <div class="hover:text-blue-500 cursor-pointer py-2">Contact Us</div>
-        <div class="hover:text-blue-500 cursor-pointer py-2">Sign Up / Log In</div>
-        <div class="bg-blue-500 text-white hover:bg-black cursor-pointer py-3 px-5 font-bold rounded-full text-center mt-3">
-            Book Appointment
-        </div>
+        <!-- Close Button -->
+        <button id="close-btn" class="text-black text-xl absolute top-2 right-3">&times;</button>
+
+        <a href="#" class="block py-2 hover:text-blue-500">Home</a>
+        <a href="#" class="block py-2 hover:text-blue-500">Hospitals</a>
+        <a href="#" class="block py-2 hover:text-blue-500">About Us</a>
+        <a href="#" class="block py-2 hover:text-blue-500">Services</a>
+        <a href="#" class="block py-2 hover:text-blue-500">Contact Us</a>
+        <a href="#" class="block py-2 hover:text-blue-500">Sign Up / Log In</a>
+        <button class="bg-blue-500 text-white hover:bg-black py-3 px-5 rounded-full font-bold mt-3 w-full">Book Appointment</button>
     </div>
   
   
@@ -66,19 +61,19 @@
 
     <!-- Banner Starts -->
     <div id="banner" 
-    class="bg-[url('https://improvementacademy.org/wp-content/uploads/2022/03/How-we-can-help-Nurses-and-Midwives-2048x855.jpg')] 
-           rounded-[50px] h-150 ms-5 me-5 bg-cover bg-center flex items-center p-10">
+        class="bg-[url('https://improvementacademy.org/wp-content/uploads/2022/03/How-we-can-help-Nurses-and-Midwives-2048x855.jpg')] 
+               rounded-[50px] h-auto sm:h-96 md:h-120 lg:h-150 mx-5 bg-cover bg-center flex flex-col sm:flex-row items-center p-6 sm:p-10">
     
-        <div class="w-1/2 p-5">
-            <div class="text-m text-blue-600">Your Health, Our Priority</div>
+        <div class="w-full sm:w-1/2 p-4 sm:p-5 text-center sm:text-left">
+            <div class="text-lg sm:text-xl text-blue-600">Your Health, Our Priority</div>
             <br>
-            <div class="text-6xl text-black font-bold">Expert medical care you can rely on</div>
+            <div class="text-3xl sm:text-5xl md:text-6xl text-black font-bold">Expert medical care you can rely on</div>
             <br>
-            <div class="text-xl text-gray-600 mt-2">Experience healthcare you can trust. Our dedicated team provides compassionate, high-quality care.</div>
+            <div class="text-md sm:text-lg md:text-xl text-gray-600 mt-2">Experience healthcare you can trust. Our dedicated team provides compassionate, high-quality care.</div>
             <br>
-            <div class="flex gap-6 items-center">
-                <div class="bg-blue-500 text-white hover:bg-black cursor-pointer py-3 px-5 rounded-full font-bold bg-black">Book A Appointment</div>
-                <div class="bg-blue-500 text-white hover:bg-black cursor-pointer py-3 px-5 rounded-full font-bold bg-black">About Us</div>
+            <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center sm:items-start justify-center sm:justify-start">
+                <div class="bg-blue-500 text-white hover:bg-black cursor-pointer py-3 px-5 rounded-full font-bold w-full sm:w-auto text-center">Book An Appointment</div>
+                <div class="bg-blue-500 text-white hover:bg-black cursor-pointer py-3 px-5 rounded-full font-bold w-full sm:w-auto text-center">About Us</div>
             </div>
         </div>
     </div>
