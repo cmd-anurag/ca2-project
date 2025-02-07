@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <title>Medicare</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chicle&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
@@ -22,18 +19,32 @@
         </div>
     </div>
 
-    <nav id="nav" class="flex items-center justify-between lg:px-15 sm:px-3 py-7 w-full">
-        <div id="logo" class="lg:text-5xl font-bold text-black font-[Chicle]">SwiftHealth</div>
-        <div id="nav-item" class="text-md flex gap-6 text-black">
-            <div class="hover:text-blue-500 duration-200 cursor-pointer py-1 px-1">Home</div>
-            <div class="hover:text-blue-500 duration-200 cursor-pointer py-1 px-1">Hospitals</div>
-            <div class="hover:text-blue-500 duration-200 cursor-pointer py-1 px-1">About Us</div>
-            <div class="hover:text-blue-500 duration-200 cursor-pointer py-1 px-1">Services</div>
-            <div class="hover:text-blue-500 duration-200 cursor-pointer py-1 px-1">Contact Us</div>
-            <div class="hover:text-blue-500 duration-200 cursor-pointer py-1 px-1">Sign Up / Log In</div>
+    <!-- Navigation Bar -->
+    <nav class="flex items-center justify-between px-6 py-5 w-full bg-white shadow-md">
+        <div id="logo" class="text-2xl font-bold text-black">Medicare</div>
+
+        <!-- Desktop Navigation Links -->
+        <div class="hidden md:flex lg:gap-6 text-black">
+            <div class="hover:text-blue-500 cursor-pointer py-1 px-1">Home</div>
+            <div class="hover:text-blue-500 cursor-pointer py-1 px-1">Hospitals</div>
+            <div class="hover:text-blue-500 cursor-pointer py-1 px-1">About Us</div>
+            <div class="hover:text-blue-500 cursor-pointer py-1 px-1">Services</div>
+            <div class="hover:text-blue-500 cursor-pointer py-1 px-1">Contact Us</div>
+            <div class="hover:text-blue-500 cursor-pointer py-1 px-1">Sign Up / Log In</div>
         </div>
-        <div id="nav-item" class="text-l flex gap-6 text-white">
-            <div class="bg-blue-500 hover:text-white hover:bg-blue-950 cursor-pointer duration-200 py-3 px-5 font-bold rounded-full">Book Appointment</div>
+
+        <!-- CTA Button -->
+        <div class="hidden md:block">
+            <div class="bg-blue-500 text-white hover:bg-black cursor-pointer py-3 px-5 font-bold rounded-full text-center">
+                Book Appointment
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Three Dots) -->
+        <div class="md:hidden">
+            <button id="mobile-menu-btn" class="text-black text-3xl">
+                &#8942;  <!-- Three dots (vertical ellipsis) -->
+            </button>
         </div>
     </nav>
 
@@ -61,13 +72,13 @@
         <div class="w-1/2 p-5">
             <div class="text-m text-blue-600">Your Health, Our Priority</div>
             <br>
-            <div class="text-6xl text-black font-bold font-[Sour_Gummy]">Expert medical care you can rely on</div>
+            <div class="text-6xl text-black font-bold">Expert medical care you can rely on</div>
             <br>
             <div class="text-xl text-gray-600 mt-2">Experience healthcare you can trust. Our dedicated team provides compassionate, high-quality care.</div>
             <br>
             <div class="flex gap-6 items-center">
-                <div class="bg-blue-500 hover:text-white hover:bg-blue-950 cursor-pointer duration-200 py-3 px-5 rounded-full font-bold bg-black">Book An Appointment</div>
-                <div class="bg-blue-500 hover:text-white hover:bg-blue-950 cursor-pointer duration-200 py-3 px-5 rounded-full font-bold bg-black">About Us</div>
+                <div class="bg-blue-500 text-white hover:bg-black cursor-pointer py-3 px-5 rounded-full font-bold bg-black">Book A Appointment</div>
+                <div class="bg-blue-500 text-white hover:bg-black cursor-pointer py-3 px-5 rounded-full font-bold bg-black">About Us</div>
             </div>
         </div>
     </div>
