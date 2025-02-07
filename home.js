@@ -9,3 +9,15 @@ document.addEventListener("click", (event) => {
         mobileMenu.classList.add("hidden");
     }
 });
+
+const menuBtn = document.getElementById("menu-btn");
+const closeBtn = document.getElementById("close-btn");
+const mobileMenu = document.getElementById("mobile-menu");
+
+menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+});
+
+closeBtn.addEventListener("click", () => {
+    mobileMenu.classList.add("hidden");
+});
