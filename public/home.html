@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <title>SwiftHealth</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chicle&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Starts-->
+    <!-- Top Bar -->
+    <div id="top" class="bg-blue-400 text-base text-white py-3 flex lg:items-center lg:justify-between w-full px-4">
+        <div class="text-center text-sm lg:text-lg text-left w-2/3">Working Hour: 08:00 AM to 09:00 PM | Email: info@domainname.com</div>
+        <div class="flex items-center gap-2">
+            <i class="fa-brands fa-facebook"></i>
+            <span class="text-sm"> | Contact: +123 (456) 789</span>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="flex items-center justify-between px-10 lg:px-16 py-6 w-full bg-white">
+        <div id="logo" class="lg:text-5xl text-3xl font-bold text-black font-[Chicle]">SwitftHealth</div>
+
+        <!-- Desktop Navigation Links -->
+        <div class="hidden md:flex lg:gap-6 text-black">
+            <div class="hover:text-blue-500 duration-200 cursor-pointer py-1 px-1">Home</div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer py-1 px-1">Hospitals</div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer py-1 px-1">About Us</div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer py-1 px-1">Services</div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer py-1 px-1">Contact Us</div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer py-1 px-1">Sign Up / Log In</div>
+        </div>
+
+        <!-- CTA Button (Desktop Only) -->
+        <div class="hidden md:block">
+            <button class="bg-blue-500 text-white hover:bg-black py-3 px-5 rounded-full font-bold">Book Appointment</button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-btn" class="md:hidden text-3xl">&#8942;</button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden bg-white shadow-md p-4 absolute top-16 right-4 w-48 rounded-lg">
+        <div class="hover:text-blue-500 cursor-pointer py-2">Home</div>
+        <div class="hover:text-blue-500 cursor-pointer py-2">Hospitals</div>
+        <div class="hover:text-blue-500 cursor-pointer py-2">About Us</div>
+        <div class="hover:text-blue-500 cursor-pointer py-2">Services</div>
+        <div class="hover:text-blue-500 cursor-pointer py-2">Contact Us</div>
+        <div class="hover:text-blue-500 cursor-pointer py-2">Sign Up / Log In</div>
+        <div class="bg-blue-500 text-white hover:bg-blue-950 cursor-pointer px-2 py-3 text-sm font-bold rounded-full text-center mt-3 duration-200">
+            Book Appointment
+        </div>
+    </div>
+  
+  
+    <!-- Navigation Ends-->
+
+    <!-- Banner Starts -->
+    <div id="banner" 
+        class="bg-[url('https://improvementacademy.org/wp-content/uploads/2022/03/How-we-can-help-Nurses-and-Midwives-2048x855.jpg')] 
+               rounded-[50px] h-auto sm:h-96 md:h-120 lg:h-150 mx-5 bg-cover bg-center flex flex-col sm:flex-row items-center p-6 sm:p-10">
+    
+        <div class="lg:w-1/2 p-5">
+            <div class="text-sm lg:text-lg text-blue-600">Your Health, Our Priority</div>
+            <br>
+            <div class="lg:text-6xl text-2xl text-black font-bold font-[Sour_Gummy]">Expert medical care you can rely on</div>
+            <br>
+            <div class="lg:text-xl text-[15px] text-gray-600 mt-2">Experience healthcare you can trust. Our dedicated team provides compassionate, high-quality care.</div>
+            <br>
+            <div class="flex gap-6 items-center">
+                <div class="bg-blue-500 text-white hover:bg-blue-950 duration-200 cursor-pointer lg:py-3 lg:px-5 px-3 py-3 text-sm text-center rounded-full font-bold bg-black">Book an Appointment</div>
+                <div class="bg-blue-500 text-white hover:bg-blue-950 duration-200 cursor-pointer lg:py-3 lg:px-5 px-3 py-3 text-sm text-center rounded-full font-bold bg-black">About Us</div>
+            </div>
+        </div>
+    </div>
+    <!-- Banner Ends -->
+
+    <!-- About US -->
+
+    <div id="aboutus" class="mx-5 my-30 flex">
+        <div class="w-1/2">
+            <div class="text-m text-blue-700">About us</div>
+            <div class="text-5xl text-black font-bold my-4">Professionals dedicated to your health</div>
+            <div class="text-xl text-gray-500">Our team of skilled professionals is committed to providing personalized, compassionate care. With a focus.</div>
+            
+            <div class="flex items-center gap-x-5 my-5">
+                <div class="w-14 rounded-[50%] text-6xl bg-purple-100">
+                    <div class="text-3xl p-3 text-blue-700 hover:text-black"><i class="fa-solid fa-vials"></i></div>
+                </div>
+                <div class="w-3/4">
+                    <div class="text-xl text-gray-700 font-bold mt-2">Patient-Centered Care</div>
+                    <div class="text-lg text-gray-500">Putting you at the heart of everything we do. Our patient-centered approach ensures personalized care.</div>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-x-5 my-5">
+                <div class="w-14 rounded-[50%] text-6xl bg-purple-100">
+                    <div class="text-3xl py-3 px-4 text-blue-700 hover:text-black"><i class="fa-solid fa-user-doctor"></i></div>
+                </div>
+                <div class="w-3/4">
+                    <div class="text-xl text-gray-700 font-bold mt-2">Specialist Doctors</div>
+                    <div class="text-lg text-gray-500">Putting you at the heart of everything we do. Our patient-centered approach ensures personalized.</div>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-x-5 my-5">
+                <div class="w-14 rounded-[50%] text-6xl bg-purple-100">
+                    <div class="text-3xl p-3 text-blue-700 hover:text-black"><i class="fa-solid fa-vials"></i></div>
+                </div>
+                <div class="w-3/4">
+                    <div class="text-xl text-gray-700 font-bold mt-2">24 Hours Service</div>
+                    <div class="text-lg text-gray-500">Putting you at the heart of everything we do. Our patient-centered approach ensures personalized.</div>
+                </div>
+            </div>
+            <div id="nav-item" class="text-l flex gap-6 text-white">
+                <div class="bg-blue-600 hover:text-white hover:bg-black cursor-pointer py-3 px-5 font-bold rounded-full my-5">View More About Us</div>
+            </div>
+        </div>
+        <img class="rounded-[50px] mx-auto" src="https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2024/11/about-img-1.jpg">
+    </div>
+
+
+    <!-- Our Services -->
+    <div id="services" class="bg-purple-50 rounded-[50px] mx-5 my-10 lg:p-20 p-5">
+        <div>
+            <div class="text-m text-blue-700 text-center">Our Services</div>
+            <div class="text-4xl text-black font-bold my-4 text-center mb-5">Comprehensive services for your health</div>
+        </div>
+        <div id="Service" class="lg:flex md:flex lg:gap-x-5 md:gap-x-5">
+            <div id="S-1" class="bg-white rounded-[50px] my-5 hover:my-3">
+                <div class="text-center text-xl font-bold px-5 pt-5">Urology</div>
+                <hr class="m-7">
+                <div class="text-center text-md text-gray-500 px-5 pb-5">Our neurology department provides expert care for conditions affecting the brain, spine, and nervous system</div>
+                <div class="px-10 pb-10"><img class="rounded-[20px]" src="https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2024/12/service-img-1.jpg"></div>
+            </div>
+            <div id="S-2" class="bg-white rounded-[50px] my-5 hover:my-3">
+                <div class="text-center text-xl font-bold px-5 pt-5">Neurology</div>
+                <hr class="m-7">
+                <div class="text-center text-md text-gray-500 px-5 pb-5">Special care focuses on providing tailored attention to address unique health needs, ensuring optimal well-being and comfort.</div>
+                <div class="px-10 pb-10"><img class="rounded-[20px]" src="https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2024/12/service-img-2.jpg"></div>
+                
+            </div>
+            <div id="S-3" class="bg-white rounded-[50px] my-5 hover:my-3">
+                <div class="text-center text-xl font-bold px-5 pt-5">Eyecare</div>
+                <hr class="m-7">
+                <div class="text-center text-md text-gray-500 px-5 pb-5">Lab testing for accurately monitoring your health and identifying potential issues early for effective treatment.</div>
+                <div class="px-10 pb-10"><img class="rounded-[20px]" src="https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2024/12/service-img-3.jpg"></div>
+            </div>
+        </div>
+        <div>
+            <div class="text-xl text-black my-4 text-center lg:mx-30 md:20 sm:10">From preventive care to specialized treatments, our wide range of services is designed to support your health at every stage.</div>
+            <div class="flex justify-center mt-5 mx-auto">
+                <div class="bg-blue-600 text-white hover:bg-black cursor-pointer py-3 px-6 font-bold rounded-full my-5 text-center">View More About Us</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Serviecs section ends-->
+
+
+    <!--Why Choose Us?-->
+    <div id="choose-us" class="mx-5 my-30">
+        <div class="text-m text-blue-700 mb-3">Why Choose Us</div>
+        <div id="content" class="lg:flex">
+            <div class="lg:w-[55%]">
+                <div id="heading" class="font-bold text-black text-3xl lg:text-5xl py-1">Why patients trust us with their care</div>
+                <div class="text-lg text-gray-500 pt-2">Our commitment to excellence, compassion, and personalized treatment has earned the trust of countless patients. Discover what sets our care apart. Discover what sets our care apart.</div>
+            </div>
+            <div id="reason" class="ps-5 pt-5">
+                <div class="text-lg text-gray-500 py-2"><span class="text-blue-700"> <i class="fa-solid fa-circle-check"></i> </span> We offer flexible hours to fit your busy schedule.</div>
+                <div class="text-lg text-gray-500 py-2"><span class="text-blue-700"> <i class="fa-solid fa-circle-check"></i> </span> Team is committed to making you feel comfortable.</div>
+                <div class="text-lg text-gray-500 py-2"><span class="text-blue-700"> <i class="fa-solid fa-circle-check"></i> </span> We ensure you receive prompt and effective care.</div>
+                <div class="text-lg text-gray-500 py-2"><span class="text-blue-700"> <i class="fa-solid fa-circle-check"></i> </span> Helping you manage your health at every stage of life.</div>
+                </div>
+        </div>
+    </div>
+
+
+    <!--Why choose Us Ends-->
+
+    <!-- How We Work -->
+
+    <div id="choose-us" class="bg-purple-50 rounded-[50px] mx-5 my-10 lg:p-20 p-5">
+        <div>
+            <div class="text-m text-blue-700 text-center">How We Work</div>
+            <div class="text-4xl lg:text-5xl text-black font-bold text-center lg:mx-[15%] py-5">We work to achieve better health outcomes</div>
+            <div class="text-lg text-gray-500 text-center lg:mx-[20%]">We are committed to improving health outcomes through personalized care, innovative treatments, and a focus on prevention.</div>
+        </div>
+        <div id="content" class="lg:flex lg:justify-evenly my-15">
+            <div class="lg:flex md:flex">
+                <div class="text-center m-5">
+                    <img class="rounded-[50%] mx-auto text-5xl" src="https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2024/12/work-step-img-3.jpg">
+                    <br>
+                    <span class="rounded-[50%] bg-blue-500 text-white text-center py-2 px-3">1</span>
+                    <br><br>
+                    <span class="text-xl text-black font-bold">Create Account</span>
+                    <br>
+                    <span class="text-md text-center text-gray-650">Join our community by creating an account today.</span>
+                    <br>
+                </div>
+                <div class="text-center m-5">
+                    <img class="rounded-[50%] mx-auto text-5xl" src="https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2024/12/work-step-img-3.jpg">
+                    <br>
+                    <span class="rounded-[50%] bg-blue-500 text-white text-center py-2 px-3">2</span>
+                    <br><br>
+                    <span class="text-xl text-black font-bold">Search Doctor</span>
+                    <br>
+                    <span class="text-md text-center text-gray-650">Join our community by creating an account today.</span>
+                    <br>
+                </div>
+            </div>
+            <div class="lg:flex md:flex">
+                <div class="text-center m-5">
+                    <img class="rounded-[50%] mx-auto text-5xl" src="https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2024/12/work-step-img-3.jpg">
+                    <br>
+                    <span class="rounded-[50%] bg-blue-500 text-white text-center py-2 px-3">3</span>
+                    <br><br>
+                    <span class="text-xl text-black font-bold">Schedule Appointment</span>
+                    <br>
+                    <span class="text-md text-center text-gray-650">Join our community by creating an account today.</span>
+                    <br>
+                </div>
+                <div class="text-center m-5">
+                    <img class="rounded-[50%] mx-auto text-5xl" src="https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2024/12/work-step-img-3.jpg">
+                    <br>
+                    <span class="rounded-[50%] bg-blue-500 text-white text-center py-2 px-3">4</span>
+                    <br><br>
+                    <span class="text-xl text-black font-bold">Start Consultation</span>
+                    <br>
+                    <span class="text-md text-center text-gray-650">Join our community by creating an account today.</span>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--How We Work Ends-->
+
+
+    
+      <script src="./js/home.js"></script>
+</body>
+</html>
