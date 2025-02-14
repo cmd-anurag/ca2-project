@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Chicle&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div id="logo" class="flex items-center justify-between px-10 lg:px-16 py-6  bg-gray-150 lg:text-4xl text-3xl font-bold text-black cursor-pointer font-[Chicle]"><a href="./home.html">SwiftHealth</a>
+    </div>
+    <div class="min-h-screen flex flex-col justify-center items-center p-4">
+        <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-3xl">
+            <h1 class="text-4xl font-bold text-blue-700 text-center">Any Queries? Contact Us</h1>
+            <p class="text-gray-600 text-center mt-2">Reach out to us for appointments, emergency alerts, and queries.</p>
+            
+            <form class="mt-6 space-y-4">
+                <div>
+                    <label class="block text-gray-700">Full Name</label>
+                    <input type="text" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your full name">
+                </div>
+                <div>
+                    <label class="block text-gray-700">Email Address</label>
+                    <input type="email" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your email">
+                </div>
+                <div>
+                    <label class="block text-gray-700">Message</label>
+                    <textarea rows="4" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Write your message"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-blue-700 text-white p-3 rounded-lg hover:bg-blue-800 transition">Send Message</button>
+            </form>
+
+            <div class="mt-6 text-center">
+                <p class="text-gray-700">For emergency support, call <span class="text-red-500 font-bold">+x xxx xxx xxxx</span></p>
+                <p class="text-gray-700">Email us at <span class="text-blue-600"><a href="mailto:example@example.com">xxxxx@gmail.com</a></span></p>
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>
