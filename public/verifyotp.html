@@ -12,10 +12,10 @@
       <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">OTP Verification</h2>
       <p class="text-center text-gray-500 mb-4">A verification code has been sent to your email. Please enter the 6-digit OTP below.</p>
       
-      <form action="#" method="POST">
+      <form action="#" method="POST" id="otp-form">
   
         <div class="flex justify-between mb-6">
-          <input type="text" class="otp-input w-14 h-14 text-2xl text-center border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 shadow-2xl" maxlength="1" required>
+          <input id="otpinp1" type="text" class="otp-input w-14 h-14 text-2xl text-center border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 shadow-2xl" maxlength="1" required>
           <input type="text" class="otp-input w-14 h-14 text-2xl text-center border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 shadow-2xl" maxlength="1" required>
           <input type="text" class="otp-input w-14 h-14 text-2xl text-center border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 shadow-2xl" maxlength="1" required>
           <input type="text" class="otp-input w-14 h-14 text-2xl text-center border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 shadow-2xl" maxlength="1" required>
@@ -25,7 +25,7 @@
   
   
         <div class="mb-4">
-          <button type="submit" class="w-full bg-blue-500 text-white p-3 rounded-lg font-semibold hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <button type="button" class="w-full bg-blue-500 text-white p-3 rounded-lg font-semibold hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer">
             Verify OTP
           </button>
         </div>
@@ -40,4 +40,5 @@
     </div>
   
   </body>
+  <script src="./js/verifyotp.js"></script>
 </html>
