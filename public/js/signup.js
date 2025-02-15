@@ -52,6 +52,7 @@ signupbtn.addEventListener("click", async () => {
     
         response = await fetch("http://localhost/ca2-project/backend/send_otp.php", {
             method : "POST",
+            credentials: "include",
             body : formdata
         })
         const result = await response.json();
