@@ -32,3 +32,46 @@ form.addEventListener("keydown", function(event) {
     }
 })
 
+let verifybtn = document.getElementById("verifybtn");
+verifybtn.addEventListener("click", async () => {
+    
+    const otpinputs = [...form.getElementsByClassName("otp-input")];
+
+    for (let i = 0; i < otpinputs.length; i++) {
+        const element = otpinputs[i];
+        if (element.value === "") {
+            alert("Incomplete OTP");
+            return;
+        }
+    }
+
+    const formdata = new FormData();
+
+    for (let i = 0; i < otpinputs.length; ++i) {
+        const element = otpinputs[i];
+
+        formdata.append(i , element.value);
+    }
+
+    let response;
+    try {
+        response = await fetch("http://localhost/ca2-project/backend/verify_otp.php", {
+            method: "POST",
+            body: formdata
+        })
+
+        const result = await response.json();
+
+        if(result.success) {
+            // redirect to dashboard
+        }
+        else {
+            // show reason
+            alert(result.message);
+        }
+    }
+    catch(exception) {
+        console.log(exception);
+    }
+    
+})
