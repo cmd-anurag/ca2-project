@@ -1,15 +1,24 @@
 <?php
+session_set_cookie_params([
+    'lifetime' => 86400,  // 1 day
+    'path' => '/',
+    'domain' => 'localhost',  // CHANGE this to match your backend domain when deployed
+    'secure' => false,  // Set to true if using HTTPS in production
+    'httponly' => true,
+    'samesite' => 'None'  // Must be 'None' for cross-origin cookies to work
+]);
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    header("Access-Control-Allow-Origin: http://127.0.0.1:5500");
+    header("Access-Control-Allow-Origin: http://localhost");
     header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
     header("Access-Control-Allow-Headers: Content-Type, Authorization");
+    header("Access-Control-Allow-Credentials: true");
     http_response_code(200);
     exit();
 }
 
-header("Access-Control-Allow-Origin: http://127.0.0.1:5500");
+header("Access-Control-Allow-Origin: http://localhost");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Access-Control-Allow-Credentials: true");
