@@ -14,9 +14,10 @@ $conn = new mysqli(
 );
 
 if($conn->connect_error) {
-    die("Connection failed skullemoji");
+    echo json_encode(["success" => false, "message" => "DB connection failed"]);
+    die();
 }
 else {
-    echo "Connection established.";
+    error_log("Connected to DB");
 }
 ?>

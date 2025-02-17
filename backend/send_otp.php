@@ -1,12 +1,4 @@
 <?php
-session_set_cookie_params([
-    'lifetime' => 86400,  // 1 day
-    'path' => '/',
-    'domain' => 'localhost',  // CHANGE this to match your backend domain when deployed
-    'secure' => false,  // Set to true if using HTTPS in production
-    'httponly' => true,
-    'samesite' => 'None'  // Must be 'None' for cross-origin cookies to work
-]);
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
@@ -57,7 +49,7 @@ $password = filter_var($_POST["password"], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
 $otp = random_int(100000, 999999);
-$_SESSION['otp'] = [
+$_SESSION['creds'] = [
     "name" => $name,
     "email" => $email,
     "code" => $otp,
