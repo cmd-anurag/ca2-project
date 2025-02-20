@@ -62,14 +62,16 @@ verifybtn.addEventListener("click", async () => {
 
         const result = await response.json();
 
+        // i'll fix the frontend later. works for now.
 
         if(result.success) {
             // redirect to dashboard
-            
+            console.log(response);
             alert(result.message);
         }
         else {
-            
+            // show reason
+            console.log(response);
             alert(result.message);
         }
     }
