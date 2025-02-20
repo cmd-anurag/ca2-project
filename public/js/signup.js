@@ -37,8 +37,6 @@ signupbtn.addEventListener("click", async () => {
         return;
     }
 
-    // alert("validated");
-
     loader.classList.remove("hidden");
 
 
