@@ -18,6 +18,19 @@ if($conn->connect_error) {
     die();
 }
 else {
-    error_log("Connected to DB");
+
+    // i need to fix logging oof.
+
+
+    // $log_file = __DIR__ . '/../../logs/db_connection.log';
+    // $log_dir = dirname($log_file);
+    
+    // // Create logs directory if it doesn't exist
+    // if (!file_exists($log_dir)) {
+    //     mkdir($log_dir, 0777, true);
+    // }
+    
+    // // Write to custom log file
+    // error_log("Connected to DB\n", 3, $log_file);
 }
 ?>

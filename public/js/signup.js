@@ -11,28 +11,29 @@ function isValidEmail(email) {
     return emailPattern.test(email);
 }
 
+// SIGNUP BUTTON CLICK LISTENER
 signupbtn.addEventListener("click", async () => {    
 
     if(!nameField.value) {
-        nameField.classList.add("border-2", "border-red-500", "text-red-500");
+        nameField.classList.add("ring-2", "ring-red-500", "text-red-500");
         nameField.placeholder = "A name is required.";
         return
     }
     if(!emailField.value) {
-        emailField.classList.add("border-2", "border-red-500", "text-red-500");
+        emailField.classList.add("ring-2", "ring-red-500", "text-red-500");
         emailField.placeholder = "Email cannot be empty.";
         return;
     }
 
     if(!isValidEmail(emailField.value)) {
-        emailField.classList.add("border-2", "border-red-500", "text-red-500");
+        emailField.classList.add("ring-2", "ring-red-500", "text-red-500");
         emailField.placeholder = "Please enter a valid email.";
         emailField.value = "";
         return;
     }
 
     if(!passwordField.value) {
-        passwordField.classList.add("border-2", "border-red-500", "text-red-500");
+        passwordField.classList.add("ring-2", "ring-red-500", "text-red-500");
         passwordField.placeholder = "Password is required.";
         return;
     }
@@ -40,9 +41,37 @@ signupbtn.addEventListener("click", async () => {
     loader.classList.remove("hidden");
 
 
+    // check if the email already exists
+
+    let emailres = false;
+    
+    try {
+        const formdata = new FormData();
+        formdata.append("email", emailField.value);
+        emailres = await fetch("http://localhost/ca2-project/backend/verify_email.php", {
+            method : "POST",
+            credentials : "include",
+            body : formdata
+        });
+
+        const result = await emailres.json();
+
+        if(!result.success) {
+            loader.classList.add("hidden");
+            emailField.classList.add("ring-2", "ring-yellow-500");
+            emailField.placeholder = "This email is already registered as a user.";
+            emailField.value = "";
+            return;
+        }
+    }
+    catch(error) {
+        loader.classList.add("hidden");
+        console.log(error);
+    }
+
     let response;
     try {
-        // send the form data to backend
+        
         const formdata = new FormData();
         formdata.append("name", nameField.value);
         formdata.append("email", emailField.value);
@@ -64,21 +93,21 @@ signupbtn.addEventListener("click", async () => {
         }
     }
     catch(error) {
+        loader.classList.add("hidden");
         console.log(error);
     }
-
 })
 
 
 nameField.addEventListener("focus", () => {
     nameField.placeholder = "";
-    nameField.classList.remove("border-2", "border-red-500", "text-red-500");
+    nameField.classList.remove("ring-2", "ring-red-500", "text-red-500");
 })
 emailField.addEventListener("focus", () => {
     emailField.placeholder = "";
-    emailField.classList.remove("border-2", "border-red-500", "text-red-500");
+    emailField.classList.remove("ring-2", "ring-red-500", "text-red-500");
 })
 passwordField.addEventListener("focus", () => {
     passwordField.placeholder = "";
-    passwordField.classList.remove("border-2", "border-red-500", "text-red-500");
+    passwordField.classList.remove("ring-2", "ring-red-500", "text-red-500");
 })
