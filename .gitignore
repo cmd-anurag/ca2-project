@@ -3,3 +3,4 @@ db_config.php
 vendor/
 composer.lock
 backend/.env
+logs/
