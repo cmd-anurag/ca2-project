@@ -20,21 +20,24 @@
                 </div>
             </div>
 
-            <div class="p-10 shadow-xl lg:w-1/2 lg:h-full flex justify-evenly flex-col gap-4 rounded-xl bg-white">
+            <div class="p-10 shadow-xl lg:w-1/2 lg:h-full flex justify-center flex-col gap-7 rounded-xl bg-white">
                 <h1 class="lg:text-5xl text-3xl font-extrabold">Login</h1>
                 <p class="text-gray-500">Welcome back! Please login to your account.</p>
                 <label class="text-gray-500">E-mail Address</label>
-                <input type="email" class="p-4 border border-gray-500 rounded-lg">
+                <input id="emailinput" type="email" class="p-4 border border-gray-500 rounded-lg">
                 <label class="text-gray-500">Password</label>
-                <input type="password" class="p-4 border border-gray-500 rounded-lg">
-                <p class="text-right text-gray-500 ">Forgot Password?</p>
-                <P><input type="checkbox"> Remember me ?</P>
-                <button class="bg-blue-700 w-1/2 mx-auto p-3 text-white rounded-xl cursor-pointer hover:bg-blue-800 duration-250">Login</button>
+                <input id="passwordinput" type="password" class="p-4 border border-gray-500 rounded-lg">
+                <div class="flex items-center justify-between">
+                    <p><input type="checkbox"> Remember me ?</p>
+                    <p class="text-right text-gray-500 ">Forgot Password?</p>
+                </div>
+                <button id="loginbutton" class="bg-blue-700 w-1/2 mx-auto p-3 text-white rounded-xl cursor-pointer hover:bg-blue-800 duration-250">Login</button>
                 <p>Don't have an account?<a class="ms-2 text-blue-500" href="./signup.html">Sign Up</a></p>
             </div>
         </div>
 
 
     </div>
+    <script src="./js/login.js"></script>
 </body>
 </html>

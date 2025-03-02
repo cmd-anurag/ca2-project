@@ -64,12 +64,9 @@ verifybtn.addEventListener("click", async () => {
 
         if(result.success) {
             // redirect to dashboard
-            console.log(response);
-            alert(result.message);
+            window.location.href = "dashboard.php";
         }
         else {
-            // show reason
-            console.log(response);
             alert(result.message);
         }
     }
