@@ -1,7 +1,7 @@
 <?php
 
 header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Method: POST");
+header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Access-Control-Allow-Credentials: true");
 
@@ -17,25 +17,36 @@ if (!isset($conn)) {
     die();
 }
 
-if(!isset($_POST["email"])) {
+if (!isset($_POST["email"])) {
     http_response_code(400);
     echo json_encode(["success" => false, "message" => "No email provided."]);
     die();
 }
 
 try {
+    // Sanitize the email input
     $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
-    $query = "SELECT * FROM users WHERE email='$email'";
-    $result = mysqli_query($conn, $query);
+
+    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
+    if (!$stmt) {
+        http_response_code(500);
+        echo json_encode(["success" => false, "message" => "Database error: " . $conn->error]);
+        die();
+    }
+
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
     
-    if ($result && mysqli_num_rows($result) > 0) {
+    if ($result && $result->num_rows > 0) {
         echo json_encode(["success" => false, "message" => "Email already exists"]);
     } else {
         echo json_encode(["success" => true, "message" => "Email is available"]);
     }
-}
-catch(Exception $error) {
+    
+    $stmt->close();
+} catch(Exception $error) {
     http_response_code(500);
     echo json_encode(["success" => false, "message" => $error->getMessage()]);
 }
-
+?>
