@@ -165,7 +165,7 @@
         </ul>
       </nav>
       <div class="flex items-center text-sm lg:text-[16px]">
-      <i class="fa-solid fa-user"></i><span class="mr-4 ml-2"><?= e($user_name); ?></span>
+        <i class="fa-solid fa-user"></i><span id="user_name" class="mr-4 ml-2"><?= e($user_name); ?></span>
         <button id="logout-btn" class="bg-transparent text-white-400 px-3 py-1 rounded cursor-pointer border-2 border-red-700 text-red-700">Logout</button>
       </div>
     </div>
@@ -194,16 +194,40 @@
       <button id="emergency-btn" class="w-full lg:w-1/4 bg-red-600 text-white py-3 rounded font-bold hover:bg-red-700 cursor-pointer">
         Emergency
       </button>
+      <button id="chat-toggle-btn" class="fixed bottom-25 right-25 bg-blue-600 text-white w-20 h-20 rounded-full shadow-lg hover:bg-blue-700 focus:outline-none">
+        Chat
+      </button>
     </section>
 
-  
+    <!-- Chat Popup -->
+    <div id="chat-popup" class="fixed bottom-20 right-5 bg-white border border-gray-300 rounded-lg shadow-lg w-80 h-106 hidden flex flex-col">
+      <!-- Header -->
+      <div class="bg-blue-600 text-white px-4 py-2 rounded-t-lg flex justify-between items-center">
+        <span class="font-semibold"><i class="fa-solid fa-robot mr-3"></i>SwiftHealth AI Assistant</span>
+        <button id="chat-close-btn" class="text-2xl leading-none focus:outline-none">&times;</button>
+      </div>
+      <!-- Chat Messages -->
+      <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-2 text-sm text-gray-800">
+        <!-- Chat history messages -->
+      </div>
+      <!-- Input Area -->
+      <div class="px-4 py-2 border-t border-gray-200 flex">
+        <input type="text" id="chat-input-field" placeholder="Type your message..." class="flex-1 border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-600">
+        <button id="chat-send-btn" class="ml-2 bg-blue-600 text-white px-3 py-2 rounded hover:bg-blue-700 focus:outline-none">Send</button>
+      </div>
+    </div>
+
+
   </main>
 
   <!-- Footer -->
   <footer class="bg-gray-100 text-center py-4 mt-8 border-t">
     <p class="text-sm text-gray-600">&copy; 2025 Your Company Name. All rights reserved.</p>
   </footer>
+
+
   <script src="./js/dashboard.js"></script>
+
 </body>
 
 </html>
