@@ -1,7 +1,15 @@
 <?php
+session_start();
+// $logfile = __DIR__ . "/logs/sessionlog.log";
+// try{
+//     error_log(print_r($_SESSION), 3, $logfile);
+// }
+// catch(Exception $e) {
+//     echo "$e";
+// }
 
 try {
-    session_start();
+    
 
     header("Access-Control-Allow-Origin: http://localhost");
     header("Access-Control-Allow-Methods: POST");
