@@ -22,10 +22,19 @@ function renderAppointment($appointment) {
 
     $borderClass = $statusColors[$status] ?? 'border-gray-500';
 
+    if($status != "pending") {
+        $actionbuttons = "disabled";
+    }
+    else {
+        $actionbuttons = "";
+    }
+
+
     return <<<HTML
     <div class="bg-white shadow-md rounded-lg p-4 border-l-4 $borderClass">
         <div class="flex justify-between items-center mb-2">
             <h3 class="text-lg font-semibold text-gray-800">
+                <span>Patient Name: </span>
                 <span class="text-blue-500">$patientName</span>
             </h3>
             <p class="text-md text-gray-600 px-2 py-1 rounded border $borderClass">
@@ -40,6 +49,14 @@ function renderAppointment($appointment) {
         <p class="mt-2 text-gray-600 text-md italic">
             <strong>Remarks:</strong> $remarks
         </p>
+        <div class="actions space-x-4 mt-4">
+            <button class="px-3 py-2 bg-green-600 text-white rounded-lg cursor-pointer disabled:cursor-not-allowed disabled:opacity-75 disabled:bg-gray-400" $actionbuttons>
+                Approve
+            </button>
+            <button class="px-3 py-2 bg-red-600 text-white rounded-lg cursor-pointer disabled:cursor-not-allowed disabled:opacity-75 disabled:bg-gray-400" $actionbuttons>
+                Reject
+            </button>
+        </div>
     </div>
     HTML;
 }
@@ -47,7 +64,7 @@ function renderAppointment($appointment) {
 // ini_set('display_errors', 1);
 
 
-echo "<h1 class=\"text-3xl text-center p-20\">Welcome to your Dashboard $user_name<h1>";
+echo "<h1 class=\"text-3xl py-20\">Welcome to your Dashboard $user_name<h1>";
 
 $app_query = "SELECT a.id, a.remarks, a.appointment_time, a.status, 
         p.name AS patient_name, p.email AS patient_email, 
@@ -74,7 +91,8 @@ $appointments = $doc_stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 $doc_stmt->close();
 
 // fix formatting later.
-// add buttons for actions
+// add buttons for actions [done]
+// 
 
 ?>
 
