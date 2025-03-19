@@ -1,12 +1,15 @@
 <?php
 session_start();
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
-// require __DIR__ . "/includes/is_loggedin.php";
-// $userid = $_SESSION['user']['id'];
-$userid = 9; // for testing purposes only
+// UNCOMMENT this in dev environment
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+
+require __DIR__ . "/includes/is_loggedin.php";
+$userid = $_SESSION['user']['id'];
+
+// $userid = 9; for testing purposes only
 
 $date = $_POST["date"];
 $day = strtolower(date('l', strtotime($date)));        // e.g., "Monday"
@@ -20,7 +23,12 @@ require __DIR__ . "/database/connectDB.php";
 $conn->begin_transaction();
 
 try {
-    // Query1: Get ALL doctors with the given specialization and with available slots on $day
+    // this is a basic doctor finding algorithm on the basis of availabiltiy, it won't be inefficient if the slots per day are less.
+    // i'll maybe optimize it later by normalizing the scheduling process and mainting a seperate table for booking times.
+    
+    
+
+    // Query1: get all doctors with the given specialization and with available slots on $day
     $query1 = "SELECT id, specialization, available_slots FROM doctors  
            WHERE specialization = ?  
            AND JSON_CONTAINS_PATH(available_slots, 'one', CONCAT('$.', ?))
@@ -39,24 +47,24 @@ try {
         exit();
     }
     
-    // Initialize variables to track if we found a suitable doctor
+    
     $doctor_found = false;
     $doctor_id = null;
     $free_time = null;
     
-    // Check each doctor until finding one with actual free slots
+    // check each doctor until finding one with actual free slots
     while ($doctor = $results->fetch_assoc()) {
         $available_slots_json = $doctor['available_slots'];
         $available_slots = json_decode($available_slots_json, true);
         
-        // Skip doctors with no slots for the requested day
+        // skip doctors with no slots for the requested day
         if (!isset($available_slots[$day]) || empty($available_slots[$day])) {
             continue;
         }
         
         $potential_slots = $available_slots[$day]; // e.g., ["10:00", "12:00", "14:00"]
         
-        // Get this doctor's booked appointments for the requested date
+        // get this doctor's booked appointments for the requested date
         $query_appts = "SELECT appointment_time FROM appointments 
                         WHERE doctor_id = ? AND DATE(appointment_time) = ?";
         $stmt_appts = $conn->prepare($query_appts);
@@ -65,22 +73,22 @@ try {
         $booked_result = $stmt_appts->get_result()->fetch_all(MYSQLI_ASSOC);
         $stmt_appts->close();
         
-        // Build array of booked times
+        // build array of booked times
         $booked_slots = [];
         foreach ($booked_result as $row) {
             $booked_slots[] = date("H:i", strtotime($row['appointment_time']));
         }
         
-        // Find available slots
+        // find available slots
         $free_slots = array_diff($potential_slots, $booked_slots);
         
         if (!empty($free_slots)) {
-            // Found a doctor with available slots
+            // found a doctor with available slots
             $doctor_found = true;
             $doctor_id = $doctor['id'];
             $free_slots = array_values($free_slots); // Reindex
             $free_time = $free_slots[0];
-            break; // Exit the loop since we found a suitable doctor
+            break;
         }
     }
     
@@ -101,10 +109,10 @@ try {
 
 
 try {
-    // Compose the final appointment time using the selected date and free time slot.
+    // date + time.
     $appointment_time = $formatted_date . ' ' . $free_time;
     
-    // Query3: Insert new appointment with status 'pending'
+    // Query3: insert new appointment with status 'pending'
     $query3 = "INSERT INTO appointments (patient_id, doctor_id, appointment_time, status, remarks) VALUES (?, ?, ?, 'pending', ?)";
     $stmt3 = $conn->prepare($query3);
     $stmt3->bind_param("iiss", $userid, $doctor_id, $appointment_time, $remarks);
@@ -115,10 +123,12 @@ try {
         echo json_encode(["success" => false, "message" => "Failed to create appointment."]);
         exit();
     }
+
+
     $stmt3->close();
-    
     $conn->commit();
     echo json_encode(["success" => true, "message" => "Appointment booked successfully.", "appointment_time" => $appointment_time]);
+    
 } catch (Exception $e) {
     $conn->rollback();
     http_response_code(500);
