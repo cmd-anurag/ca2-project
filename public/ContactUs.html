@@ -5,13 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us</title>
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chicle&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
-    <div id="logo" class="flex items-center justify-between px-10 lg:px-16 py-6  bg-gray-150 lg:text-4xl text-3xl font-bold text-black cursor-pointer font-[Chicle]"><a href="./home.html">SwiftHealth</a>
+    <!-- Navigation Starts-->
+    <!-- Top Bar -->
+    <div id="top" class="bg-blue-400 text-base text-white py-3 flex lg:items-center lg:justify-between w-full px-4">
+        <div class="text-sm lg:text-lg text-left w-2/3">Working Hour: 08:00 AM to 09:00 PM | Email: info@domainname.com</div>
+        <div class="flex items-center gap-2">
+            <i class="fa-brands fa-facebook"></i>
+            <span class="text-sm"> | Contact: xxxxx xxxxx</span>
+        </div>
     </div>
+
+    <!-- Navigation Bar Starts -->
+    <nav id="navbar" class="flex items-center justify-between px-10 lg:px-16 py-6 w-full bg-gray-100">
+        <div id="logo" class="lg:text-4xl text-3xl font-bold text-black cursor-pointer font-[Chicle]">
+            <a href="home.html">SwiftHealth</a>
+        </div>
+        
+
+        <!-- Desktop Navigation Links -->
+        <div class="hidden md:flex lg:gap-6 text-black">
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="home.html">Home</a></div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="hospitals.html">Hospitals</a></div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="aboutus.html">About Us</a></div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="services.html">Services</a></div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="ContactUs.html">Contact Us</a></div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="login.html">Sign Up / Log In</a></div>
+        </div>
+
+        <div class="hidden md:block">
+            <button class="bg-blue-500 text-white hover:bg-black py-3 px-5 rounded-full font-bold">
+                <a href="bookappointment.html">Book Appointment</a>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-btn" class="md:hidden text-3xl">&#9776;</button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu"
+        class="fixed inset-0 bg-white text-black flex flex-col items-center justify-center text-xl space-y-6 transform -translate-y-full transition-transform duration-500 ease-in-out">
+        <button id="close-btn" class="absolute top-5 right-6 text-3xl">&#10006;</button>
+        <a href="home.html" class="hover:text-blue-500">Home</a>
+        <a href="hospitals.html" class="hover:text-blue-500">Hospitals</a>
+        <a href="aboutus.html" class="hover:text-blue-500">About Us</a>
+        <a href="services.html" class="hover:text-blue-500">Services</a>
+        <a href="ContactUs.html" class="hover:text-blue-500">Contact Us</a>
+        <a href="login.html" class="hover:text-blue-500">Sign Up / Log In</a>
+        <div class="bg-blue-500 text-white hover:bg-blue-950 cursor-pointer px-4 py-3 text-sm font-bold rounded-full">
+            <a href="bookappointment.html">Book Appointment</a>
+        </div>
+    </div>
+
+    <!-- Navigation Ends-->
+
+
+
+
     <div class="min-h-screen flex flex-col justify-center items-center p-4">
-        <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-3xl">
+        <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-3xl rounded-[50px]">
             <h1 class="text-4xl font-bold text-blue-700 text-center">Any Queries? Contact Us</h1>
             <p class="text-gray-600 text-center mt-2">Reach out to us for appointments, emergency alerts, and queries.</p>
             
@@ -28,7 +86,7 @@
                     <label class="block text-gray-700">Message</label>
                     <textarea rows="4" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Write your message"></textarea>
                 </div>
-                <button type="submit" class="w-full bg-blue-700 text-white p-3 rounded-lg hover:bg-blue-800 transition">Send Message</button>
+                <button type="submit" class="w-full bg-blue-700 text-white p-3 font-bold rounded-lg hover:bg-black duration-200 cursor-pointer">Send Message</button>
             </form>
 
             <div class="mt-6 text-center">
@@ -38,5 +96,133 @@
             </div>
         </div>
     </div>
+
+    <!-- FOOTER -->
+    <footer class="sm:hidden bg-indigo-950 text-white rounded-[50px] mx-3 my-5 lg:p-10 p-5">
+        <div class="container mx-auto grid md:grid-cols-4 gap-10">
+            <div>
+                <div id="logo" class="lg:text-4xl text-3xl font-bold text-indigo-50 font-[Chicle]">SwiftHealth</div>
+                <p class="text-gray-400 mt-3">We offer a wide range of healthcare services to meet your needs.</p>
+            </div>
+            <div class="ms-5">
+                <h3 class="text-lg font-semibold mb-3">Healthcare</h3>
+                <ul class="text-gray-400 space-y-2">
+                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline">Doctors</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline">Diagnostics</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline">Caregiver</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline">Hospitality</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline">Emergency</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Quick Links</h3>
+                <ul class="text-gray-400 space-y-2">
+                    <li><span class="text-indigo-500">•</span><a href="home.html" class="hover:underline">Home</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="aboutus.html" class="hover:underline">About Us</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline">FAQS</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline">Blog</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="aboutus.html" class="hover:underline">Our Team</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Contact Us</h3>
+                <ul class="text-gray-400 space-y-3">
+                    <li class="flex items-center space-x-3">
+                        <span class="bg-indigo-700 text-white py-3 px-4 rounded-[50%]"><i class="fa-solid fa-envelope text-white"></i></span>
+                        <span>xxxxx@email.com</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="bg-indigo-700 text-white py-3 px-4 rounded-[50%]"><i class="fa-solid fa-phone text-white"></i></span>
+                        <span>xxxxx-xxxxx</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="bg-indigo-700 text-white py-3 px-4 rounded-[50%]"><i class="fa-solid fa-map-marker-alt text-white"></i></span>
+                        <span>ABC, XYZ</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <hr class="border-gray-700 my-6">
+        <div class="flex flex-col md:flex-row justify-between items-center text-gray-400 text-sm">
+            <div class="flex space-x-5 mt-3 md:mt-0">
+                <a href="#" class="bg-blue-700 py-3 px-4 rounded-[50%]"><i class="fa-brands fa-dribbble text-white"></i></a>
+                <a href="#" class="bg-blue-700 py-3 px-4 rounded-[50%]"><i class="fa-brands fa-facebook-f text-white"></i></a>
+                <a href="#" class="bg-blue-700 py-3 px-4 rounded-[50%]"><i class="fa-brands fa-instagram text-white"></i></a>
+            </div>
+            <div class="flex space-x-3 mt-3 md:mt-0">
+                <a href="#" class="hover:underline">Privacy Policy</a>
+                <span>•</span>
+                <a href="#" class="hover:underline">Terms & Conditions</a>
+            </div>
+        </div>
+    </footer>
+
+    <footer class="bg-indigo-950 text-white rounded-[50px] mx-3 my-5 p-5 lg:hidden md:hidden">
+        <div class="container mx-auto grid grid-cols-1 gap-6">
+            <div>
+                <div id="logo" class="text-3xl font-bold text-indigo-50 font-[Chicle]">SwiftHealth</div>
+                <p class="text-gray-400 mt-3">We offer a wide range of healthcare services to meet your needs.</p>
+            </div>
+            <div class="grid grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-lg font-semibold mb-3">Healthcare</h3>
+                    <ul class="text-gray-400 space-y-2">
+                        <li><a href="#" class="hover:underline">Doctors</a></li>
+                        <li><a href="#" class="hover:underline">Diagnostics</a></li>
+                        <li><a href="#" class="hover:underline">Caregiver</a></li>
+                        <li><a href="#" class="hover:underline">Hospitality</a></li>
+                        <li><a href="#" class="hover:underline">Emergency</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-3">Quick Links</h3>
+                    <ul class="text-gray-400 space-y-2">
+                        <li><a href="home.html" class="hover:underline">Home</a></li>
+                        <li><a href="aboutus.html" class="hover:underline">About Us</a></li>
+                        <li><a href="#" class="hover:underline">FAQS</a></li>
+                        <li><a href="#" class="hover:underline">Blog</a></li>
+                        <li><a href="aboutus.html" class="hover:underline">Our Team</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Contact Us</h3>
+                <ul class="text-gray-400 space-y-3">
+                    <li class="flex items-center space-x-3">
+                        <span class="bg-indigo-700 text-white p-3 rounded-full"><i class="fa-solid fa-envelope"></i></span>
+                        <span>xxxxx@email.com</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="bg-indigo-700 text-white p-3 rounded-full"><i class="fa-solid fa-phone"></i></span>
+                        <span>xxxxx-xxxxx</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="bg-indigo-700 text-white p-3 rounded-full"><i class="fa-solid fa-map-marker-alt"></i></span>
+                        <span>ABC, XYZ</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <hr class="border-gray-700 my-6">
+        <div class="flex flex-col items-center text-gray-400 text-sm space-y-3">
+            <div class="flex space-x-5">
+                <a href="#" class="bg-blue-700 p-3 rounded-full"><i class="fa-brands fa-dribbble text-white"></i></a>
+                <a href="#" class="bg-blue-700 p-3 rounded-full"><i class="fa-brands fa-facebook-f text-white"></i></a>
+                <a href="#" class="bg-blue-700 p-3 rounded-full"><i class="fa-brands fa-instagram text-white"></i></a>
+            </div>
+            <div class="flex space-x-3">
+                <a href="#" class="hover:underline">Privacy Policy</a>
+                <span>•</span>
+                <a href="#" class="hover:underline">Terms & Conditions</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- FOOTER ENDS-->
+    
+    <script src="./js/script.js"></script>
+
 </body>
 </html>
