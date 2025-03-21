@@ -1,15 +1,10 @@
 <?php
 session_start();
-// $logfile = __DIR__ . "/logs/sessionlog.log";
-// try{
-//     error_log(print_r($_SESSION), 3, $logfile);
-// }
-// catch(Exception $e) {
-//     echo "$e";
-// }
 
 try {
-    
+
+    // error_reporting(E_ALL);
+    // ini_set('display_errors', 1);
 
     header("Access-Control-Allow-Origin: http://localhost");
     header("Access-Control-Allow-Methods: POST");
@@ -39,29 +34,36 @@ try {
         die();
     }
 
-    include __DIR__ . "/database/connectDB.php";
+    require __DIR__ . "/database/connectDB.php";
 
     $name     = $_SESSION['creds']['name'];
     $email    = $_SESSION['creds']['email'];
     $password = $_SESSION['creds']['password'];
 
+    // -------------------------------------------- TRANSACTION BEGINS ---------------------------------------------------   
+    $conn->begin_transaction();
 
-    $stmt = $conn->prepare("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, 'patient')");
+    $insertQuery = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
+    $stmt = $conn->prepare($insertQuery);
+
     if (!$stmt) {
         echo json_encode([
             "success" => false,
             "message" => "Error preparing user statement: " . $conn->error
         ]);
+        $conn->rollback();
         die();
     }
 
     $stmt->bind_param("sss", $name, $email, $password);
+
     if (!$stmt->execute()) {
         echo json_encode([
             "success" => false,
             "message" => "Error creating user: " . $stmt->error
         ]);
         $stmt->close();
+        $conn->rollback();
         die();
     }
 
@@ -75,6 +77,7 @@ try {
             "success" => false,
             "message" => "Error preparing patient statement: " . $conn->error
         ]);
+        $conn->rollback();
         die();
     }
 
@@ -85,6 +88,7 @@ try {
             "message" => "Error creating patient: " . $stmt2->error
         ]);
         $stmt2->close();
+        $conn->rollback();
         die();
     }
     $stmt2->close();
@@ -92,16 +96,22 @@ try {
 
     unset($_SESSION['creds']);
     $_SESSION['user'] = ["email" => $email];
+    http_response_code(201);
     echo json_encode([
         "success" => true,
         "message" => "Successfully registered the user."
     ]);
-    
+    $conn->commit();
+    // -------------------------------------- TRANSACTION ENDS -----------------------------------------------------------
+
 } catch (Exception $e) {
     http_response_code(500);
     echo json_encode([
         "success" => false,
-        "message" => "Internal Server Error"
+        "message" => $e->getMessage(),
+        // "file" => $e->getFile(),
+        // "line" => $e->getLine(),
+        // "trace" => $e->getTraceAsString()
+        // debug 
     ]);
 }
-?>
