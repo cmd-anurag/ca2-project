@@ -14,51 +14,58 @@
     <!-- Navigation Starts-->
     <!-- Top Bar -->
     <div id="top" class="bg-blue-400 text-base text-white py-3 flex lg:items-center lg:justify-between w-full px-4">
-        <div class="text-center text-sm lg:text-lg text-left w-2/3">Working Hour: 08:00 AM to 09:00 PM | Email: info@domainname.com</div>
+        <div class="text-sm lg:text-lg text-left w-2/3">Working Hour: 08:00 AM to 09:00 PM | Email: info@domainname.com</div>
         <div class="flex items-center gap-2">
             <i class="fa-brands fa-facebook"></i>
             <span class="text-sm"> | Contact: xxxxx xxxxx</span>
         </div>
     </div>
 
-    <!-- Navigation Bar Starts-->
-    <nav id="navbar" class="flex items-center justify-between px-10 lg:px-16 py-6 w-full bg-gray-150">
-        <div id="logo" class="lg:text-4xl text-3xl font-bold text-black cursor-pointer font-[Chicle]"><a href="./home.html">SwiftHealth</a></div>
+    <!-- Navigation Bar Starts -->
+    <nav id="navbar" class="flex items-center justify-between px-10 lg:px-16 py-6 w-full bg-gray-100">
+        <div id="logo" class="lg:text-4xl text-3xl font-bold text-black cursor-pointer font-[Chicle]">
+            <a href="home.html">SwiftHealth</a>
+        </div>
+
 
         <!-- Desktop Navigation Links -->
         <div class="hidden md:flex lg:gap-6 text-black">
-            <div class="hover:text-blue-500 duration-200 cursor-pointer p1"><a href="./home.html">Home</a></div>
-            <div class="hover:text-blue-500 duration-200 cursor-pointer p1">Hospitals</div>
-            <div class="hover:text-blue-500 duration-200 cursor-pointer p1">About Us</div>
-            <div class="hover:text-blue-500 duration-200 cursor-pointer p1">Services</div>
-            <div class="hover:text-blue-500 duration-200 cursor-pointer p1"><a href="./ContactUs.html">Contact Us</a></div>
-            <div class="hover:text-blue-500 duration-200 cursor-pointer p1"><a href="./login.html">Sign Up / Log In</a></div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="home.html">Home</a></div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="hospitals.html">Hospitals</a></div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="aboutus.html">About Us</a></div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="services.html">Services</a></div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="ContactUs.html">Contact Us</a></div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="login.html">Sign Up / Log In</a></div>
         </div>
 
-        <!-- CTA Button (Desktop Only) -->
         <div class="hidden md:block">
-            <button class="bg-blue-500 text-white hover:bg-black py-3 px-5 rounded-full font-bold"><a href="./bookappointment.html">Book Appointment</a></button>
+            <button class="bg-blue-500 text-white hover:bg-black py-3 px-5 rounded-full font-bold">
+                <a href="bookappointment.html">Book Appointment</a>
+            </button>
         </div>
 
         <!-- Mobile Menu Button -->
-        <button id="menu-btn" class="md:hidden text-3xl">&#8942;</button>
+        <button id="menu-btn" class="md:hidden text-3xl">&#9776;</button>
     </nav>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden bg-white shadow-md p-4 absolute top-16 right-4 w-48 rounded-lg">
-        <div class="hover:text-blue-500 cursor-pointer py-2">Home</div>
-        <div class="hover:text-blue-500 cursor-pointer py-2">Hospitals</div>
-        <div class="hover:text-blue-500 cursor-pointer py-2">About Us</div>
-        <div class="hover:text-blue-500 cursor-pointer py-2">Services</div>
-        <div class="hover:text-blue-500 cursor-pointer py-2">Contact Us</div>
-        <div class="hover:text-blue-500 cursor-pointer py-2">Sign Up / Log In</div>
-        <div class="bg-blue-500 text-white hover:bg-blue-950 cursor-pointer px-2 py-3 text-sm font-bold rounded-full text-center mt-3 duration-200">
-            <a href="./bookappointment.html">Book Appointment</a>
+    <div id="mobile-menu"
+        class="fixed inset-0 bg-white text-black flex flex-col items-center justify-center text-xl space-y-6 transform -translate-y-full transition-transform duration-500 ease-in-out">
+        <button id="close-btn" class="absolute top-5 right-6 text-3xl">&#10006;</button>
+        <a href="home.html" class="hover:text-blue-500">Home</a>
+        <a href="hospitals.html" class="hover:text-blue-500">Hospitals</a>
+        <a href="aboutus.html" class="hover:text-blue-500">About Us</a>
+        <a href="services.html" class="hover:text-blue-500">Services</a>
+        <a href="ContactUs.html" class="hover:text-blue-500">Contact Us</a>
+        <a href="login.html" class="hover:text-blue-500">Sign Up / Log In</a>
+        <div class="bg-blue-500 text-white hover:bg-blue-950 cursor-pointer px-4 py-3 text-sm font-bold rounded-full">
+            <a href="bookappointment.html">Book Appointment</a>
         </div>
     </div>
-  
-  
+
     <!-- Navigation Ends-->
+
+
 
 
     <!-- Banner Starts -->
@@ -74,8 +81,8 @@
             <div class="lg:text-xl text-md text-gray-600 mt-2">Experience healthcare you can trust. Our dedicated team provides compassionate, high-quality care.</div>
             <br>
             <div class="flex gap-6 items-center">
-                <div class="bg-blue-500 text-white hover:bg-blue-950 duration-200 cursor-pointer lg:py-3 lg:px-5 px-3 py-3 text-sm text-center rounded-full font-bold bg-black"><a href="./bookappointment.html">Book an Appointment</a></div>
-                <div class="bg-blue-500 text-white hover:bg-blue-950 duration-200 cursor-pointer lg:py-3 lg:px-5 px-3 py-3 text-sm text-center rounded-full font-bold bg-black"><a href="./aboutus.html">About Us</a></div>
+                <div class="bg-blue-500 text-white hover:bg-blue-950 duration-200 cursor-pointer lg:py-3 lg:px-5 px-3 py-3 text-sm text-center rounded-full font-bold bg-black"><a href="bookappointment.html">Book an Appointment</a></div>
+                <div class="bg-blue-500 text-white hover:bg-blue-950 duration-200 cursor-pointer lg:py-3 lg:px-5 px-3 py-3 text-sm text-center rounded-full font-bold bg-black"><a href="aboutus.html">About Us</a></div>
             </div>
         </div>
     </div>
@@ -248,17 +255,20 @@
 
 
     <!--Appointment-->
-
-    <div class="bg-indigo-950 m-5 rounded-[50px] md:flex lg:flex justify-evenly pt-5">
-        <div class="mx-auto mt-[55px]"><img src="https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2024/12/cta-img-1.png"></div>
-        <div class="w-1/3 my-auto text-center">
-            <div class="text-white text-5xl my-auto">Take the first step to better health</div><br>
-            <div class="bg-blue-600 text-white hover:text-black hover:bg-white cursor-pointer px-2 py-3 text-md font-bold rounded-full text-center duration-200">
-                <a href="./bookappointment.html">Book A Appointment Now</a>
-            </div><br>
-            <div class="text-white text-sm my-auto">It only takes 2 minutes to complete</div><br>
+    <div class="w-full">
+        <div class="bg-indigo-950 m-5 rounded-[50px] flex justify-evenly pt-5 px-auto">
+            <!-- <div class="hidden lg:visible md:visible mx-auto mt-[55px]"><img src="https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2024/12/cta-img-1.png"></div> -->
+            <div class="my-auto text-center mx-2">
+                <div class="text-white lg:text-5xl md:text-3xl text-xl my-auto">Take the first step to better health</div><br>
+                <div>
+                    <span class="bg-blue-600 text-white hover:text-black hover:bg-white cursor-pointer px-2 py-3 my-2 lg:text-xl md:text-md text-[10px] font-bold rounded-full text-center duration-200">
+                        <a href="bookappointment.html">Book A Appointment Now</a>
+                    </span>
+                </div><br>
+                <div class="text-white text-sm my-auto">It only takes 2 minutes to complete</div><br>
+            </div>
+            <div class=""><img src="https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2024/12/cta-img-2.png"></div>
         </div>
-        <div class="mx-auto"><img src="https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2024/12/cta-img-2.png"></div>
     </div>
 
 
@@ -270,7 +280,7 @@
     
     <!--UNDER PROGRES !!!!! Testimonials  UNDER PROGRESS !!!!-->
 
-    <div id="choose-us" class="text-center bg-[url('https://hcparquitectos.com/wp-content/uploads/2021/05/MAPAHCP-scaled.jpg')]">
+    <div id="choose-us" class="text-center bg-[url('https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2025/01/our-testimonial-bg.png')]">
         <div>
             <div class="text-m text-blue-700 m-5">Testimonials</div>
             <div class="text-4xl lg:text-5xl font-bold lg:mx-[15%] py-5">Patient stories of care and recovery</div>
@@ -278,37 +288,83 @@
         </div>
         <div id="content" class="lg:flex lg:justify-evenly my-15">
             <div class="lg:flex md:flex">
-                <div class="text-center m-5 bg-white">
-                    <img class="rounded-[50%] mx-auto text-5xl" src="https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2024/12/work-step-img-3.jpg">
+                <div class="text-center m-5 bg-white shadow-lg p-2 rounded-lg">
+                    <span class="text-yellow-600">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </span>
                     <br>
-                    <span class="rounded-[50%] bg-blue-500 text-white text-center py-2 px-3">1</span>
-                    <br><br>
-                    <span class="text-xl text-black font-bold">Create Account</span>
                     <br>
-                    <span class="text-md text-center text-gray-650">Join our community by creating an account today.</span>
+                    <span class="text-md text-center text-gray-650">My first appointment, but the staff was so welcoming. They took the time to listen to my concerns and made sure I felt comfortable.</span>
                     <br>
+                    <br>
+                    <span>
+                        <img class="rounded-[50%] h-15 mx-auto text-5xl" src="https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2024/12/author-3.jpg">
+                        <span>Mr. Smith</span>
+                    </span>
+                    
                 </div>
-                <div class="text-center m-5">
-                    <img class="rounded-[50%] mx-auto text-5xl" src="https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2024/12/work-step-img-3.jpg">
+                <div class="text-center m-5 bg-white shadow-lg p-2 rounded-lg">
+                    <span class="text-yellow-600">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </span>
                     <br>
-                    <span class="rounded-[50%] bg-blue-500 text-white text-center py-2 px-3">2</span>
-                    <br><br>
-                    <span class="text-xl text-black font-bold">Search Doctor</span>
                     <br>
-                    <span class="text-md text-center text-gray-650">Join our community by creating an account today.</span>
+                    <span class="text-md text-center text-gray-650">My first appointment, but the staff was so welcoming. They took the time to listen to my concerns and made sure I felt comfortable.</span>
                     <br>
+                    <br>
+                    <span>
+                        <img class="rounded-[50%] h-15 mx-auto text-5xl" src="https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2024/12/author-3.jpg">
+                        <span>Mr. Smith</span>
+                    </span>
+                    
                 </div>
             </div>
             <div class="lg:flex md:flex">
-                <div class="text-center m-5">
-                    <img class="rounded-[50%] mx-auto text-5xl" src="https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2024/12/work-step-img-3.jpg">
+                <div class="text-center m-5 bg-white shadow-lg p-2 rounded-lg">
+                     <span class="text-yellow-600">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </span>
                     <br>
-                    <span class="rounded-[50%] bg-blue-500 text-white text-center py-2 px-3">3</span>
-                    <br><br>
-                    <span class="text-xl text-black font-bold">Schedule Appointment</span>
                     <br>
-                    <span class="text-md text-center text-gray-650">Join our community by creating an account today.</span>
+                    <span class="text-md text-center text-gray-650">My first appointment, but the staff was so welcoming. They took the time to listen to my concerns and made sure I felt comfortable.</span>
                     <br>
+                    <br>
+                    <span>
+                        <img class="rounded-[50%] h-15 mx-auto text-5xl" src="https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2024/12/author-3.jpg">
+                        <span>Mr. Smith</span>
+                    </span>
+                    
+                </div>
+                <div class="text-center m-5 bg-white shadow-lg p-2 rounded-lg">
+                     <span class="text-yellow-600">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </span>
+                    <br>
+                    <br>
+                    <span class="text-md text-center text-gray-650">My first appointment, but the staff was so welcoming. They took the time to listen to my concerns and made sure I felt comfortable.</span>
+                    <br>
+                    <br>
+                    <span>
+                        <img class="rounded-[50%] h-15 mx-auto text-5xl" src="https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2024/12/author-3.jpg">
+                        <span>Mr. Smith</span>
+                    </span>
+                    
                 </div>
             </div>
         </div>
@@ -404,7 +460,7 @@
 
 
     <!-- FOOTER -->
-    <footer class="bg-indigo-950 text-white rounded-[50px] mx-3 my-5 lg:p-10 p-5">
+    <div class="hidden lg:visible md:visible bg-indigo-950 text-white rounded-[50px] mx-3 my-5 lg:p-10 p-5">
         <div class="container mx-auto grid md:grid-cols-4 gap-10">
             <div>
                 <div id="logo" class="lg:text-4xl text-3xl font-bold text-indigo-50 font-[Chicle]">SwiftHealth</div>
@@ -413,22 +469,22 @@
             <div class="ms-5">
                 <h3 class="text-lg font-semibold mb-3">Healthcare</h3>
                 <ul class="text-gray-400 space-y-2">
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> Doctors</a></li>
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> Diagnostics</a></li>
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> Caregiver</a></li>
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> Hospitality</a></li>
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> Emergency</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline">Doctors</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline">Diagnostics</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline">Caregiver</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline">Hospitality</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline">Emergency</a></li>
                 </ul>
             </div>
 
             <div>
                 <h3 class="text-lg font-semibold mb-3">Quick Links</h3>
                 <ul class="text-gray-400 space-y-2">
-                    <li><span class="text-indigo-500">•</span><a href="./home.html" class="hover:underline"> Home</a></li>
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> About Us</a></li>
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> FAQS</a></li>
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> Blog</a></li>
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> Our Team</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="home.html" class="hover:underline">Home</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="aboutus.html" class="hover:underline">About Us</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline">FAQS</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline">Blog</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="aboutus.html" class="hover:underline">Our Team</a></li>
                 </ul>
             </div>
             <div>
@@ -462,23 +518,80 @@
                 <a href="#" class="hover:underline">Terms & Conditions</a>
             </div>
         </div>
-    </footer>
+    </div>
+
+    <div class="bg-indigo-950 text-white rounded-[50px] mx-3 my-5 p-5 lg:hidden md:hidden">
+        <div class="container mx-auto grid grid-cols-1 gap-6">
+            <div>
+                <div id="logo" class="text-3xl font-bold text-indigo-50 font-[Chicle]">SwiftHealth</div>
+                <p class="text-gray-400 mt-3">We offer a wide range of healthcare services to meet your needs.</p>
+            </div>
+            <div class="grid grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-lg font-semibold mb-3">Healthcare</h3>
+                    <ul class="text-gray-400 space-y-2">
+                        <li><a href="#" class="hover:underline">Doctors</a></li>
+                        <li><a href="#" class="hover:underline">Diagnostics</a></li>
+                        <li><a href="#" class="hover:underline">Caregiver</a></li>
+                        <li><a href="#" class="hover:underline">Hospitality</a></li>
+                        <li><a href="#" class="hover:underline">Emergency</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-3">Quick Links</h3>
+                    <ul class="text-gray-400 space-y-2">
+                        <li><a href="home.html" class="hover:underline">Home</a></li>
+                        <li><a href="aboutus.html" class="hover:underline">About Us</a></li>
+                        <li><a href="#" class="hover:underline">FAQS</a></li>
+                        <li><a href="#" class="hover:underline">Blog</a></li>
+                        <li><a href="aboutus.html" class="hover:underline">Our Team</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Contact Us</h3>
+                <ul class="text-gray-400 space-y-3">
+                    <li class="flex items-center space-x-3">
+                        <span class="bg-indigo-700 text-white p-3 rounded-full"><i class="fa-solid fa-envelope"></i></span>
+                        <span>xxxxx@email.com</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="bg-indigo-700 text-white p-3 rounded-full"><i class="fa-solid fa-phone"></i></span>
+                        <span>xxxxx-xxxxx</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="bg-indigo-700 text-white p-3 rounded-full"><i class="fa-solid fa-map-marker-alt"></i></span>
+                        <span>ABC, XYZ</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <hr class="border-gray-700 my-6">
+        <div class="flex flex-col items-center text-gray-400 text-sm space-y-3">
+            <div class="flex space-x-5">
+                <a href="#" class="bg-blue-700 p-3 rounded-full"><i class="fa-brands fa-dribbble text-white"></i></a>
+                <a href="#" class="bg-blue-700 p-3 rounded-full"><i class="fa-brands fa-facebook-f text-white"></i></a>
+                <a href="#" class="bg-blue-700 p-3 rounded-full"><i class="fa-brands fa-instagram text-white"></i></a>
+            </div>
+            <div class="flex space-x-3">
+                <a href="#" class="hover:underline">Privacy Policy</a>
+                <span>•</span>
+                <a href="#" class="hover:underline">Terms & Conditions</a>
+            </div>
+        </div>
+    </div>
 
 
     <!-- FOOTER ENDS-->
-    
-      <script src="./js/home.js"></script>
-      <script>
+    <script>
         document.addEventListener("DOMContentLoaded", function () {
             document.querySelectorAll(".faq-question").forEach((question) => {
                 question.addEventListener("click", function () {
                     const answer = this.nextElementSibling;
                     const icon = this.querySelector("i");
-
-                    // Toggle Answer Visibility
+                    
                     answer.classList.toggle("hidden");
-
-                    // Change Arrow Direction
+                    
                     if (answer.classList.contains("hidden")) {
                         icon.classList.replace("fa-angle-up", "fa-angle-down");
                     } else {
@@ -487,6 +600,8 @@
                 });
             });
         });
-    </script>
+        </script>
+        
+        <script src="./js/script.js"></script>
 </body>
 </html>

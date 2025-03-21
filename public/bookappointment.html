@@ -14,50 +14,55 @@
     <!-- Navigation Starts-->
     <!-- Top Bar -->
     <div id="top" class="bg-blue-400 text-base text-white py-3 flex lg:items-center lg:justify-between w-full px-4">
-        <div class="text-center text-sm lg:text-lg text-left w-2/3">Working Hour: 08:00 AM to 09:00 PM | Email: info@domainname.com</div>
+        <div class="text-sm lg:text-lg text-left w-2/3">Working Hour: 08:00 AM to 09:00 PM | Email: info@domainname.com</div>
         <div class="flex items-center gap-2">
             <i class="fa-brands fa-facebook"></i>
             <span class="text-sm"> | Contact: xxxxx xxxxx</span>
         </div>
     </div>
 
-    <!-- Navigation Bar Starts-->
-    <nav class="flex items-center justify-between px-10 lg:px-16 py-6 w-full bg-gray-150">
-        <div id="logo" class="lg:text-4xl text-3xl font-bold text-black cursor-pointer font-[Chicle]"><a href="./home.html">SwifttHealth</a></div>
+    <!-- Navigation Bar Starts -->
+    <nav id="navbar" class="flex items-center justify-between px-10 lg:px-16 py-6 w-full bg-gray-100">
+        <div id="logo" class="lg:text-4xl text-3xl font-bold text-black cursor-pointer font-[Chicle]">
+            <a href="home.html">SwiftHealth</a>
+        </div>
+        
 
         <!-- Desktop Navigation Links -->
         <div class="hidden md:flex lg:gap-6 text-black">
-            <div class="hover:text-blue-500 duration-200 cursor-pointer p1">Home</div>
-            <div class="hover:text-blue-500 duration-200 cursor-pointer p1">Hospitals</div>
-            <div class="hover:text-blue-500 duration-200 cursor-pointer p1">About Us</div>
-            <div class="hover:text-blue-500 duration-200 cursor-pointer p1">Services</div>
-            <div class="hover:text-blue-500 duration-200 cursor-pointer p1">Contact Us</div>
-            <div class="hover:text-blue-500 duration-200 cursor-pointer p1">Sign Up / Log In</div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="home.html">Home</a></div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="hospitals.html">Hospitals</a></div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="aboutus.html">About Us</a></div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="services.html">Services</a></div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="ContactUs.html">Contact Us</a></div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="login.html">Sign Up / Log In</a></div>
         </div>
 
-        <!-- CTA Button (Desktop Only) -->
         <div class="hidden md:block">
-            <button class="bg-blue-500 text-white hover:bg-black py-3 px-5 rounded-full font-bold">Book Appointment</button>
+            <button class="bg-blue-500 text-white hover:bg-black py-3 px-5 rounded-full font-bold">
+                <a href="bookappointment.html">Book Appointment</a>
+            </button>
         </div>
 
         <!-- Mobile Menu Button -->
-        <button id="menu-btn" class="md:hidden text-3xl">&#8942;</button>
+        <button id="menu-btn" class="md:hidden text-3xl">&#9776;</button>
     </nav>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden bg-white shadow-md p-4 absolute top-16 right-4 w-48 rounded-lg">
-        <div class="hover:text-blue-500 cursor-pointer py-2">Home</div>
-        <div class="hover:text-blue-500 cursor-pointer py-2">Hospitals</div>
-        <div class="hover:text-blue-500 cursor-pointer py-2">About Us</div>
-        <div class="hover:text-blue-500 cursor-pointer py-2">Services</div>
-        <div class="hover:text-blue-500 cursor-pointer py-2">Contact Us</div>
-        <div class="hover:text-blue-500 cursor-pointer py-2">Sign Up / Log In</div>
-        <div class="bg-blue-500 text-white hover:bg-black cursor-pointer px-2 py-3 text-sm font-bold rounded-full text-center mt-3 duration-200">
-            Book Appointment
+    <div id="mobile-menu"
+        class="fixed inset-0 bg-white text-black flex flex-col items-center justify-center text-xl space-y-6 transform -translate-y-full transition-transform duration-500 ease-in-out">
+        <button id="close-btn" class="absolute top-5 right-6 text-3xl">&#10006;</button>
+        <a href="home.html" class="hover:text-blue-500">Home</a>
+        <a href="hospitals.html" class="hover:text-blue-500">Hospitals</a>
+        <a href="aboutus.html" class="hover:text-blue-500">About Us</a>
+        <a href="services.html" class="hover:text-blue-500">Services</a>
+        <a href="ContactUs.html" class="hover:text-blue-500">Contact Us</a>
+        <a href="login.html" class="hover:text-blue-500">Sign Up / Log In</a>
+        <div class="bg-blue-500 text-white hover:bg-blue-950 cursor-pointer px-4 py-3 text-sm font-bold rounded-full">
+            <a href="bookappointment.html">Book Appointment</a>
         </div>
     </div>
-  
-  
+
     <!-- Navigation Ends-->
 
     <!-- Banner Starts -->
@@ -86,12 +91,53 @@
                 <input class="bg-indigo-200 text-md rounded-[10px] p-3 w-1/2" placeholder="Choose a Date" type="date">
                 <select class="bg-indigo-200 text-md rounded-[10px] p-3 w-1/2">
                     <option disabled selected>Select an option</option>
-                    <option>Urology</option>
-                    <option>Neurology</option>
-                    <option>Eyecare</option>
-                    <option>Vaccine</option>
-                    <option>Pharmacy</option>
+                    <option>Allergy & Immunology</option>
+                    <option>Anesthesiology</option>
+                    <option>Bariatrics</option>
+                    <option>Cardiology</option>
                     <option>Chronic Care</option>
+                    <option>Critical Care Medicine</option>
+                    <option>Dentistry</option>
+                    <option>Dermatology</option>
+                    <option>Emergency Medicine</option>
+                    <option>Endocrinology</option>
+                    <option>Eyecare</option>
+                    <option>Gastroenterology</option>
+                    <option>General Surgery</option>
+                    <option>Genetics</option>
+                    <option>Geriatrics</option>
+                    <option>Gynecology</option>
+                    <option>Hematology</option>
+                    <option>Hepatology</option>
+                    <option>Infectious Disease</option>
+                    <option>Internal Medicine</option>
+                    <option>Neonatology</option>
+                    <option>Nephrology</option>
+                    <option>Neurology</option>
+                    <option>Neurosurgery</option>
+                    <option>Obstetrics</option>
+                    <option>Oncology</option>
+                    <option>Ophthalmology</option>
+                    <option>Orthopedics</option>
+                    <option>Otolaryngology (ENT)</option>
+                    <option>Pathology</option>
+                    <option>Pharmacy</option>
+                    <option>Pediatrics</option>
+                    <option>Physical Medicine & Rehabilitation</option>
+                    <option>Plastic Surgery</option>
+                    <option>Podiatry</option>
+                    <option>Primary Care</option>
+                    <option>Psychiatry</option>
+                    <option>Pulmonology</option>
+                    <option>Radiology</option>
+                    <option>Rheumatology</option>
+                    <option>Sports Medicine</option>
+                    <option>Thoracic Surgery</option>
+                    <option>Transplant Surgery</option>
+                    <option>Urology</option>
+                    <option>Vaccine</option>
+                    <option>Vascular Surgery</option>
+                    <option>Veterinary Medicine</option>                    
                 </select>
             </div>
             <button class="bg-blue-500 text-white hover:bg-black py-3 px-6 rounded-full font-bold">Book Appointment</button>
@@ -185,7 +231,7 @@
 
 
     <!-- FOOTER -->
-    <footer class="bg-indigo-950 text-white rounded-[50px] mx-3 my-5 lg:p-10 p-5">
+    <footer class="sm:hidden bg-indigo-950 text-white rounded-[50px] mx-3 my-5 lg:p-10 p-5">
         <div class="container mx-auto grid md:grid-cols-4 gap-10">
             <div>
                 <div id="logo" class="lg:text-4xl text-3xl font-bold text-indigo-50 font-[Chicle]">SwiftHealth</div>
@@ -194,22 +240,22 @@
             <div class="ms-5">
                 <h3 class="text-lg font-semibold mb-3">Healthcare</h3>
                 <ul class="text-gray-400 space-y-2">
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> Doctors</a></li>
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> Diagnostics</a></li>
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> Caregiver</a></li>
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> Hospitality</a></li>
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> Emergency</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline">Doctors</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline">Diagnostics</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline">Caregiver</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline">Hospitality</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline">Emergency</a></li>
                 </ul>
             </div>
 
             <div>
                 <h3 class="text-lg font-semibold mb-3">Quick Links</h3>
                 <ul class="text-gray-400 space-y-2">
-                    <li><span class="text-indigo-500">•</span><a href="./home.html" class="hover:underline"> Home</a></li>
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> About Us</a></li>
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> FAQS</a></li>
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> Blog</a></li>
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> Our Team</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="home.html" class="hover:underline">Home</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="aboutus.html" class="hover:underline">About Us</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline">FAQS</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline">Blog</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="aboutus.html" class="hover:underline">Our Team</a></li>
                 </ul>
             </div>
             <div>
@@ -245,10 +291,71 @@
         </div>
     </footer>
 
+    <footer class="bg-indigo-950 text-white rounded-[50px] mx-3 my-5 p-5 lg:hidden md:hidden">
+        <div class="container mx-auto grid grid-cols-1 gap-6">
+            <div>
+                <div id="logo" class="text-3xl font-bold text-indigo-50 font-[Chicle]">SwiftHealth</div>
+                <p class="text-gray-400 mt-3">We offer a wide range of healthcare services to meet your needs.</p>
+            </div>
+            <div class="grid grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-lg font-semibold mb-3">Healthcare</h3>
+                    <ul class="text-gray-400 space-y-2">
+                        <li><a href="#" class="hover:underline">Doctors</a></li>
+                        <li><a href="#" class="hover:underline">Diagnostics</a></li>
+                        <li><a href="#" class="hover:underline">Caregiver</a></li>
+                        <li><a href="#" class="hover:underline">Hospitality</a></li>
+                        <li><a href="#" class="hover:underline">Emergency</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-3">Quick Links</h3>
+                    <ul class="text-gray-400 space-y-2">
+                        <li><a href="home.html" class="hover:underline">Home</a></li>
+                        <li><a href="aboutus.html" class="hover:underline">About Us</a></li>
+                        <li><a href="#" class="hover:underline">FAQS</a></li>
+                        <li><a href="#" class="hover:underline">Blog</a></li>
+                        <li><a href="aboutus.html" class="hover:underline">Our Team</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Contact Us</h3>
+                <ul class="text-gray-400 space-y-3">
+                    <li class="flex items-center space-x-3">
+                        <span class="bg-indigo-700 text-white p-3 rounded-full"><i class="fa-solid fa-envelope"></i></span>
+                        <span>xxxxx@email.com</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="bg-indigo-700 text-white p-3 rounded-full"><i class="fa-solid fa-phone"></i></span>
+                        <span>xxxxx-xxxxx</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="bg-indigo-700 text-white p-3 rounded-full"><i class="fa-solid fa-map-marker-alt"></i></span>
+                        <span>ABC, XYZ</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <hr class="border-gray-700 my-6">
+        <div class="flex flex-col items-center text-gray-400 text-sm space-y-3">
+            <div class="flex space-x-5">
+                <a href="#" class="bg-blue-700 p-3 rounded-full"><i class="fa-brands fa-dribbble text-white"></i></a>
+                <a href="#" class="bg-blue-700 p-3 rounded-full"><i class="fa-brands fa-facebook-f text-white"></i></a>
+                <a href="#" class="bg-blue-700 p-3 rounded-full"><i class="fa-brands fa-instagram text-white"></i></a>
+            </div>
+            <div class="flex space-x-3">
+                <a href="#" class="hover:underline">Privacy Policy</a>
+                <span>•</span>
+                <a href="#" class="hover:underline">Terms & Conditions</a>
+            </div>
+        </div>
+    </footer>
+
 
     <!-- FOOTER ENDS-->
 
-    <script src="./js/home.js"></script>
+    <script src="./js/script.js"></script>
     
 </body>
 </html>

@@ -10,6 +10,61 @@
     <link href="https://fonts.googleapis.com/css2?family=Chicle&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
+        <!-- Navigation Starts-->
+    <!-- Top Bar -->
+    <div id="top" class="bg-blue-400 text-base text-white py-3 flex lg:items-center lg:justify-between w-full px-4">
+        <div class="text-sm lg:text-lg text-left w-2/3">Working Hour: 08:00 AM to 09:00 PM | Email: info@domainname.com</div>
+        <div class="flex items-center gap-2">
+            <i class="fa-brands fa-facebook"></i>
+            <span class="text-sm"> | Contact: xxxxx xxxxx</span>
+        </div>
+    </div>
+
+    <!-- Navigation Bar Starts -->
+    <nav id="navbar" class="flex items-center justify-between px-10 lg:px-16 py-6 w-full bg-gray-100">
+        <div id="logo" class="lg:text-4xl text-3xl font-bold text-black cursor-pointer font-[Chicle]">
+            <a href="home.html">SwiftHealth</a>
+        </div>
+        
+
+        <!-- Desktop Navigation Links -->
+        <div class="hidden md:flex lg:gap-6 text-black">
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="home.html">Home</a></div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="hospitals.html">Hospitals</a></div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="aboutus.html">About Us</a></div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="services.html">Services</a></div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="ContactUs.html">Contact Us</a></div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="login.html">Sign Up / Log In</a></div>
+        </div>
+
+        <div class="hidden md:block">
+            <button class="bg-blue-500 text-white hover:bg-black py-3 px-5 rounded-full font-bold">
+                <a href="bookappointment.html">Book Appointment</a>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-btn" class="md:hidden text-3xl">&#9776;</button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu"
+        class="fixed inset-0 bg-white text-black flex flex-col items-center justify-center text-xl space-y-6 transform -translate-y-full transition-transform duration-500 ease-in-out">
+        <button id="close-btn" class="absolute top-5 right-6 text-3xl">&#10006;</button>
+        <a href="home.html" class="hover:text-blue-500">Home</a>
+        <a href="hospitals.html" class="hover:text-blue-500">Hospitals</a>
+        <a href="aboutus.html" class="hover:text-blue-500">About Us</a>
+        <a href="services.html" class="hover:text-blue-500">Services</a>
+        <a href="ContactUs.html" class="hover:text-blue-500">Contact Us</a>
+        <a href="login.html" class="hover:text-blue-500">Sign Up / Log In</a>
+        <div class="bg-blue-500 text-white hover:bg-blue-950 cursor-pointer px-4 py-3 text-sm font-bold rounded-full">
+            <a href="bookappointment.html">Book Appointment</a>
+        </div>
+    </div>
+
+    <!-- Navigation Ends-->
+
+
     <div class="h-screen flex justify-center items-center">
 
         <div class="lg:w-2/3 lg:mx-auto lg:h-4/5 h-screen w-9/10 flex lg:flex-row flex-col mt-10 lg:mt-0">
@@ -39,5 +94,6 @@
 
     </div>
     <script src="./js/login.js"></script>
+    <script src="./js/script.js"></script>
 </body>
 </html>
