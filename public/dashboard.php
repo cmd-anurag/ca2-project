@@ -16,17 +16,9 @@
 <body>
 
   <?php
-  // check if the user is not logged in
   session_start();
-  if (!isset($_SESSION['user'])) {
-    echo "<p class='text-center text-2xl'>You are not logged in. You will be redirected to the login page in a few seconds.</p>";
-    echo "<script>
-            setTimeout(function() {
-                window.location.href = 'login.html';
-            }, 4000);
-          </script>";
-    exit();
-  }
+  // check if the user is not logged in
+  require __DIR__ . "/../backend/includes/is_loggedin.php";
 
   // connect to DB and fetch user details.
   $userEmail = $_SESSION['user']['email'];
@@ -54,9 +46,12 @@
     echo "<p>Unable to fetch user details.</p>";
     die();
   }
-
+  $user_id = $result['id'];
   $user_name = $result['name'];
   $user_role = $result['role'];
+
+  // saving the id in session for future use.
+  $_SESSION['user']['id'] = $user_id;
 
   ?>
 
