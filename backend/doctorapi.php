@@ -1,15 +1,14 @@
-<?php
+<?php 
 
 $id = $_POST["id"];
-$dob = $_POST["date_of_birth"];
-$gender = $_POST["gender"];
-$medical_history = $_POST["medical_history"];
-$blood_type = $_POST["blood_type"];
-$emergency_contact = $_POST["emergency_contact"];
+$specialization = $_POST["specialization"];
+
+$experience_years = $_POST["experience_years"];
+$hospital_name = $_POST["hospital_name"];
 
 require "../backend/database/connectDB.php";
 
-$query = "UPDATE patients SET date_of_birth = ?, gender = ?, medical_history = ?, blood_type = ?, emergency_contact = ? where id = $id";
+$query = "UPDATE doctors SET specialization = ?, experience_years = ?, hospital_name = ? WHERE id = $id";
 
 $statement = $conn->prepare($query);
 
@@ -18,8 +17,8 @@ if (!$statement) {
     die();
 }
 
+$statement->bind_param("sis", $specialization,  $experience_years, $hospital_name);
 
-$statement->bind_param("sssss", $dob, $gender, $medical_history, $blood_type, $emergency_contact);
 
 if ($statement->execute()) {
     echo json_encode(["success" =>true, "message" => "Profile Updated Successfully"]); 
@@ -27,4 +26,5 @@ if ($statement->execute()) {
     echo json_encode(["success" => false, "message" => "Error updating profile"]);
 }
 $statement->close();
+
 ?>
