@@ -6,28 +6,31 @@
     <title>Page not Found</title>
     <link rel="stylesheet" href="notfound.css">
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chicle&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body class="">
     <div class="h-full w-full flex-col">
             <!-- <div class="lg:text-4xl text-3xl font-bold text-black font-[Chicle] flex relative fixed">
                 <span class="m-10">SwiftHealth</span> 
             </div> -->
-            <nav class="flex items-center justify-between px-10 lg:px-16 py-6 w-full bg-white">
+            <nav id="navbar" class="flex items-center justify-between px-10 lg:px-16 py-6 w-full bg-gray-150">
                 <div id="logo" class="lg:text-4xl text-3xl font-bold text-black cursor-pointer font-[Chicle]"><a href="./home.html">SwiftHealth</a></div>
         
                 <!-- Desktop Navigation Links -->
                 <div class="hidden md:flex lg:gap-6 text-black">
-                    <div class="hover:text-blue-500 duration-200 cursor-pointer p1">Home</div>
-                    <div class="hover:text-blue-500 duration-200 cursor-pointer p1">Hospitals</div>
-                    <div class="hover:text-blue-500 duration-200 cursor-pointer p1">About Us</div>
-                    <div class="hover:text-blue-500 duration-200 cursor-pointer p1">Services</div>
-                    <div class="hover:text-blue-500 duration-200 cursor-pointer p1">Contact Us</div>
-                    <div class="hover:text-blue-500 duration-200 cursor-pointer p1">Sign Up / Log In</div>
+                    <div class="hover:text-blue-500 duration-200 cursor-pointer p1"><a href="./home.html">Home</a></div>
+                    <div class="hover:text-blue-500 duration-200 cursor-pointer p1"><a href="">Hospitals</a></div>
+                    <div class="hover:text-blue-500 duration-200 cursor-pointer p1"><a href="">About Us</a></div>
+                    <div class="hover:text-blue-500 duration-200 cursor-pointer p1"><a href="">Services</a></div>
+                    <div class="hover:text-blue-500 duration-200 cursor-pointer p1"><a href="./ContactUs.html">Contact Us</a></div>
+                    <div class="hover:text-blue-500 duration-200 cursor-pointer p1"><a href="./login.html">Sign Up / Log In</a></div>
                 </div>
         
                 <!-- CTA Button (Desktop Only) -->
                 <div class="hidden md:block">
-                    <button class="bg-blue-500 text-white hover:bg-black py-3 px-5 rounded-full font-bold">Book Appointment</button>
+                    <button class="bg-blue-500 text-white hover:bg-black py-3 px-5 rounded-full font-bold"><a href="">Book Appointment</a></button>
                 </div>
         
                 <!-- Mobile Menu Button -->

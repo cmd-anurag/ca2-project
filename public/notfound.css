@@ -11,7 +11,7 @@ body {
 }
 
 .parent {
-    background-image: url("healthfalling.gif");
+    background-image: url("error_bg.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
