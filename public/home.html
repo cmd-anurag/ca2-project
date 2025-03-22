@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Chicle&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body class="bg-gray-150">
+
     <!-- Navigation Starts-->
     <!-- Top Bar -->
     <div id="top" class="bg-blue-400 text-base text-white py-3 flex lg:items-center lg:justify-between w-full px-4">
@@ -29,7 +30,7 @@
 
 
         <!-- Desktop Navigation Links -->
-        <div class="hidden md:flex lg:gap-6 text-black">
+        <div class="hidden md:flex lg:gap-6 text-black md:text-sm">
             <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="home.html">Home</a></div>
             <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="hospitals.html">Hospitals</a></div>
             <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="aboutus.html">About Us</a></div>
@@ -460,7 +461,7 @@
 
 
     <!-- FOOTER -->
-    <div class="hidden lg:visible md:visible bg-indigo-950 text-white rounded-[50px] mx-3 my-5 lg:p-10 p-5">
+    <div class="sm:hidden bg-indigo-950 text-white rounded-[50px] mx-3 my-5 lg:p-10 p-5">
         <div class="container mx-auto grid md:grid-cols-4 gap-10">
             <div>
                 <div id="logo" class="lg:text-4xl text-3xl font-bold text-indigo-50 font-[Chicle]">SwiftHealth</div>
@@ -583,6 +584,8 @@
 
 
     <!-- FOOTER ENDS-->
+
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             document.querySelectorAll(".faq-question").forEach((question) => {
