@@ -52,7 +52,8 @@
 
   // saving the id in session for future use.
   $_SESSION['user']['id'] = $user_id;
-
+  $_SESSION['user']['role'] = $user_role;
+  $_SESSION['user']['name'] = $user_name;
   ?>
 
   <!-- Top Bar -->

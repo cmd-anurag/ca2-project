@@ -1,3 +1,39 @@
+<?php
+session_start();
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+include __DIR__ . "/../backend/includes/is_loggedin.php";
+
+if($_SESSION['user']['role'] != 'patient') {
+    http_response_code(403);
+    echo "Unauthorised";
+    exit();
+}
+
+function e($output) {
+    return htmlspecialchars($output);
+}
+
+$userEmail = $_SESSION['user']['email'];
+$userName = $_SESSION['user']['name'];
+
+$nameArray = explode(" ", $userName);
+
+if(isset($nameArray[0])) {
+    $firstname = $nameArray[0];
+}
+
+if(isset($nameArray[1])) {
+    $lastname = $nameArray[1];
+}
+
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,10 +50,10 @@
     <!-- Navigation Starts-->
     <!-- Top Bar -->
     <div id="top" class="bg-blue-400 text-base text-white py-3 flex lg:items-center lg:justify-between w-full px-4">
-        <div class="text-sm lg:text-lg text-left w-2/3">Working Hour: 08:00 AM to 09:00 PM | Email: info@domainname.com</div>
+        <div class="text-sm lg:text-lg text-left w-2/3">Working Hour: 08:00 AM to 09:00 PM | Email: info@swifthealth.com</div>
         <div class="flex items-center gap-2">
             <i class="fa-brands fa-facebook"></i>
-            <span class="text-sm"> | Contact: xxxxx xxxxx</span>
+            <span class="text-sm"> | Contact: +1 (555) 123-4567</span>
         </div>
     </div>
 
@@ -28,7 +64,7 @@
         </div>
 
         <!-- Desktop Navigation Links -->
-        <div class="hidden md:flex lg:flex text-black md:text-[12px] lg:text-[14px] lg:gap-x-7 md:gap-0.4">
+        <div class="hidden md:flex lg:flex text-black md:text-[12px] lg:text-[16px] lg:gap-x-7 md:gap-0.4">
             <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="home.html">Home</a></div>
             <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="hospitals.html">Hospitals</a></div>
             <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="aboutus.html">About Us</a></div>
@@ -38,9 +74,10 @@
         </div>
 
         <div class="hidden md:block">
-            <button class="bg-blue-500 text-white hover:bg-black py-3 px-5 rounded-full font-bold">
-                <a href="bookappointment.html">Book Appointment</a>
-            </button>
+        <i class="fa-solid fa-user"></i>
+            <span class="ml-3 text-lg">
+                <?php echo e($userName); ?>
+            </span>
         </div>
 
         <!-- Mobile Menu Button -->
@@ -67,7 +104,7 @@
     <!-- Banner Starts -->
     <div id="banner" class="bg-indigo-100 rounded-[50px] h-96 mx-5 my-5 bg-cover bg-center text-center p-6 sm:p-10">
     
-        <div class="text-6xl mt-17 text-bold">Make An Appointment</div><br><br>
+        <div class="text-6xl mt-17 font-semibold font-[Sour_Gummy]">Make An Appointment</div><br><br>
         <span class="bg-blue-500 text-white px-5 py-3 text-md font-bold rounded-full my-auto duration-200">
             <a class="cursor-pointer hover:underline" href="./home.html">HOME</a> / APPOINTMENT
         </span>
@@ -78,18 +115,18 @@
     
     <!-- Book Appointment-->
 
-    <div class="bg-white rounded-[50px] mx-5 p-6 sm:p-10 lg:flex items-center shadow-lg">
+    <div class="bg-white rounded-[50px] mx-5 p-6 sm:p-10 lg:flex items-start shadow-lg">
         <div class="lg:w-1/2 md:w-1/2 space-y-4">
             <div class="flex gap-4">
-                <input class="bg-indigo-200 text-md rounded-[10px] p-3 w-1/2" placeholder="First Name" type="text">
-                <input class="bg-indigo-200 text-md rounded-[10px] p-3 w-1/2" placeholder="Last Name" type="text">
+                <input value="<?php echo e($firstname); ?>" class="bg-indigo-200 text-md rounded-[10px] p-3 w-1/2" placeholder="First Name" type="text">
+                <input value="<?php echo e($lastname); ?>" class="bg-indigo-200 text-md rounded-[10px] p-3 w-1/2" placeholder="Last Name" type="text">
             </div>
-            <input class="bg-indigo-200 text-md rounded-[10px] p-3 w-full" placeholder="Email Address" type="email">
+            <input value="<?php echo e($userEmail); ?>" class="bg-indigo-200 text-md rounded-[10px] p-3 w-full" placeholder="Email Address" type="email">
             <input class="bg-indigo-200 text-md rounded-[10px] p-3 w-full" placeholder="Phone Number" type="text">
             <div class="flex gap-4">
-                <input class="bg-indigo-200 text-md rounded-[10px] p-3 w-1/2" placeholder="Choose a Date" type="date">
+                <input class="bg-indigo-200 text-md rounded-[10px] p-3 w-1/2" placeholder="Choose a Date" type="date" min="<?php echo date('Y-m-d'); ?>">
                 <select class="bg-indigo-200 text-md rounded-[10px] p-3 w-1/2">
-                    <option disabled selected>Select an option</option>
+                    <option selected disabled>Select a specialization</option>
                     <option>Allergy & Immunology</option>
                     <option>Anesthesiology</option>
                     <option>Bariatrics</option>
@@ -150,7 +187,7 @@
                 <div class="text-4xl text-blue-500"><i class="fa-solid fa-phone"></i></div>
                 <div>
                     <p class="text-lg font-bold">Customer Services</p>
-                    <p class="text-gray-500">xxxxx-xxxxx</p>
+                    <p class="text-gray-500">+1 (555) 123-4567</p>
                 </div>
             </div>
 
@@ -192,13 +229,11 @@
                     <br>
                     <span class="rounded-[50%] bg-blue-500 text-white text-center py-2 px-3">2</span>
                     <br><br>
-                    <span class="text-xl text-black font-bold">Search Doctor</span>
+                    <span class="text-xl text-black font-bold">Book Appointment</span>
                     <br>
-                    <span class="text-md text-center text-gray-650">Join our community by creating an account today.</span>
+                    <span class="text-md text-center text-gray-650">Effortlessly book an appointment according to you.</span>
                     <br>
                 </div>
-            </div>
-            <div class="lg:flex md:flex">
                 <div class="text-center m-5">
                     <img class="rounded-[50%] mx-auto text-5xl" src="https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2024/12/work-step-img-3.jpg">
                     <br>
@@ -206,7 +241,7 @@
                     <br><br>
                     <span class="text-xl text-black font-bold">Schedule Appointment</span>
                     <br>
-                    <span class="text-md text-center text-gray-650">Join our community by creating an account today.</span>
+                    <span class="text-md text-center text-gray-650">Our scheduling algorithm will assign a doctor to you.</span>
                     <br>
                 </div>
                 <div class="text-center m-5">
@@ -216,7 +251,7 @@
                     <br><br>
                     <span class="text-xl text-black font-bold">Start Consultation</span>
                     <br>
-                    <span class="text-md text-center text-gray-650">Join our community by creating an account today.</span>
+                    <span class="text-md text-center text-gray-650">Consult the doctor after approval.</span>
                     <br>
                 </div>
             </div>
