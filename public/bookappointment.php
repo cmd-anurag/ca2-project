@@ -263,7 +263,8 @@ if(isset($nameArray[1])) {
 
 
     <!-- FOOTER -->
-    <footer class="sm:hidden bg-indigo-950 text-white rounded-[50px] mx-3 my-5 lg:p-10 p-5">
+    
+    <footer class="bg-indigo-950 text-white rounded-[50px] mx-3 my-5 lg:p-10 p-5">
         <div class="container mx-auto grid md:grid-cols-4 gap-10">
             <div>
                 <div id="logo" class="lg:text-4xl text-3xl font-bold text-indigo-50 font-[Chicle]">SwiftHealth</div>
@@ -272,22 +273,22 @@ if(isset($nameArray[1])) {
             <div class="ms-5">
                 <h3 class="text-lg font-semibold mb-3">Healthcare</h3>
                 <ul class="text-gray-400 space-y-2">
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline">Doctors</a></li>
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline">Diagnostics</a></li>
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline">Caregiver</a></li>
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline">Hospitality</a></li>
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline">Emergency</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> Doctors</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> Diagnostics</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> Caregiver</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> Hospitality</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> Emergency</a></li>
                 </ul>
             </div>
 
             <div>
                 <h3 class="text-lg font-semibold mb-3">Quick Links</h3>
                 <ul class="text-gray-400 space-y-2">
-                    <li><span class="text-indigo-500">•</span><a href="home.html" class="hover:underline">Home</a></li>
-                    <li><span class="text-indigo-500">•</span><a href="aboutus.html" class="hover:underline">About Us</a></li>
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline">FAQS</a></li>
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline">Blog</a></li>
-                    <li><span class="text-indigo-500">•</span><a href="aboutus.html" class="hover:underline">Our Team</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="./home.html" class="hover:underline"> Home</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> About Us</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> FAQS</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> Blog</a></li>
+                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> Our Team</a></li>
                 </ul>
             </div>
             <div>
@@ -316,67 +317,6 @@ if(isset($nameArray[1])) {
                 <a href="#" class="bg-blue-700 py-3 px-4 rounded-[50%]"><i class="fa-brands fa-instagram text-white"></i></a>
             </div>
             <div class="flex space-x-3 mt-3 md:mt-0">
-                <a href="#" class="hover:underline">Privacy Policy</a>
-                <span>•</span>
-                <a href="#" class="hover:underline">Terms & Conditions</a>
-            </div>
-        </div>
-    </footer>
-
-    <footer class="bg-indigo-950 text-white rounded-[50px] mx-3 my-5 p-5 lg:hidden md:hidden">
-        <div class="container mx-auto grid grid-cols-1 gap-6">
-            <div>
-                <div id="logo" class="text-3xl font-bold text-indigo-50 font-[Chicle]">SwiftHealth</div>
-                <p class="text-gray-400 mt-3">We offer a wide range of healthcare services to meet your needs.</p>
-            </div>
-            <div class="grid grid-cols-2 gap-6">
-                <div>
-                    <h3 class="text-lg font-semibold mb-3">Healthcare</h3>
-                    <ul class="text-gray-400 space-y-2">
-                        <li><a href="#" class="hover:underline">Doctors</a></li>
-                        <li><a href="#" class="hover:underline">Diagnostics</a></li>
-                        <li><a href="#" class="hover:underline">Caregiver</a></li>
-                        <li><a href="#" class="hover:underline">Hospitality</a></li>
-                        <li><a href="#" class="hover:underline">Emergency</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-lg font-semibold mb-3">Quick Links</h3>
-                    <ul class="text-gray-400 space-y-2">
-                        <li><a href="home.html" class="hover:underline">Home</a></li>
-                        <li><a href="aboutus.html" class="hover:underline">About Us</a></li>
-                        <li><a href="#" class="hover:underline">FAQS</a></li>
-                        <li><a href="#" class="hover:underline">Blog</a></li>
-                        <li><a href="aboutus.html" class="hover:underline">Our Team</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div>
-                <h3 class="text-lg font-semibold mb-3">Contact Us</h3>
-                <ul class="text-gray-400 space-y-3">
-                    <li class="flex items-center space-x-3">
-                        <span class="bg-indigo-700 text-white p-3 rounded-full"><i class="fa-solid fa-envelope"></i></span>
-                        <span>xxxxx@email.com</span>
-                    </li>
-                    <li class="flex items-center space-x-3">
-                        <span class="bg-indigo-700 text-white p-3 rounded-full"><i class="fa-solid fa-phone"></i></span>
-                        <span>xxxxx-xxxxx</span>
-                    </li>
-                    <li class="flex items-center space-x-3">
-                        <span class="bg-indigo-700 text-white p-3 rounded-full"><i class="fa-solid fa-map-marker-alt"></i></span>
-                        <span>ABC, XYZ</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <hr class="border-gray-700 my-6">
-        <div class="flex flex-col items-center text-gray-400 text-sm space-y-3">
-            <div class="flex space-x-5">
-                <a href="#" class="bg-blue-700 p-3 rounded-full"><i class="fa-brands fa-dribbble text-white"></i></a>
-                <a href="#" class="bg-blue-700 p-3 rounded-full"><i class="fa-brands fa-facebook-f text-white"></i></a>
-                <a href="#" class="bg-blue-700 p-3 rounded-full"><i class="fa-brands fa-instagram text-white"></i></a>
-            </div>
-            <div class="flex space-x-3">
                 <a href="#" class="hover:underline">Privacy Policy</a>
                 <span>•</span>
                 <a href="#" class="hover:underline">Terms & Conditions</a>
