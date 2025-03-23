@@ -96,7 +96,7 @@ $stmt2->close();
 <section class="mb-8">
     <div class="flex justify-between items-center mb-4 border-b-2 border-blue-400 pb-2">
         <h2 class="lg:text-2xl text-lg font-bold">Upcoming Appointments</h2>
-        <a href="bookappointment.html" class="bg-blue-500 text-white hover:bg-blue-800 duration-250 cursor-pointer py-1 px-3 rounded-lg font-bold text-sm lg:text-[16px]">Book Appointment</a>
+        <a href="bookappointment.php" class="bg-blue-500 text-white hover:bg-blue-800 duration-250 cursor-pointer py-1 px-3 rounded-lg font-bold text-sm lg:text-[16px]">Book Appointment</a>
     </div>
     <ul class="space-y-4">
         <!-- Appointments -->

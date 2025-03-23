@@ -3,23 +3,36 @@ session_start();
 
 
 // UNCOMMENT this in dev environment
-// error_reporting(E_ALL);
-// ini_set('display_errors', 1);
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 require __DIR__ . "/includes/is_loggedin.php";
 $userid = $_SESSION['user']['id'];
 
 // $userid = 9; for testing purposes only
 
-$date = $_POST["date"];
+if (!isset($_POST["date"]) || !isset($_POST["specialization"]) || !isset($_POST["remarks"])) {
+    http_response_code(400);
+    echo json_encode(["success" => false, "message" => "Missing required fields"]);
+    exit();
+}
+
+
+$date = $_POST['date'];
+$specialization = $_POST['specialization'];
+$remarks = $_POST['remarks'];
+
 $day = strtolower(date('l', strtotime($date)));        // e.g., "Monday"
 $formatted_date = date("Y-m-d", strtotime($date)); // e.g., "2025-03-19"
 
-$specialization = $_POST["specialization"];
-$remarks = $_POST["remarks"];
+
+
 
 // -------------------- TRANSACTION BEGINS -------------------------
 require __DIR__ . "/database/connectDB.php";
+$conn->query("SET session wait_timeout=600"); // 10 minutes
+$conn->query("SET session interactive_timeout=600");
+$conn->query("SET SESSION net_read_timeout=600");
 $conn->begin_transaction();
 
 try {
@@ -113,9 +126,11 @@ try {
     $appointment_time = $formatted_date . ' ' . $free_time;
     
     // Query3: insert new appointment with status 'pending'
-    $query3 = "INSERT INTO appointments (patient_id, doctor_id, appointment_time, status, remarks) VALUES (?, ?, ?, 'pending', ?)";
+
+    $remarks = "'" . $conn->real_escape_string($remarks) . "'";
+    $query3 = "INSERT INTO appointments (patient_id, doctor_id, appointment_time, remarks) VALUES (?, ?, ?, $remarks)";
     $stmt3 = $conn->prepare($query3);
-    $stmt3->bind_param("iiss", $userid, $doctor_id, $appointment_time, $remarks);
+    $stmt3->bind_param("iis", $userid, $doctor_id, $appointment_time);
     
     if (!$stmt3->execute()) {
         $conn->rollback();
