@@ -3,6 +3,8 @@ let loginbutton = document.getElementById("loginbutton");
 let emailField = document.getElementById("emailinput");
 let passwordField = document.getElementById("passwordinput");
 
+let loader = document.getElementById("loader-element");
+
 // a basic email vaidation function
 function isValidEmail(email) {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -28,7 +30,7 @@ loginbutton.addEventListener("click", async () => {
         return;
     }
     // validated
-
+    loader.classList.remove("hidden");
     const formdata = new FormData();
 
     formdata.append("email", emailField.value);
@@ -43,14 +45,18 @@ loginbutton.addEventListener("click", async () => {
         })
 
         let result = await response.json();
+        
         if(result.success) {
             window.location.href = "dashboard.php";
+            // loader.classList.add('hidden');
         }
         else {
+            loader.classList.add('hidden');
             alert(result.message);
         }
     }
     catch(exception) {
+        loader.classList.add('hidden');
         console.log(exception);
     }
 

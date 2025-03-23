@@ -58,17 +58,17 @@
 
   <!-- Top Bar -->
   <header class="text-black">
-    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+    <div class="container mx-auto flex justify-between items-center py-8 px-6">
       <div class="flex items-center">
         <span class="lg:text-4xl text-2xl font-bold font-[Chicle]">SwiftHealth</span>
       </div>
-      <nav>
+      <!-- <nav>
         <ul class="flex space-x-4 hidden lg:flex">
           <li><a href="dashboard.php" class="hover:underline">Dashboard</a></li>
-          <li><a href="bookappointment.html" class="hover:underline">Appointments</a></li>
+          <li><a href="bookappointment.php" class="hover:underline">Appointments</a></li>
           <li><a href="profile.html" class="hover:underline">Profile</a></li>
         </ul>
-      </nav>
+      </nav> -->
       <div class="flex items-center text-sm lg:text-[16px]">
         <i class="fa-solid fa-user"></i><span id="user_name" class="mr-4 ml-2"><?= $user_name ?></span>
         <button id="logout-btn" class="bg-transparent text-white-400 px-3 py-1 rounded cursor-pointer border-2 border-red-700 text-red-700">Logout</button>
