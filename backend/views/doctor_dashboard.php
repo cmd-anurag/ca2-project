@@ -22,13 +22,22 @@ function renderAppointment($appointment) {
 
     $borderClass = $statusColors[$status] ?? 'border-gray-500';
 
+    if($status == "approved") {
+        $completed = "";
+    }
+    else {
+        $completed = "disabled";
+    }
+
     if($status != "pending") {
         $actionbuttons = "disabled";
     }
     else {
         $actionbuttons = "";
     }
+    
 
+    
 
     return <<<HTML
     <div class="bg-white shadow-md rounded-lg p-4 border-l-4 $borderClass">
@@ -56,6 +65,9 @@ function renderAppointment($appointment) {
             <button class="px-3 py-2 bg-red-600 text-white rounded-lg cursor-pointer disabled:cursor-not-allowed disabled:opacity-75 disabled:bg-gray-400" $actionbuttons>
                 Reject
             </button>
+            <button class="px-3 py-2 bg-blue-600 text-white rounded-lg cursor-pointer disabled:cursor-not-allowed disabled:opacity-75 disabled:bg-gray-400 mt-4 lg:mt-0" $completed>
+                Mark as Completed
+            </button>
         </div>
     </div>
     HTML;
@@ -64,7 +76,6 @@ function renderAppointment($appointment) {
 // ini_set('display_errors', 1);
 
 
-echo "<h1 class=\"text-3xl py-20\">Welcome to your Dashboard $user_name<h1>";
 
 $app_query = "SELECT a.id, a.remarks, a.appointment_time, a.status, 
         p.name AS patient_name, p.email AS patient_email, 
@@ -72,7 +83,8 @@ $app_query = "SELECT a.id, a.remarks, a.appointment_time, a.status,
         FROM appointments AS a
         JOIN users AS u ON u.id = a.doctor_id
         JOIN users AS p ON p.id = a.patient_id
-        WHERE u.email = ?;
+        WHERE u.email = ? AND a.appointment_time > NOW() AND a.status != 'completed'
+        ORDER BY a.appointment_time ASC
 ";
 
 $doc_stmt = $conn->prepare($app_query);
@@ -90,13 +102,33 @@ if (!$doc_stmt->execute()) {
 $appointments = $doc_stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 $doc_stmt->close();
 
-// fix formatting later.
-// add buttons for actions [done]
-// 
+$past_query = "SELECT a.id, a.remarks, a.appointment_time, a.status, 
+        p.name AS patient_name, p.email AS patient_email, 
+        u.name AS doctor_name, u.email AS doctor_email
+        FROM appointments AS a
+        JOIN users AS u ON u.id = a.doctor_id
+        JOIN users AS p ON p.id = a.patient_id
+        WHERE u.email = ? AND (a.appointment_time <= NOW() OR a.status = 'completed')
+        ORDER BY a.appointment_time DESC
+        LIMIT 10;";
+$doc_stmt2 = $conn->prepare($past_query);
+if (!$doc_stmt2) {
+    echo '<h1 class="text-2xl p-10 text-center"> Error Fetching Details. Try again later.</h1>';
+    die();
+}
+$doc_stmt2->bind_param('s', $userEmail);
+
+if (!$doc_stmt2->execute()) {
+    echo '<h1 class="text-2xl p-10 text-center"> Error Fetching Details. Try again later.</h1>';
+    die();
+}
+
+$past_appointments = $doc_stmt2->get_result()->fetch_all(MYSQLI_ASSOC);
+$doc_stmt2->close();
 
 ?>
 
-<section class="mb-8">
+<section class="mb-8 min-h-[40vh]">
     <div class="flex justify-between items-center mb-4 border-b-2 border-blue-400 pb-2">
         <h2 class="lg:text-2xl text-lg font-bold">Upcoming Appointments</h2>
     </div>
@@ -108,6 +140,26 @@ $doc_stmt->close();
         }
         else {
             foreach ($appointments as $appointment) {
+                echo renderAppointment($appointment);
+            }
+        }
+        ?>
+    </ul>
+</section>
+
+<!-- past apoointments section -->
+<section class="mb-8 mt-12">
+    <div class="flex justify-between items-center mb-4 border-b-2 border-gray-400 pb-2">
+        <h2 class="lg:text-2xl text-lg font-bold">Past / Completed Appointments</h2>
+        <button class="text-blue-500 hover:underline text-sm">View All History</button>
+    </div>
+    <ul class="space-y-4">
+        <?php
+        if(empty($past_appointments)) {
+            echo '<h1 class="lg:text-lg text-md"> No past appointments to show </h1>';
+        }
+        else {
+            foreach ($past_appointments as $appointment) {
                 echo renderAppointment($appointment);
             }
         }

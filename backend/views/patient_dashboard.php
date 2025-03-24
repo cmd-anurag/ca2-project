@@ -75,7 +75,9 @@ $app_query = "SELECT
     JOIN users AS u_patient ON a.patient_id = u_patient.id
     LEFT JOIN doctors AS d ON a.doctor_id = d.id
     LEFT JOIN users AS u_doctor ON d.id = u_doctor.id
-    WHERE u_patient.email = ?;";
+    WHERE u_patient.email = ? AND a.apppointment_time > NOW() AND a.status != 'completed'
+    ORDER BY a.appointment_time ASC
+    ;";
 
 $stmt2 = $conn->prepare($app_query);
 
@@ -91,6 +93,23 @@ if (!$stmt2->execute()) {
 
 $appointments = $stmt2->get_result()->fetch_all(MYSQLI_ASSOC);
 $stmt2->close();
+
+$past_query = "SELECT
+    a.id,
+    a.remarks,
+    a.appointment_time,
+    a.status,
+    d.specialization,
+    d.hospital_name,
+    u_doctor.name as doctor_name
+    FROM appointments as a
+    JOIN users as u_patient on a.patient_id = u_patient.id
+    LEFT JOIN doctors as d on a.doctor_id = d.id
+    LEFT JOIN users as u_doctor
+
+"
+
+
 ?>
 
 <section class="mb-8">
