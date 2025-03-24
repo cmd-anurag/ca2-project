@@ -26,22 +26,53 @@ document.addEventListener("DOMContentLoaded", function () {
   const chatSendBtn = document.getElementById("chat-send-btn");
   const chatInputField = document.getElementById("chat-input-field");
   const chatMessages = document.getElementById("chat-messages");
-  const username = document.getElementById("user_name").innerText;
+  const typingIndicator = document.getElementById("typing-indicator");
+  const username = document.getElementById("user_name")?.innerText || "You";
 
   
+  if (!chatPopup || !chatToggleBtn || !chatMessages) return;
+
+  // Show/hide chat popup with animation
   chatToggleBtn.addEventListener("click", () => {
     chatPopup.classList.toggle("hidden");
+    if (!chatPopup.classList.contains("hidden")) {
+      chatInputField.focus();
+    }
   });
 
-  
+  // Close chat popup
   chatCloseBtn.addEventListener("click", () => {
     chatPopup.classList.add("hidden");
   });
 
-  // add a new message to the chat area
-  function addMessage(sender, message) {
+  // Add a new message to the chat area
+  function addMessage(sender, message, isAI = false) {
     const messageElem = document.createElement("div");
-    messageElem.innerHTML = `<span class="font-bold">${sender}:</span> ${message}`;
+    
+    if (isAI) {
+      // AI message
+      messageElem.className = "flex items-start mb-4";
+      messageElem.innerHTML = `
+        <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center mr-2 flex-shrink-0">
+          <i class="fa-solid fa-robot text-blue-600 text-sm"></i>
+        </div>
+        <div class="bg-white rounded-lg rounded-tl-none py-2 px-3 max-w-[80%] shadow-sm">
+          <p class="text-sm text-gray-800">${message}</p>
+        </div>
+      `;
+    } else {
+      // user message
+      messageElem.className = "flex items-start justify-end mb-4";
+      messageElem.innerHTML = `
+        <div class="bg-blue-600 text-white rounded-lg rounded-tr-none py-2 px-3 max-w-[80%] shadow-sm">
+          <p class="text-sm">${message}</p>
+        </div>
+        <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center ml-2 flex-shrink-0">
+          <span class="text-white text-xs font-bold">${username.charAt(0).toUpperCase()}</span>
+        </div>
+      `;
+    }
+    
     chatMessages.appendChild(messageElem);
     chatMessages.scrollTop = chatMessages.scrollHeight;
   }
@@ -49,8 +80,14 @@ document.addEventListener("DOMContentLoaded", function () {
   async function sendMessage() {
     const userInput = chatInputField.value.trim();
     if (userInput === "") return;
-    addMessage(username, userInput);
+    
+    // Display user message
+    addMessage(username, userInput, false);
     chatInputField.value = "";
+    
+    // Show typing indicator
+    typingIndicator.classList.remove("hidden");
+    chatMessages.scrollTop = chatMessages.scrollHeight;
 
     const formData = new FormData();
     formData.append("userinput", userInput);
@@ -63,16 +100,25 @@ document.addEventListener("DOMContentLoaded", function () {
           body: formData,
         }
       );
+      
+      // Hide typing indicator
+      typingIndicator.classList.add("hidden");
+      
       const data = await response.json();
       const reply = data.candidates[0].content.parts[0].text;
-      addMessage("AI", reply);
+      
+      // Display AI message
+      addMessage("AI", reply, true);
     } catch (error) {
+      // Hide typing indicator
+      typingIndicator.classList.add("hidden");
+      
       console.error("Error:", error);
-      addMessage("AI", "Error processing request");
+      addMessage("AI", "Sorry, I'm having trouble processing your request. Please try again later.", true);
     }
   }
 
-  // listener for send button and enter key
+  // Event listeners for sending messages
   chatSendBtn.addEventListener("click", sendMessage);
   chatInputField.addEventListener("keypress", function (e) {
     if (e.key === "Enter") sendMessage();
