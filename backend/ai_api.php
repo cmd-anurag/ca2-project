@@ -26,7 +26,7 @@ $requestBody = json_encode([
     "contents" => [
         [
             "role" => "user",
-            "parts" => [["text" => "You are a helpful healthcare assistant. Keep responses short and brief. Do not format your responses and answer in plaintext."]]
+            "parts" => [["text" => "You are a helpful healthcare assistant. Avoid very long responses. Do not format your responses and answer in plaintext."]]
         ],
         [
             "role" => "user",
