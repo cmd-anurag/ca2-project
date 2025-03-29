@@ -19,4 +19,5 @@ if ($stmt->execute()) {
     echo json_encode(["success" => false, "message" => "Error approving appointment"]);
 }
 $stmt->close();
+
 ?>
