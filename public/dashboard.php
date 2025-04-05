@@ -95,6 +95,7 @@
 
 
   <script src="./js/dashboard.js"></script>
+  <script src="./js/appointmentActions.js"></script>
 
 </body>
 

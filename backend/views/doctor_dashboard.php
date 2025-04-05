@@ -14,6 +14,7 @@ function renderAppointment($appointment) {
         'cancelled' => 'text-gray-500 border-gray-500'
     ];
 
+    $appointmentID = e($appointment['id']);
     $status = e($appointment['status']);
     $patientName = e($appointment['patient_name']);
     
@@ -59,13 +60,13 @@ function renderAppointment($appointment) {
             <strong>Remarks:</strong> $remarks
         </p>
         <div class="actions space-x-4 mt-4">
-            <button class="px-3 py-2 bg-green-600 text-white rounded-lg cursor-pointer disabled:cursor-not-allowed disabled:opacity-75 disabled:bg-gray-400" $actionbuttons>
+            <button class="approve-btn px-3 py-2 bg-green-600 text-white rounded-lg cursor-pointer disabled:cursor-not-allowed disabled:opacity-75 disabled:bg-gray-400" $actionbuttons data-appointment-id="$appointmentID">
                 Approve
             </button>
-            <button class="px-3 py-2 bg-red-600 text-white rounded-lg cursor-pointer disabled:cursor-not-allowed disabled:opacity-75 disabled:bg-gray-400" $actionbuttons>
+            <button class="reject-btn px-3 py-2 bg-red-600 text-white rounded-lg cursor-pointer disabled:cursor-not-allowed disabled:opacity-75 disabled:bg-gray-400" $actionbuttons data-appointment-id="$appointmentID">
                 Reject
             </button>
-            <button class="px-3 py-2 bg-blue-600 text-white rounded-lg cursor-pointer disabled:cursor-not-allowed disabled:opacity-75 disabled:bg-gray-400 mt-4 lg:mt-0" $completed>
+            <button class="complete-btn px-3 py-2 bg-blue-600 text-white rounded-lg cursor-pointer disabled:cursor-not-allowed disabled:opacity-75 disabled:bg-gray-400 mt-4 lg:mt-0" $completed data-appointment-id="$appointmentID">
                 Mark as Completed
             </button>
         </div>
@@ -166,4 +167,40 @@ $doc_stmt2->close();
         ?>
     </ul>
 </section>
+
+<div id="loader-element" class="loader fixed inset-0 flex items-center justify-center z-50 backdrop-blur-sm bg-white/30 flex-col gap-5 hidden">
+        <div class="flex flex-col items-center gap-5 p-8 bg-white rounded-2xl shadow-xl">
+            <!-- Logo -->
+            <div class="text-3xl font-bold text-blue-600 font-[Chicle]">SwiftHealth</div>
+            
+            <!-- Elegant loading animation -->
+            <div class="relative w-24 h-24 flex items-center justify-center">
+                
+                <!-- Three dots with different animations -->
+                <div class="flex space-x-4">
+                    <div class="w-4 h-4 rounded-full bg-blue-600 animate-pulse"></div>
+                    <div class="w-4 h-4 rounded-full bg-blue-500 animate-bounce" style="animation-delay: 0.3s"></div>
+                    <div class="w-4 h-4 rounded-full bg-blue-400 animate-pulse" style="animation-delay: 0.6s"></div>
+                </div>
+            </div>
+            
+            <!-- Progress bar with animation -->
+            <div class="w-48 bg-gray-100 rounded-full h-1.5 mt-2">
+                <div class="bg-gradient-to-r from-blue-400 to-blue-600 h-1.5 rounded-full animate-progress"></div>
+            </div>
+            
+            <p class="text-gray-600 font-medium text-sm">Please Wait...</p>
+        </div>
+    </div>
+    
+    <style>
+        @keyframes progress {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+        }
+        .animate-progress {
+            animation: progress 2s ease-in-out infinite;
+        }
+    </style>
 
