@@ -13,7 +13,7 @@ if (!filter_var($appointment_id, FILTER_VALIDATE_INT)) {
     exit();
 }
 
-$query = "UPDATE appointments SET STATUS ='rejected' WHERE id='?'";
+$query = "UPDATE appointments SET STATUS ='rejected' WHERE id=?";
 $stmt = $conn->prepare($query);
 
 $stmt->bind_param("i", $appointment_id);
