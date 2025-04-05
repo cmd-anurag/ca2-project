@@ -17,7 +17,7 @@
         <div class="text-sm lg:text-lg text-left w-2/3">Working Hour: 08:00 AM to 09:00 PM | Email: info@domainname.com</div>
         <div class="flex items-center gap-2">
             <i class="fa-brands fa-facebook"></i>
-            <span class="text-sm"> | Contact: xxxxx xxxxx</span>
+            <span class="text-sm"> | Contact: +1 234 567 890</span>
         </div>
     </div>
 
@@ -39,7 +39,7 @@
 
         <div class="hidden md:block">
             <button class="bg-blue-500 text-white hover:bg-black py-3 px-5 rounded-full font-bold">
-                <a href="bookappointment.html">Book Appointment</a>
+                <a href="bookappointment.php">Book Appointment</a>
             </button>
         </div>
 
@@ -57,7 +57,7 @@
         <a href="ContactUs.html" class="hover:text-blue-500">Contact Us</a>
         <a href="login.html" class="hover:text-blue-500">Sign Up / Log In</a>
         <div class="bg-blue-500 text-white hover:bg-blue-950 cursor-pointer px-4 py-3 text-sm font-bold rounded-full">
-            <a href="bookappointment.html">Book Appointment</a>
+            <a href="bookappointment.php">Book Appointment</a>
         </div>
     </div>
 
@@ -96,65 +96,80 @@
     </div>
 
     <!-- FOOTER -->
-
-        <footer class="bg-indigo-950 text-white rounded-[50px] mx-3 my-5 lg:p-10 p-5">
-        <div class="container mx-auto grid md:grid-cols-4 gap-10">
-            <div>
-                <div id="logo" class="lg:text-4xl text-3xl font-bold text-indigo-50 font-[Chicle]">SwiftHealth</div>
-                <p class="text-gray-400 mt-3">We offer a wide range of healthcare services to meet your needs.</p>
+    
+    <footer class="bg-indigo-950 text-white rounded-[50px] mx-3 my-5 lg:p-10 p-5">
+            <div class="container mx-auto grid md:grid-cols-3 gap-10">
+                <!-- Logo & Description -->
+                <div>
+                    <div id="logo" class="lg:text-4xl text-3xl font-bold text-indigo-50 font-[Chicle]">SwiftHealth</div>
+                    <p class="text-gray-400 mt-3">We offer a wide range of healthcare services to meet your needs.</p>
+                </div>
+                
+                <!-- Links Section -->
+                <div class="grid grid-cols-2 gap-10">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">Healthcare</h3>
+                        <ul class="text-gray-400 space-y-2">
+                            <li><a href="#" class="hover:underline">Doctors</a></li>
+                            <li><a href="#" class="hover:underline">Diagnostics</a></li>
+                            <li><a href="#" class="hover:underline">Caregiver</a></li>
+                            <li><a href="#" class="hover:underline">Hospitality</a></li>
+                            <li><a href="#" class="hover:underline">Emergency</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">Quick Links</h3>
+                        <ul class="text-gray-400 space-y-2">
+                            <li><a href="home.html" class="hover:underline">Home</a></li>
+                            <li><a href="aboutus.html" class="hover:underline">About Us</a></li>
+                            <li><a href="#" class="hover:underline">FAQs</a></li>
+                            <li><a href="#" class="hover:underline">Blog</a></li>
+                            <li><a href="team.html" class="hover:underline">Our Team</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Contact Section -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-3">Contact Us</h3>
+                    <ul class="text-gray-400 space-y-3">
+                        <li class="flex items-center space-x-3">
+                            <i class="fa-solid fa-envelope text-indigo-500"></i>
+                            <span>contact@swifthealth.com</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fa-solid fa-phone text-indigo-500"></i>
+                            <span>+1 234 567 890</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fa-solid fa-map-marker-alt text-indigo-500"></i>
+                            <span>123 Main Street, City, Country</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="ms-5">
-                <h3 class="text-lg font-semibold mb-3">Healthcare</h3>
-                <ul class="text-gray-400 space-y-2">
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> Doctors</a></li>
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> Diagnostics</a></li>
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> Caregiver</a></li>
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> Hospitality</a></li>
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> Emergency</a></li>
-                </ul>
+            
+            <hr class="border-gray-700 my-6">
+            
+            <!-- Footer -->
+            <div class="flex flex-col md:flex-row justify-between items-center text-gray-400 text-sm">
+                <div class="flex space-x-5 mt-3 md:mt-0">
+                    <a href="#" class="bg-blue-700 py-3 px-4 rounded-full">
+                        <i class="fa-brands fa-dribbble text-white"></i>
+                    </a>
+                    <a href="#" class="bg-blue-700 py-3 px-4 rounded-full">
+                        <i class="fa-brands fa-facebook-f text-white"></i>
+                    </a>
+                    <a href="#" class="bg-blue-700 py-3 px-4 rounded-full">
+                        <i class="fa-brands fa-instagram text-white"></i>
+                    </a>
+                </div>
+                <div class="flex space-x-3 mt-3 md:mt-0">
+                    <a href="#" class="hover:underline">Privacy Policy</a>
+                    <span>•</span>
+                    <a href="#" class="hover:underline">Terms & Conditions</a>
+                </div>
             </div>
-
-            <div>
-                <h3 class="text-lg font-semibold mb-3">Quick Links</h3>
-                <ul class="text-gray-400 space-y-2">
-                    <li><span class="text-indigo-500">•</span><a href="./home.html" class="hover:underline"> Home</a></li>
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> About Us</a></li>
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> FAQS</a></li>
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> Blog</a></li>
-                    <li><span class="text-indigo-500">•</span><a href="#" class="hover:underline"> Our Team</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="text-lg font-semibold mb-3">Contact Us</h3>
-                <ul class="text-gray-400 space-y-3">
-                    <li class="flex items-center space-x-3">
-                        <span class="bg-indigo-700 text-white py-3 px-4 rounded-[50%]"><i class="fa-solid fa-envelope text-white"></i></span>
-                        <span>xxxxx@email.com</span>
-                    </li>
-                    <li class="flex items-center space-x-3">
-                        <span class="bg-indigo-700 text-white py-3 px-4 rounded-[50%]"><i class="fa-solid fa-phone text-white"></i></span>
-                        <span>xxxxx-xxxxx</span>
-                    </li>
-                    <li class="flex items-center space-x-3">
-                        <span class="bg-indigo-700 text-white py-3 px-4 rounded-[50%]"><i class="fa-solid fa-map-marker-alt text-white"></i></span>
-                        <span>ABC, XYZ</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <hr class="border-gray-700 my-6">
-        <div class="flex flex-col md:flex-row justify-between items-center text-gray-400 text-sm">
-            <div class="flex space-x-5 mt-3 md:mt-0">
-                <a href="#" class="bg-blue-700 py-3 px-4 rounded-[50%]"><i class="fa-brands fa-dribbble text-white"></i></a>
-                <a href="#" class="bg-blue-700 py-3 px-4 rounded-[50%]"><i class="fa-brands fa-facebook-f text-white"></i></a>
-                <a href="#" class="bg-blue-700 py-3 px-4 rounded-[50%]"><i class="fa-brands fa-instagram text-white"></i></a>
-            </div>
-            <div class="flex space-x-3 mt-3 md:mt-0">
-                <a href="#" class="hover:underline">Privacy Policy</a>
-                <span>•</span>
-                <a href="#" class="hover:underline">Terms & Conditions</a>
-            </div>
-        </div>
     </footer>
 
 
