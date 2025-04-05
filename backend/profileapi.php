@@ -69,6 +69,7 @@ if ($statement->execute()) {
 } else {
     echo json_encode(["success" => false, "message" => "Error updating profile"]);
 }
+
 $statement->close();
 
 ?>
