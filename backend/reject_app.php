@@ -30,6 +30,7 @@ if ($stmt->execute()) {
     echo json_encode(["success" => false, "message" => "Error in appointment rejection"]);
 }
 
+
 $stmt->close();
 $conn->close();
 
