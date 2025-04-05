@@ -1,9 +1,11 @@
 <?php 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-require "../.backend/database/connectDB.php";
+require '../backend/database/connectDB.php';
 $appointment_id = $_POST['appointment_id'];
 
-$query = "UPDATE appointments SET STATUS ='reject' WHERE id='?'";
+$query = "UPDATE appointments SET STATUS='rejected' WHERE id=?";
 $stmt = $conn->prepare($query);
 
 $stmt->bind_param("i", $appointment_id);
