@@ -1,6 +1,6 @@
 <?php 
 
-require "../.backend/database/connectDB.php";
+require "../backend/database/connectDB.php";
 $appointment_id = $_POST['appointment_id'] ?? null;
 
 if (empty($appointment_id)) {
