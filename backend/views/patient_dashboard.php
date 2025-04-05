@@ -170,10 +170,12 @@ $past_stmt->close();
 
 <!-- Emergency Button -->
 <section class="mb-8">
+    <a href="emergencymail.php">
         <!-- <button id="emergency-btn" class="w-full lg:w-1/4 bg-red-600 text-white py-3 rounded font-bold hover:bg-red-700 cursor-pointer" onclick="windows.location.href='emergencymail.php'"> -->
-        <button id="emergency-btn" class="w-full lg:w-1/4 bg-red-600 text-white py-3 rounded font-bold hover:bg-red-700 cursor-pointer" onclick="handleEmergencyClick()">
+        <button id="emergency-btn" class="w-full lg:w-1/4 bg-red-600 text-white py-3 rounded font-bold hover:bg-red-700 cursor-pointer">
             Emergency
         </button>
+    </a>
     <button id="chat-toggle-btn" class="fixed bottom-25 right-25 bg-blue-600 text-white w-20 h-20 rounded-full shadow-2xl hover:bg-blue-700 focus:outline-none cursor-pointer flex items-center justify-center">
         <i class="fa-regular fa-message text-3xl"></i>
     </button>
@@ -241,37 +243,22 @@ $past_stmt->close();
 
 <script>
 
-    const patientName = <?= json_encode($patientName); ?>;
-    const patientId = <?= json_encode($patientId); ?>;
+    document.getElementById("emergency-btn").addEventListener("click", function () {
+        fetch("emergencymail.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: new URLSearchParams({
+                patient_name: $patient_name,
+                patient_id: $patient_id
+            }),
+        })
 
-    async function handleEmergencyClick(){
-
-        try{
-            const res = await fetch("http://localhost/backend/emergencymail.php", {
-                method: "POST",
-                headers : {
-                    "Content-Type": "application/json"
-                },
-
-                credentials: "include",
-                body: JSON.stringify({
-                    patient_name: patientName,
-                    patient_id: patientId
-
-                })
-            });
-
-            const result = await res.json();
-            const message = result.success ? "Emergency alert sent successfully!" : "Failed to send alert: " +result.message;
-
-            alert(message);
-            
-        }catch (err){
-            console.error("Network or server error:", err);
-            alert("Something went wrong. Try again later.");
-
-        }
-    }
+        .then(response => response.json())
+        .then(data => alert(data.message))
+        .catch(error => console.error("Error:", error));
+    });
 
 
 </script>
