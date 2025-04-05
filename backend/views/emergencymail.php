@@ -31,8 +31,8 @@ require '../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$sender = 'alert.swifthealth@gmail.com';
-$sender_pass = 'Swifthealth123';
+$sender = $_ENV["SENDER_MAIL"];
+$sender_pass = $_ENV["ltyw gged ntrv jemm"];
 $doctor_email = $_ENV["DOCTOR_EMAIL"];
 
 
