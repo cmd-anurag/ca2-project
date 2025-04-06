@@ -94,6 +94,7 @@ signupbtn.addEventListener("click", async () => {
   }
 });
 
+
 nameField.addEventListener("focus", () => {
   invalidName.classList.add("hidden");
 });
@@ -104,6 +105,7 @@ emailField.addEventListener("focus", () => {
 passwordField.addEventListener("focus", () => {
   invalidPassword.classList.add('hidden');
 });
+
 
 const toggleBtns = document.querySelectorAll(".password-toggle");
 toggleBtns.forEach((btn) => {
