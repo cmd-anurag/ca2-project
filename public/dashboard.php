@@ -88,10 +88,6 @@
     ?>
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-gray-100 text-center py-4 mt-8 border-t">
-    <p class="text-sm text-gray-600">&copy; 2025 SwiftHealth. All rights reserved.</p>
-  </footer>
 
 
   <script src="./js/dashboard.js"></script>
