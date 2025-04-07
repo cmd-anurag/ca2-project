@@ -1,33 +1,31 @@
 <?php
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 $id = $_POST["id"];
 $dob = $_POST["date_of_birth"];
 $gender = $_POST["gender"];
 $medical_history = $_POST["medical_history"];
 $blood_type = $_POST["blood_type"];
 $phone = $_POST["phone"];
-$email = $_POST["email"];
+$email = $_POST["email"]; // collect but dont update this
 $address = $_POST["address"];
 $height = $_POST["height"];
 $weight = $_POST["weight"];
 $emergency_contact = $_POST["emergency_contact"];
 
-require "../backend/database/connectDB.php";
+require __DIR__ . "/database/connectDB.php";
 
 if (empty($id) || empty($dob) || empty($gender) || empty($medical_history) || empty($blood_type) ||
-    empty($phone) || empty($email) || empty($address) || empty($height) || empty($weight) || empty($emergency_contact)) {
+    empty($phone) || empty($address) || empty($height) || empty($weight) || empty($emergency_contact)) {
     echo json_encode(["success" => false, "message" => "All fields are required"]);
     exit();
 }
 
-
+// Validation
 if (!preg_match("/^\d{4}-\d{2}-\d{2}$/", $dob)) {
     echo json_encode(["success" => false, "message" => "Invalid date of birth format. Please use YYYY-MM-DD."]);
-    exit();
-}
-
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    echo json_encode(["success" => false, "message" => "Invalid email format."]);
     exit();
 }
 
@@ -46,30 +44,68 @@ if (!is_numeric($weight)) {
     exit();
 }
 
-if (empty($emergency_contact)) {
-    echo json_encode(["success" => false, "message" => "Emergency contact is required."]);
+
+$checkQuery = "SELECT id FROM patients WHERE id = ?";
+$checkStmt = $conn->prepare($checkQuery);
+if (!$checkStmt) {
+    echo json_encode(["success" => false, "message" => "Database error: " . $conn->error]);
     exit();
 }
 
+$checkStmt->bind_param("i", $id);
+$checkStmt->execute();
+$result = $checkStmt->get_result();
+$patientExists = $result->num_rows > 0;
+$checkStmt->close();
 
-$query = "UPDATE patients SET date_of_birth = ?, gender = ?, medical_history = ?, blood_type = ?, phone = ?, email = ?, address = ?, height = ?, weight = ?,  emergency_contact = ? where id = $id";
 
-$statement = $conn->prepare($query);
-
-if (!$statement) {
-    echo json_encode(["success" => false, "message" => "Error updating profile"]);
-    die();
+if (!$patientExists) {
+    echo json_encode(["success" => false, "message" => "Patient record not found. Please contact support."]);
+    exit();
 }
 
-$statement->bind_param("ssssssssss", $dob, $gender, $medical_history, $blood_type, $phone, $email,  $address, $height, $weight, $emergency_contact);
+// phone and address in users table
+$usersQuery = "UPDATE users SET phone = ?, address = ? WHERE id = ?";
+$usersStmt = $conn->prepare($usersQuery);
 
+if (!$usersStmt) {
+    echo json_encode(["success" => false, "message" => "Error updating user profile: " . $conn->error]);
+    exit();
+}
 
-if ($statement->execute()) {
-    echo json_encode(["success" =>true, "message" => "Profile Updated Successfully"]); 
+$usersStmt->bind_param("ssi", $phone, $address, $id);
+$usersSuccess = $usersStmt->execute();
+$usersStmt->close();
+
+if (!$usersSuccess) {
+    echo json_encode(["success" => false, "message" => "Error updating contact information"]);
+    exit();
+}
+
+$patientsQuery = "UPDATE patients SET 
+                 date_of_birth = ?, 
+                 gender = ?, 
+                 medical_history = ?, 
+                 blood_type = ?, 
+                 height = ?, 
+                 weight = ?, 
+                 emergency_contact = ? 
+                 WHERE id = ?";
+
+$patientsStmt = $conn->prepare($patientsQuery);
+if (!$patientsStmt) {
+    echo json_encode(["success" => false, "message" => "Error updating medical information: " . $conn->error]);
+    exit();
+}
+
+$patientsStmt->bind_param("sssssssi", $dob, $gender, $medical_history, $blood_type, $height, $weight, $emergency_contact, $id);
+$patientsSuccess = $patientsStmt->execute();
+$patientsStmt->close();
+
+if ($patientsSuccess) {
+    echo json_encode(["success" => true, "message" => "Profile Updated Successfully"]);
 } else {
-    echo json_encode(["success" => false, "message" => "Error updating profile"]);
+    echo json_encode(["success" => false, "message" => "Error updating medical information: " . $conn->error]);
 }
-
-$statement->close();
 
 ?>
