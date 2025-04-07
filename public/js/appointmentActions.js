@@ -1,9 +1,8 @@
 document.querySelectorAll(".approve-btn").forEach((button) => {
     button.addEventListener("click", ()=> {
         if(button.hasAttribute('disabled')) return;
-
+        
         const appointmentId = button.getAttribute('data-appointment-id');
-
         updateAppointmentStatus(appointmentId, 'approved');
     })
 })
@@ -14,6 +13,15 @@ document.querySelectorAll(".reject-btn").forEach((button) => {
 
         const appointmentId = button.getAttribute('data-appointment-id');
         updateAppointmentStatus(appointmentId, 'rejected');
+    })
+})
+
+document.querySelectorAll(".complete-btn").forEach((button) => {
+    button.addEventListener('click', () => {
+        if(button.hasAttribute('disabled')) return;
+
+        const appointmentId = button.getAttribute('data-appointment-id');
+        updateAppointmentStatus(appointmentId, 'completed');
     })
 })
 
@@ -28,6 +36,9 @@ const updateAppointmentStatus = async (id, status) => {
     }
     else if(status === "rejected") {
         url = "http://localhost/ca2-project/backend/reject_app.php";  
+    }
+    else if(status === "completed") {
+        url = "http://localhost/ca2-project/backend/mark_as_completed.php";
     }
 
     const formData = new FormData();
