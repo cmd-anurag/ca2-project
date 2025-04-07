@@ -1,5 +1,8 @@
 <?php
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 require "../backend/database/connectDB.php";
 
 $appointment_id = $_POST['appointment_id'] ?? null; 
@@ -14,7 +17,7 @@ if (!filter_var($appointment_id, FILTER_VALIDATE_INT)) {
     exit();
 }
 
-$query = "UPDATE appointments SET status = 'complete' WHERE id = ?";
+$query = "UPDATE appointments SET status = 'completed' WHERE id = ?";
 $stmt = $conn->prepare($query);
 
 
