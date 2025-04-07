@@ -279,7 +279,7 @@ $past_stmt->close();
                         <i class="fas fa-ambulance text-red-500 mr-2"></i> Emergency Access
                     </h3>
                     <p class="text-gray-600 mb-4">Need immediate medical attention? Click the emergency button below.</p>
-                    <a href="emergencymail.php" class="block">
+                    <a href="../backend/emergencymail.php" class="block">
                         <button id="emergency-btn" class="w-full bg-gradient-to-r from-red-600 to-red-700 text-white py-4 rounded-lg font-bold hover:from-red-700 hover:to-red-800 transition-all duration-300 cursor-pointer shadow-md flex items-center justify-center">
                             <i class="fas fa-exclamation-circle mr-2 text-xl"></i>
                             Emergency
@@ -393,7 +393,7 @@ $past_stmt->close();
 <script>
 
     document.getElementById("emergency-btn").addEventListener("click", function () {
-        fetch("emergencymail.php", {
+        fetch("../backend/emergencymail.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",
