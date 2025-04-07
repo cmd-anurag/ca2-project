@@ -129,9 +129,9 @@
                         <div class="relative">
                             <div class="flex items-center border-2 border-gray-300 rounded-lg p-3 transition-all duration-300 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200">
                                 <i class="fas fa-lock text-gray-400 mr-3"></i>
-                                <input id="password-input" type="password" placeholder="Password" class="w-full focus:outline-none text-gray-700">
-                                <button type="button" class="password-toggle">
-                                    <i class="fas fa-eye text-gray-400 hover:text-gray-600 transition-colors"></i>
+                                <input id="signupPassword" type="password" placeholder="Password" class="w-full focus:outline-none text-gray-700">
+                                <button id="toggleSignupPassword" type="button" class="password-toggle">
+                                    <i id="signupEyeIcon" class="fas fa-eye text-gray-400 hover:text-gray-600 transition-colors"></i>
                                 </button>
                             </div>
                             <p id="invalidpass" class="hidden text-red-500 text-sm mt-1">Password must be at least 8 characters</p>
@@ -176,13 +176,6 @@
 
     <script src="./js/signup.js"></script>
     <script src="./js/script.js"></script>
-    
-    <script>
-    // Password visibility toggle
-    document.addEventListener('DOMContentLoaded', function() {
-        
-    });
-    </script>
 
 
 </body>

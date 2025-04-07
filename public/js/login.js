@@ -5,6 +5,9 @@ let passwordField = document.getElementById("passwordinput");
 
 let loader = document.getElementById("loader-element");
 
+let emailError = document.getElementById("emailError");
+let passwordError = document.getElementById("passwordError")
+
 // a basic email vaidation function
 function isValidEmail(email) {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -13,20 +16,15 @@ function isValidEmail(email) {
 
 loginbutton.addEventListener("click", async () => {
 
-    if(emailField.value === "") {
-        emailField.classList.add("ring-2", "ring-red-500", "text-red-700");
-        emailField.placeholder = "Enter your Email!";
+    if(emailField.value === "" || !isValidEmail(emailField.value)) {
+        emailError.classList.add("max-h-20");
+        emailError.classList.add("mt-1");
         return;
     }
-    if(!isValidEmail(emailField.value)) {
-        emailField.classList.add("ring-2", "ring-red-500", "text-red-700");
-        emailField.value = "";
-        emailField.placeholder = "Enter a valid Email!";
-        return;
-    }
+
     if(passwordField.value === "") {
-        passwordField.classList.add("ring-2", "ring-red-500", "text-red-700");
-        passwordField.placeholder = "Enter your Password!";
+        passwordError.classList.add('max-h-20');
+        passwordError.classList.add('mt-1');
         return;
     }
     // validated
@@ -62,16 +60,15 @@ loginbutton.addEventListener("click", async () => {
 
 })
 
-emailField.addEventListener("focus", () => {
-    emailField.placeholder = "";
-    emailField.classList.remove("ring-2", "ring-red-500", "text-red-700");
-})
-passwordField.addEventListener("focus", () => {
-    passwordField.placeholder = "";
-    passwordField.classList.remove("ring-2", "ring-red-500", "text-red-700");
+emailField.addEventListener('focus', () => {
+    emailError.classList.remove("max-h-20");
+    emailError.classList.remove("mt-1");
 })
 
-
+passwordField.addEventListener('focus', () => {
+    passwordError.classList.remove('max-h-20');
+    passwordError.classList.remove('mt-1');
+})
 
 document.getElementById("togglePassword").addEventListener("click", function () {
     const passwordInput = document.getElementById("passwordinput");
