@@ -4,85 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Chicle&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-</head>
-<body>
-
-    <div class="h-screen flex justify-center items-center">
-
-        <div class="lg:w-2/3 lg:mx-auto lg:h-4/5 h-screen w-9/10 flex lg:flex-row flex-col mt-5 lg:mt-0">
-            <div class="flex flex-col justify-around p-10 rounded-xl bg-[url(https://products.ls.graphics/mesh-gradients/images/38.-Sky-Blue_1.jpg)] bg-cover bg-center lg:w-1/2 lg:h-full h-1/4">
-                <div id="logo" class="text-white lg:text-6xl text-3xl font-bold text-black font-[Chicle]">SwiftHealth</div>
-                <div>
-                    <h1 class="text-white font-bold text-3xl lg:text-6xl">Welcome<br>Back !</h1>
-                </div>
-            </div>
-
-            <div class="p-10 shadow-xl lg:w-1/2 lg:h-full flex justify-center flex-col gap-y-5 rounded-xl bg-white">
-                <h1 class="lg:text-5xl text-3xl font-extrabold">Login</h1>
-                <p class="text-gray-500">Welcome back! Please login to your account.</p>
-                <label class="text-gray-500">E-mail Address</label>
-                <input id="emailinput" type="email" class="p-4 border border-gray-500 rounded-lg">
-                <label class="text-gray-500">Password</label>
-                <div class="relative">
-                    <input id="passwordinput" type="password" class="p-4 border border-gray-500 rounded-lg w-full">
-                    <button type="button" id="togglePassword" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600">
-                        <i id="eyeIcon" class="fas fa-eye"></i>
-                    </button>
-                </div>
-                <!-- <input id="passwordinput" type="password" class="p-4 border border-gray-500 rounded-lg"> -->
-                <div class="flex items-center justify-between">
-                    <p><input type="checkbox"> Remember me ?</p>
-                    <p class="text-right text-gray-500 ">Forgot Password?</p>
-                </div>
-                <button id="loginbutton" class="bg-blue-700 w-1/2 mx-auto p-3 text-white rounded-xl cursor-pointer hover:bg-blue-800 duration-250">Login</button>
-                <p>Don't have an account?<a class="ms-2 text-blue-500" href="./signup.html">Sign Up</a></p>
-            </div>
-        </div>
-
-
-    </div>
-    <!-- Healthcare Icon Loader -->
-    <div id="loader-element" class="loader fixed inset-0 flex items-center justify-center z-50 backdrop-blur-sm bg-white/30 flex-col gap-5 hidden">
-        <div class="flex flex-col items-center gap-5 p-8 bg-white rounded-2xl shadow-xl">
-            <!-- Logo -->
-            <div class="text-3xl font-bold text-blue-600 font-[Chicle]">SwiftHealth</div>
-            
-            <!-- Elegant loading animation -->
-            <div class="relative w-24 h-24 flex items-center justify-center">
-                
-                <!-- Three dots with different animations -->
-                <div class="flex space-x-4">
-                    <div class="w-4 h-4 rounded-full bg-blue-600 animate-pulse"></div>
-                    <div class="w-4 h-4 rounded-full bg-blue-500 animate-bounce" style="animation-delay: 0.3s"></div>
-                    <div class="w-4 h-4 rounded-full bg-blue-400 animate-pulse" style="animation-delay: 0.6s"></div>
-                </div>
-            </div>
-            
-            <!-- Progress bar with animation -->
-            <div class="w-48 bg-gray-100 rounded-full h-1.5 mt-2">
-                <div class="bg-gradient-to-r from-blue-400 to-blue-600 h-1.5 rounded-full animate-progress"></div>
-            </div>
-            
-            <p class="text-gray-600 font-medium text-sm">Please wait, Logging you in...</p>
-        </div>
-    </div>
     
-    <style>
-        @keyframes progress {
-            0% { width: 0%; }
-            50% { width: 70%; }
-            100% { width: 100%; }
-        }
-        .animate-progress {
-            animation: progress 2s ease-in-out infinite;
-        }
-    </style>
-    <script src="./js/login.js"></script>
-    <script src="./js/script.js"></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Chicle&family=Sour+Gummy:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex justify-center items-center min-h-screen">
+
+    <div class="w-full max-w-4xl flex flex-col lg:flex-row bg-white shadow-lg rounded-lg overflow-hidden">
+        
+        <!-- Left Section (Branding & Info) -->
+        <div class="lg:w-1/2 bg-gradient-to-br from-blue-600 via-indigo-500 to-blue-500 p-8 text-white flex flex-col justify-between">
+            <div>
+                <h1 class="text-5xl font-bold font-[Chicle] flex items-center mb-4">
+                    <i class="fas fa-heartbeat mr-3"></i> SwiftHealth
+                </h1>
+                <p class="text-lg">Your Complete Healthcare Solution</p>
+            </div>
+            
+            <div class="mt-10">
+                <h2 class="text-3xl lg:text-4xl font-bold mb-4">Your Healthcare Assistant Awaits!</h2>
+                <p class="text-blue-100">Join thousands of users managing their health effortlessly.</p>
+
+                <!-- Features -->
+                <div class="mt-6 space-y-3">
+                    <div class="flex items-center">
+                        <i class="fas fa-calendar-check bg-white/20 p-2 rounded-full mr-3"></i>
+                        <span>Easy appointment scheduling</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-user-md bg-white/20 p-2 rounded-full mr-3"></i>
+                        <span>Connect with top specialists</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-notes-medical bg-white/20 p-2 rounded-full mr-3"></i>
+                        <span>Secure health record management</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Section (Login Form) -->
+        <div class="lg:w-1/2 p-8 flex flex-col justify-center">
+            <h1 class="text-3xl font-extrabold mb-3 text-gray-800">Login</h1>
+            <p class="text-gray-500 mb-5">Welcome back! Please login to your account.</p>
+            
+            <!-- Email Input -->
+            <div class="relative mb-4">
+                <input type="email" id="emailinput" placeholder="Email Address" class="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                <i class="fas fa-envelope absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+            </div>
+
+            <!-- Password Input with Eye Icon -->
+            <div class="relative mb-4">
+                <input type="password" id="passwordinput" placeholder="Password" class="w-full p-3 pl-10 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                <i class="fas fa-lock absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                <button type="button" id="togglePassword" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600">
+                    <i id="eyeIcon" class="fas fa-eye"></i>
+                </button>
+            </div>
+
+            <!-- Remember Me & Forgot Password -->
+            <div class="flex justify-between text-sm text-gray-600 mb-4">
+                <label><input type="checkbox" class="mr-1"> Remember me?</label>
+                <a href="#" class="hover:underline">Forgot Password?</a>
+            </div>
+
+            <!-- Login Button -->
+            <button class="bg-blue-600 text-white w-full p-3 rounded-lg hover:bg-blue-700 transition">Login</button>
+
+            <!-- Signup Link -->
+            <p class="mt-4 text-center text-gray-600">Don't have an account? 
+                <a href="./signup.html" class="text-blue-500 hover:underline">Sign Up</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- JavaScript for Password Toggle -->
+    <script>
+        document.getElementById("togglePassword").addEventListener("click", function () {
+            const passwordInput = document.getElementById("passwordinput");
+            const eyeIcon = document.getElementById("eyeIcon");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                eyeIcon.classList.replace("fa-eye", "fa-eye-slash");
+            } else {
+                passwordInput.type = "password";
+                eyeIcon.classList.replace("fa-eye-slash", "fa-eye");
+            }
+        });
+    </script>
+
 </body>
 </html>
