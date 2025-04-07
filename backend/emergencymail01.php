@@ -30,12 +30,11 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     die(json_encode(["success" => false, "message" => "Invalid request method."]));
 }
 
-$sender = $_ENV["SENDER_MAIL"];
-$sender_pass = $_ENV["SENDER_PASSWORD"];
-$db_host = $_ENV["DB_HOST"];
-$db_user = $_ENV["DB_USER"];
-$db_pass = $_ENV["DB_PASSWORD"];
-$db_name = $_ENV["DB_NAME"];
+$sender = $_ENV["ALERT_SENDER_MAIL"];
+$sender_pass = $_ENV["ALERT_SENDER_PASSWORD"];
+
+require __DIR__ . "/connectDB.php";
+
 
 if (!$sender || !$sender_pass || !$db_host || !$db_user || !$db_name) {
     die(json_encode(["success" => false, "message" => "Missing environment variables."]));

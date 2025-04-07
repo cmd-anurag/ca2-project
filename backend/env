@@ -1,0 +1,12 @@
+SENDER_MAIL=auth.swifthealth@gmail.com
+SENDER_PASSWORD=baztshngkptvltgh
+API_KEY=AIzaSyBCeppvWXPovyKuu_Z1AkDaejdQ6Fl-utg
+
+ALERT_SENDER_MAIL = alert.swifthealth@gmail.com
+ALERT_SENDER_PASSWORD = $_ENV["SENDER_PASSWORD"]
+
+$db_host = $_ENV["DB_HOST"];
+$db_user = $_ENV["DB_USER"];
+$db_pass = $_ENV["DB_PASSWORD"];
+$db_name = $_ENV["DB_NAME"];
+
