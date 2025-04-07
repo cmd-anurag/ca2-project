@@ -1,36 +1,46 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-$email = $_POST["email"];
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    http_response_code(400);
-    echo json_encode(["success" => false, "message" => "Invalid email format"]);
-    exit;
+
+function getUserData($email) {
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        return ["success" => false, "message" => "Invalid email format"];
+    }
+
+    require __DIR__ . "/database/connectDB.php";
+
+    $query = "SELECT u.name, u.phone, u.address, p.date_of_birth, p.gender, p.medical_history, p.height, p.weight, p.blood_type, p.emergency_contact
+    FROM users u
+    LEFT JOIN patients p ON p.id = u.id
+    WHERE u.email = ?";
+
+    $stmt = $conn->prepare($query);
+
+    if(!$stmt) {
+        return ["success" => false, "message" => "Internal Server Error: " . $conn->error];
+    }
+    
+    $stmt->bind_param('s', $email);
+
+    if(!$stmt->execute()) {
+        return ["success" => false, "message" => "Internal Server Error: " . $stmt->error];
+    }
+
+    $result = $stmt->get_result()->fetch_assoc();
+    $stmt->close();
+    
+    return ["success" => true, "data" => $result];
 }
 
-require __DIR__ . "/database/connectDB.php";
-
-$query = "SELECT u.name, u.phone, u.address, p.date_of_birth, p.gender, p.medical_history 
-FROM users u
-JOIN patients p ON p.id = u.id
-WHERE u.email = ?";
-
-$stmt = $conn->prepare($query);
-
-if(!$stmt) {
-    http_response_code(500);
-    echo json_encode(["success" => false, "message" => "Internal Server Error"]);
-    die();
+// Handle direct API calls via POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["email"])) {
+    $email = $_POST["email"];
+    $result = getUserData($email);
+    
+    if (!$result["success"]) {
+        http_response_code(500);
+    }
+    
+    echo json_encode($result);
 }
-$stmt->bind_param('s', $email);
-
-if(!$stmt->execute()) {
-    http_response_code(500);
-    echo json_encode(["success" => false, "message" => "Internal Server Error"]);
-    die();
-}
-
-$result = $stmt->get_result()->fetch_assoc();
-
-echo json_encode($result);
 ?>
