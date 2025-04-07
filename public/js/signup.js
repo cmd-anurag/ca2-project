@@ -2,7 +2,7 @@ let signupbtn = document.getElementById("signupbtn");
 
 const nameField = document.getElementById("name-input");
 const emailField = document.getElementById("email-input");
-const passwordField = document.getElementById("password-input");
+const passwordField = document.getElementById("signupPassword");
 
 const invalidName = document.getElementById("invalidname");
 const invalidEmail = document.getElementById("invalidemail");
@@ -123,17 +123,4 @@ toggleBtns.forEach((btn) => {
       icon.classList.add("fa-eye");
     }
   });
-});
-
-document.getElementById("toggleSignupPassword").addEventListener("click", function () {
-  const passwordInput = document.getElementById("signupPassword");
-  const eyeIcon = document.getElementById("signupEyeIcon");
-
-  if (passwordInput.type === "password") {
-      passwordInput.type = "text";
-      eyeIcon.classList.replace("fa-eye", "fa-eye-slash"); 
-  } else {
-      passwordInput.type = "password";
-      eyeIcon.classList.replace("fa-eye-slash", "fa-eye");
-  }
 });

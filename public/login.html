@@ -9,13 +9,49 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Chicle&family=Sour+Gummy:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        @keyframes progress {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+        }
+        .animate-progress {
+            animation: progress 2s ease-in-out infinite;
+        }
+    </style>
 </head>
 <body class="bg-gray-100 flex justify-center items-center min-h-screen">
 
-    <div class="w-full max-w-4xl flex flex-col lg:flex-row bg-white shadow-lg rounded-lg overflow-hidden">
+    <!-- Healthcare Icon Loader -->
+    <div id="loader-element" class="loader fixed inset-0 flex items-center justify-center z-50 backdrop-blur-sm bg-white/30 flex-col gap-5 hidden">
+        <div class="flex flex-col items-center gap-5 p-8 bg-white rounded-2xl shadow-xl">
+            <!-- Logo -->
+            <div class="text-3xl font-bold text-blue-600 font-[Chicle]">SwiftHealth</div>
+            
+            <!--  loading animation -->
+            <div class="relative w-24 h-24 flex items-center justify-center">
+                
+                <!-- Three dots -->
+                <div class="flex space-x-4">
+                    <div class="w-4 h-4 rounded-full bg-blue-600 animate-pulse"></div>
+                    <div class="w-4 h-4 rounded-full bg-blue-500 animate-bounce" style="animation-delay: 0.3s"></div>
+                    <div class="w-4 h-4 rounded-full bg-blue-400 animate-pulse" style="animation-delay: 0.6s"></div>
+                </div>
+            </div>
+            
+            <!-- Progress bar with animation -->
+            <div class="w-48 bg-gray-100 rounded-full h-1.5 mt-2">
+                <div class="bg-gradient-to-r from-blue-400 to-blue-600 h-1.5 rounded-full animate-progress"></div>
+            </div>
+            
+            <p class="text-gray-600 font-medium text-sm">Please wait... Logging you in</p>
+        </div>
+    </div>
+
+    <div class="w-[896px] min-h-[600px] flex flex-col lg:flex-row bg-white shadow-lg rounded-3xl overflow-hidden">
         
         <!-- Left Section (Branding & Info) -->
-        <div class="lg:w-1/2 bg-gradient-to-br from-blue-600 via-indigo-500 to-blue-500 p-8 text-white flex flex-col justify-between">
+        <div class="w-full lg:w-1/2 bg-gradient-to-br from-blue-600 via-indigo-500 to-blue-500 p-14 text-white flex flex-col justify-between">
             <div>
                 <h1 class="text-5xl font-bold font-[Chicle] flex items-center mb-4">
                     <i class="fas fa-heartbeat mr-3"></i> SwiftHealth
@@ -24,55 +60,63 @@
             </div>
             
             <div class="mt-10">
-                <h2 class="text-3xl lg:text-4xl font-bold mb-4">Your Healthcare Assistant Awaits!</h2>
-                <p class="text-blue-100">Join thousands of users managing their health effortlessly.</p>
+                <h2 class="text-3xl lg:text-4xl font-bold mb-4">Welcome Back!</h2>
+                <p class="text-blue-100">Access your health dashboard securely and efficiently.</p>
 
                 <!-- Features -->
                 <div class="mt-6 space-y-3">
                     <div class="flex items-center">
-                        <i class="fas fa-calendar-check bg-white/20 p-2 rounded-full mr-3"></i>
-                        <span>Easy appointment scheduling</span>
+                        <i class="fas fa-shield-alt bg-white/20 p-2 rounded-full mr-3"></i>
+                        <span>Secure access to your health records</span>
                     </div>
                     <div class="flex items-center">
-                        <i class="fas fa-user-md bg-white/20 p-2 rounded-full mr-3"></i>
-                        <span>Connect with top specialists</span>
+                        <i class="fas fa-clipboard-check bg-white/20 p-2 rounded-full mr-3"></i>
+                        <span>View upcoming appointments</span>
                     </div>
                     <div class="flex items-center">
-                        <i class="fas fa-notes-medical bg-white/20 p-2 rounded-full mr-3"></i>
-                        <span>Secure health record management</span>
+                        <i class="fas fa-bell bg-white/20 p-2 rounded-full mr-3"></i>
+                        <span>Get personalized health notifications</span>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Right Section (Login Form) -->
-        <div class="lg:w-1/2 p-8 flex flex-col justify-center">
+        <div class="w-full lg:w-1/2 p-8 flex flex-col justify-center">
             <h1 class="text-3xl font-extrabold mb-3 text-gray-800">Login</h1>
             <p class="text-gray-500 mb-5">Welcome back! Please login to your account.</p>
             
-            <!-- Email Input -->
-            <div class="relative mb-4">
-                <input type="email" id="emailinput" placeholder="Email Address" class="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                <i class="fas fa-envelope absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-            </div>
+            <form class="space-y-6">
+                <!-- Email Input -->
+                 <div>
+                     <div class="relative">
+                         <input type="email" id="emailinput" placeholder="Email Address" class="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                         <i class="fas fa-envelope absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                     </div>
+                     <p id="emailError" class="text-red-500 text-sm overflow-hidden max-h-0 duration-300 transition-all ease-in-out">Please enter a valid email.</p>
+                 </div>
+    
+                <!-- Password Input with Eye Icon -->
+                 <div>
 
-            <!-- Password Input with Eye Icon -->
-            <div class="relative mb-4">
-                <input type="password" id="passwordinput" placeholder="Password" class="w-full p-3 pl-10 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                <i class="fas fa-lock absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                <button type="button" id="togglePassword" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600">
-                    <i id="eyeIcon" class="fas fa-eye"></i>
-                </button>
-            </div>
-
-            <!-- Remember Me & Forgot Password -->
-            <div class="flex justify-between text-sm text-gray-600 mb-4">
-                <label><input type="checkbox" class="mr-1"> Remember me?</label>
-                <a href="#" class="hover:underline">Forgot Password?</a>
-            </div>
-
-            <!-- Login Button -->
-            <button class="bg-blue-600 text-white w-full p-3 rounded-lg hover:bg-blue-700 transition">Login</button>
+                     <div class="relative">
+                         <input type="password" id="passwordinput" placeholder="Password" class="w-full p-3 pl-10 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                         <i class="fas fa-lock absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                         <button type="button" id="togglePassword" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600">
+                             <i id="eyeIcon" class="fas fa-eye"></i>
+                         </button>
+                     </div>
+                     <p id="passwordError" class="text-red-500 text-sm overflow-hidden max-h-0 duration-300 transition-all ease-in-out">A password is required.</p>
+                 </div>
+                <!-- Remember Me & Forgot Password -->
+                <div class="flex justify-between text-sm text-gray-600 mb-4">
+                    <label><input type="checkbox" class="mr-1"> Remember me?</label>
+                    <a href="#" class="hover:underline">Forgot Password?</a>
+                </div>
+    
+                <!-- Login Button -->
+                <button type="button" id="loginbutton" class="bg-blue-600 text-white w-full p-3 rounded-lg hover:bg-blue-700 transition transform hover:-translate-y-1 duration-300">Login</button>
+            </form>
 
             <!-- Signup Link -->
             <p class="mt-4 text-center text-gray-600">Don't have an account? 
@@ -81,21 +125,6 @@
         </div>
     </div>
 
-    <!-- JavaScript for Password Toggle -->
-    <script>
-        document.getElementById("togglePassword").addEventListener("click", function () {
-            const passwordInput = document.getElementById("passwordinput");
-            const eyeIcon = document.getElementById("eyeIcon");
-
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text";
-                eyeIcon.classList.replace("fa-eye", "fa-eye-slash");
-            } else {
-                passwordInput.type = "password";
-                eyeIcon.classList.replace("fa-eye-slash", "fa-eye");
-            }
-        });
-    </script>
-
+    <script src="./js/login.js"></script>
 </body>
 </html>
