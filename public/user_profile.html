@@ -4,14 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-    <title>SwiftHealth</title>
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+    <title>SwiftHealth - Patient Dashboard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chicle&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chicle&family=Poppins:wght@300;400;500;600;700&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .logo-font {
+            font-family: 'Chicle', cursive;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 
     <script>
-        const apiEndpoint = "http://localhost:3000/user"; 
+        const apiEndpoint = "http://localhost:3000/user";
 
         fetch(apiEndpoint)
             .then((response) => {
@@ -21,180 +37,359 @@
                 return response.json();
             })
             .then((data) => {
-                // document.getElementById("id").innerHTML = data.id || "0000";
-                document.getElementById("name").innerHTML = data.name || "Tejasvita";
-                document.getElementById("email").innerHTML = data.email || "sth@mail.com";
-                // document.getElementById("role").innerHTML = data.role || "0000";
-                document.getElementById("phone").innerHTML = data.phone || "xxxxxxxxxx";
-                document.getElementById("address").innerHTML = data.address || "city, state, country";
+                document.getElementById("name").innerHTML = data.name || "Tejasvita Ganesh";
+                document.getElementById("email").innerHTML = data.email || "tejasvita@swifthealth.com";
+                document.getElementById("phone").innerHTML = data.phone || "+91 9876543210";
+                document.getElementById("address").innerHTML = data.address || "123, Model Town, Bangalore, Haryana";
 
-                // document.getElementById("id").innerHTML = data.patient.id || "0000";
-                document.getElementById("dob").innerHTML = data.patient.dob || "00/00/00";
-                document.getElementById("gender").innerHTML = data.patient.gender || "pata nhi";
-                // document.getElementById("medicalHistory").innerHTML = data.patient.medicalHistory || "none";
-                document.getElementById("emergencyContact").innerHTML = data.patient.emergencyContact || "xxxxxxxxxx";
-                document.getElementById("bloodType").innerHTML = data.patient.bloodType || "X";
-                document.getElementById("height").innerHTML = data.patient.height || "0 cm";
-                document.getElementById("weight").innerHTML = data.patient.weight || "0 kg";
+                document.getElementById("dob").innerHTML = data.patient.dob || "15/08/2004";
+                document.getElementById("gender").innerHTML = data.patient.gender || "Female";
+                document.getElementById("emergencyContact").innerHTML = data.patient.emergencyContact || "+91 9876543211";
+                document.getElementById("bloodType").innerHTML = data.patient.bloodType || "B+";
+                document.getElementById("height").innerHTML = data.patient.height || "165 cm";
+                document.getElementById("weight").innerHTML = data.patient.weight || "65 kg";
+                
+                // Populate medical history
+                const medicalHistory = data.medicalHistory || [
+                    { condition: "Allergic Rhinitis", diagnosed: "2022", status: "Active" },
+                    { condition: "Hypertension", diagnosed: "2020", status: "Controlled" }
+                ];
+                
+                const historyList = document.getElementById("medical-history-list");
+                medicalHistory.forEach(item => {
+                    const li = document.createElement("li");
+                    li.className = "mb-2 pb-2 border-b border-gray-200";
+                    li.innerHTML = `
+                        <div class="flex justify-between">
+                            <span class="font-medium">${item.condition}</span>
+                            <span class="text-sm">${item.diagnosed}</span>
+                        </div>
+                        <span class="text-sm ${item.status === 'Active' ? 'text-orange-500' : 'text-green-500'}">${item.status}</span>
+                    `;
+                    historyList.appendChild(li);
+                });
+
+                let height = data.patient.height;
+                let weight = data.patient.weight;
+                let calcBMI = (height, weight) => {
+                    let BMI = Math.round(weight / Math.pow(height, 2) * 10000 * 10);
+                    return BMI / 10;
+                }
+                let BMI = calcBMI(height, weight);
+                document.getElementById("BMI").innerHTML = BMI || "2";
+
+                // let BMIPer = BMI * 5/2;
+                // console.log(BMIPer);
+                
+                let calcBMIPercentage = (BMI) => {
+                    if (BMI < 18) return (BMI / 18) * 12.5;
+                    else if (BMI < 25) return 12.5 + ((BMI - 18) / 7) * 25;
+                    else if (BMI < 30) return 37.5 + ((BMI - 25) / 5) * 25;
+                    return 62.5 + ((BMI - 30) / 20) * 37.5;
+                };
+                document.getElementById("bar").style = `width: ${calcBMIPercentage(BMI)}%`;
+
             })
             .catch((error) => {
                 console.error("Fetch error:", error);
             });
     </script>
 </head>
-<body class="bg-gray-150">
-    <div class="container ">
+<body class="bg-gray-50">
+    <div class="min-h-screen flex flex-col relative">
         <!-- Navigation Bar Starts -->
-        <nav id="navbar" class="flex items-center justify-between px-10 lg:px-16 py-6 w-full bg-white">
-            <div id="logo" class="lg:text-4xl text-3xl font-bold text-black cursor-pointer font-[Chicle]">
-                <a href="home.html">SwiftHealth</a>
-            </div>
+    <nav id="navbar" class="flex items-center justify-between px-10 lg:px-16 py-6 w-full bg-white fixed z-10">
+        <div id="logo" class="lg:text-4xl text-3xl font-bold text-black cursor-pointer font-[Chicle]">
+            <a href="home.html">SwiftHealth</a>
+        </div>
 
-            <!-- Desktop Navigation Links -->
-            <div class="hidden md:flex lg:flex text-black md:text-[12px] lg:text-[14px] lg:gap-x-7 md:gap-0.4">
-                <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="home.html">Home</a></div>
-                <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="hospitals.html">Hospitals</a></div>
-                <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="aboutus.html">About Us</a></div>
-                <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="services.html">Services</a></div>
-                <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="ContactUs.html">Contact Us</a></div>
-                <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="login.html">Sign Up / Log In</a></div>
-            </div>
 
-            <div class="hidden md:block">
-                <button class="bg-blue-500 text-white hover:bg-black py-3 px-5 rounded-full font-bold">
-                    <a href="bookappointment.html">Book Appointment</a>
-                </button>
-            </div>
+        <!-- Desktop Navigation Links -->
+        <div class="hidden md:flex lg:flex text-black md:text-[12px] lg:text-[14px] lg:gap-x-7 md:gap-0.4">
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="home.html">Home</a></div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="ContactUs.html">Contact Us</a></div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="login.html">Sign Up / Log In</a></div>
+        </div>
 
-            <!-- Mobile Menu Button -->
-            <button id="menu-btn" class="md:hidden text-3xl">&#9776;</button>
-        </nav>
+        <div class="hidden md:block">
+            <button class="bg-blue-500 text-white hover:bg-black py-3 px-5 rounded-full font-bold">
+                <a href="bookappointment.html">Book Appointment</a>
+            </button>
+        </div>
 
-        <div class="profile flex px-40 gap-15">
-            <div class="left h-full w-[33%] bg-gray-500 text-white p-[3%] rounded-lg ">
-                <!-- a -->
-                <div class="top flex justify-evenly pb-1 ">
-                    <div class="photo h-[30%] ">
-                        <!-- profile photo -->
-                        <img src="./assets/patient.svg" class="h-50 w-40">
-                    </div>
-                        
-                    <div class="parent flex items-center">
-                        <div class="flex justify-center gap-3">
-                            <div class=" ">
+        <!-- Mobile Menu Button -->
+        <button id="menu-btn" class="md:hidden text-3xl">&#9776;</button>
+    </nav>
 
-                                <div>
-                                <span class="font-semibold">
-                                    NAME:
-                                </span>
-                                <span id="name" class=""></span>
-                                </div>
-
-                                <div>
-                                <span class="font-semibold">
-                                    PHONE:
-                                </span>
-                                <span id="phone" class=""></span>
-                                </div>
-
-                                <div>
-                                <span class="font-semibold">
-                                    EMAIL:
-                                </span>
-                                <span id="email" class=""></span>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="personal  p-4">
-                    <div class="flex justify-center text-xl font-semibold underline pb-2">
-                        PERSONAL INFORMATION
-                    </div>
-
-                    <div class="flex justify-center gap-5">
-                        <div class="text-right font-semibold">
-                            <!-- <div class="">
-                                PASSWORD:
-                            </div> -->
-                            <div class="">
-                                DATE OF BIRTH:
-                            </div>
-                            <div class="">
-                                GENDER:
-                            </div>
-                            <div class="">
-                                EMERGENCY CONTACT:
-                            </div>
-                            <!-- <div class="">
-                                AGE:
-                            </div> -->
-                            <div class="">
-                                ADDRESS:
-                            </div>
-                        </div>
-
-                        <div class="">
-                            <div id=""></div>
-                            <div id="dob"></div>
-                            <div id="gender"></div>
-                            <div id="emergencyContact"></div>
-                            <div id="age"></div>
-                            <div id="address"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="right h-full w-[67%] text-white ">
-                <!-- b -->
-                <div class="parent flex text-black bg-gray-500 justify-evenly rounded-lg py-8 mb-5">
-                    <div class="height bg-white p-3 rounded-xl w-43">
-                        <span class="font-semibold flex justify-center">
-                            HEIGHT
-                        </span>
-                        <div class=" flex justify-center p-2">
-                            <img src="./assets/height.svg" alt="" class="h-10 ">
-                        </div>
-                        <span id="height" class="flex justify-center text-xl"></span>
-                    </div>
-                    
-                    <div class="weight bg-white p-3 rounded-xl w-43">
-                        <span class="font-semibold flex justify-center">
-                            WEIGHT
-                        </span>
-                        <div class=" flex justify-center p-1">
-                            <img src="./assets/weight.svg" alt="" class="h-12 pt-3 ">
-                        </div>
-                        <span id="weight" class="flex justify-center text-xl"></span>
-                    </div>
-                    
-                    <div class="blood bg-white p-3 rounded-xl w-43">
-                        <span class="font-semibold flex justify-center">
-                            BLOOD GROUP
-                        </span>
-                        <div class=" flex justify-center p-2">
-                            <img src="./assets/blood_group.svg" alt="" class="h-10 ">
-                        </div>
-                        <span id="bloodType" class="flex justify-center text-xl"></span>
-                    </div>
-                </div>
-
-                <div class="medical bg-gray-500 p-[3%] rounded-lg">
-                    <div class="flex justify-center text-xl font-semibold ">
-                        MEDICAL HISTORY
-                    </div>
-                    <hr>
-                    <!-- previous medical history -->
-                    <div>
-                        
-                    </div>
-                </div>
-            </div>
-
+    <!-- Mobile Menu -->
+    <div id="mobile-menu"
+        class="fixed inset-0 bg-white text-black flex flex-col items-center justify-center text-xl space-y-6 transform -translate-y-full transition-transform duration-500 ease-in-out">
+        <button id="close-btn" class="absolute top-5 right-6 text-3xl">&#10006;</button>
+        <a href="home.html" class="hover:text-blue-500">Home</a>
+        <a href="hospitals.html" class="hover:text-blue-500">Hospitals</a>
+        <a href="aboutus.html" class="hover:text-blue-500">About Us</a>
+        <a href="services.html" class="hover:text-blue-500">Services</a>
+        <a href="ContactUs.html" class="hover:text-blue-500">Contact Us</a>
+        <a href="login.html" class="hover:text-blue-500">Sign Up / Log In</a>
+        <div class="bg-blue-500 text-white hover:bg-blue-950 cursor-pointer px-4 py-3 text-sm font-bold rounded-full">
+            <a href="bookappointment.html">Book Appointment</a>
         </div>
     </div>
+
+    <!-- Navigation Ends-->
+
+        <!-- Page Header -->
+        <div class="bg-blue-50 py-6 px-4 sm:px-6 lg:px-16">
+            <div class="max-w-7xl mx-auto">
+                <h1 class="text-2xl sm:text-3xl font-bold text-blue-800">My Health Dashboard</h1>
+                <p class="text-gray-600 mt-1">Manage your health profile and monitor your medical information</p>
+            </div>
+        </div>
+
+        <div class="container mx-auto py-6 px-4 sm:px-6 lg:px-16 flex-grow">
+            <div class="profile flex flex-col lg:flex-row gap-6">
+                <!-- Left Column -->
+                <div class="left w-full lg:w-1/3 flex flex-col gap-6">
+                    <!-- Profile Card -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden  ">
+                        <div class="gradient-bg p-6 relative">
+                            <div class="flex items-center justify-between">
+                                <h2 class="text-xl font-semibold text-white">Personal Profile</h2>
+                                <button class="text-white bg-white/20 hover:bg-white/30 p-2 rounded-full">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                            <div class="flex items-center mt-4">
+                                <div class="h-20 w-20 rounded-full bg-white flex items-center justify-center shadow-lg mr-4">
+                                    <img src="./assets/patient.svg" class="h-16 w-16">
+                                </div>
+                                <div class="text-white">
+                                    <h3 class="text-xl font-medium" id="name"></h3>
+                                    <p class="text-blue-100 flex items-center">
+                                        <i class="fas fa-map-marker-alt mr-1"></i>
+                                        <span id="address-short">Bangalore, India</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="p-6">
+                            <div class="grid grid-cols-1 gap-4">
+                                <div class="flex items-start">
+                                    <div class="text-blue-500 mr-3">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500 text-sm">Phone Number</p>
+                                        <p class="font-medium" id="phone"></p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="text-blue-500 mr-3">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500 text-sm">Email Address</p>
+                                        <p class="font-medium" id="email"></p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="text-blue-500 mr-3">
+                                        <i class="fas fa-calendar"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500 text-sm">Date of Birth</p>
+                                        <p class="font-medium" id="dob"></p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="text-blue-500 mr-3">
+                                        <i class="fas fa-venus-mars"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500 text-sm">Gender</p>
+                                        <p class="font-medium" id="gender"></p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="text-blue-500 mr-3">
+                                        <i class="fas fa-phone-alt"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500 text-sm">Emergency Contact</p>
+                                        <p class="font-medium" id="emergencyContact"></p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="text-blue-500 mr-3">
+                                        <i class="fas fa-map-marked-alt"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500 text-sm">Complete Address</p>
+                                        <p class="font-medium" id="address"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column -->
+                <div class="right w-full lg:w-2/3 flex flex-col gap-6">
+                    <!-- Health Metrics -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden ">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <h2 class="text-xl font-semibold text-gray-800">Health Metrics</h2>
+                                <span class="text-gray-500 text-sm">Last updated: 02 Apr 2025</span>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <div class="bg-blue-50 p-4 rounded-xl flex flex-col items-center transition-all duration-300 card-hover">
+                                    <div class="h-14 w-14 rounded-full bg-blue-100 flex items-center justify-center mb-3">
+                                        <img src="./assets/height.svg" alt="" class="h-8">
+                                    </div>
+                                    <span class="text-gray-500 text-sm">HEIGHT</span>
+                                    <span id="height" class="text-2xl font-medium text-gray-800"></span>
+                                </div>
+                                
+                                <div class="bg-blue-50 p-4 rounded-xl flex flex-col items-center transition-all duration-300 card-hover">
+                                    <div class="h-14 w-14 rounded-full bg-blue-100 flex items-center justify-center mb-3">
+                                        <img src="./assets/weight.svg" alt="" class="h-8 ">
+                                    </div>
+                                    <span class="text-gray-500 text-sm">WEIGHT</span>
+                                    <span id="weight" class="text-2xl font-medium text-gray-800"></span>
+                                </div>
+                                
+                                <div class="bg-blue-50 p-4 rounded-xl flex flex-col items-center transition-all duration-300 card-hover">
+                                    <div class="h-14 w-14 rounded-full bg-blue-100 flex items-center justify-center mb-3">
+                                        <img src="./assets/blood_group.svg" alt="" class="h-8">
+                                    </div>
+                                    <span class="text-gray-500 text-sm">BLOOD GROUP</span>
+                                    <span id="bloodType" class="text-2xl font-medium text-gray-800"></span>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6">
+                                <div class="flex items-center justify-between mb-2">
+                                    <div>
+                                        <span class="text-gray-800 font-medium">Body Mass Index (BMI)</span>
+                                        <span class="ml-2 text-sm bg-green-100 text-green-800 py-1 px-2 rounded-full">Normal</span>
+                                    </div>
+                                    <span id="BMI" class="font-medium text-gray-800">22.4</span>
+                                </div>
+                                <div class="h-2 bg-gray-200 rounded-full">
+                                    <div class="h-2 rounded-full gradient-bg" style="width: 0" id="bar"></div>
+                                </div>
+                                <div class="flex justify-between text-xs text-gray-500 mt-1">
+                                    <span>Underweight</span>
+                                    <span>Normal</span>
+                                    <span>Overweight</span>
+                                    <span>Obese</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Medical History -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden ">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <h2 class="text-xl font-semibold text-gray-800">Medical History</h2>
+                                <button class="text-blue-500 hover:text-blue-700 flex items-center">
+                                    <i class="fas fa-download mr-1"></i>
+                                    <span class="text-sm">Download Records</span>
+                                </button>
+                            </div>
+                            
+                            <ul id="medical-history-list" class="mb-4">
+                                <!-- Medical history will be populated by JavaScript -->
+                            </ul>
+                            
+                            <div class="mt-6">
+                                <h3 class="font-medium text-gray-800 mb-3">Recent Reports</h3>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <div class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
+                                        <div class="h-10 w-10 rounded-lg bg-red-100 flex items-center justify-center mr-3">
+                                            <i class="fas fa-file-pdf text-red-500"></i>
+                                        </div>
+                                        <div class="flex-grow">
+                                            <p class="font-medium text-gray-800">Blood Test Report</p>
+                                            <p class="text-sm text-gray-500">21 Mar 2025</p>
+                                        </div>
+                                        <button class="text-blue-500 hover:text-blue-700">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                    
+                                    <div class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
+                                        <div class="h-10 w-10 rounded-lg bg-green-100 flex items-center justify-center mr-3">
+                                            <i class="fas fa-file-medical text-green-500"></i>
+                                        </div>
+                                        <div class="flex-grow">
+                                            <p class="font-medium text-gray-800">General Checkup</p>
+                                            <p class="text-sm text-gray-500">15 Feb 2025</p>
+                                        </div>
+                                        <button class="text-blue-500 hover:text-blue-700">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-white py-8 px-4 sm:px-6 lg:px-16 mt-8">
+            <div class="container mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-6 md:mb-0">
+                        <h2 class="text-2xl font-bold mb-2 logo-font text-blue-400">SwiftHealth</h2>
+                        <p class="text-gray-400 max-w-md">Your trusted partner in healthcare. We provide expert medical services with a focus on patient comfort and well-being.</p>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-8">
+                        <div>
+                            <h3 class="text-lg font-medium mb-3">Quick Links</h3>
+                            <ul class="space-y-2">
+                                <li><a href="./home.html" class="text-gray-400 hover:text-white">Home</a></li>
+                                <li><a href="./ContactUs.html" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-medium mb-3">Connect with Us</h3>
+                            <div class="flex space-x-4">
+                                <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-facebook"></i></a>
+                                <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400 text-sm">
+                    <p>&copy; 2025 SwiftHealth. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Mobile menu toggle functionality
+        document.getElementById('menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
 </body>
 </html>

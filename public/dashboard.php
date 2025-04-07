@@ -70,7 +70,7 @@
         </ul>
       </nav> -->
       <div class="flex items-center text-sm lg:text-[16px]">
-        <i class="fa-solid fa-user"></i><span id="user_name" class="mr-4 ml-2"><?= $user_name ?></span>
+        <i class="fa-solid fa-user"></i><a href="user_profile.php" id="user_name" class="cursor-pointer mr-4 ml-2"><?= $user_name ?></a>
         <button id="logout-btn" class="bg-transparent text-white-400 px-3 py-1 rounded cursor-pointer border-2 border-red-700 text-red-700">Logout</button>
       </div>
     </div>
