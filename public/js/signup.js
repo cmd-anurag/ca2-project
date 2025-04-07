@@ -124,3 +124,16 @@ toggleBtns.forEach((btn) => {
     }
   });
 });
+
+document.getElementById("toggleSignupPassword").addEventListener("click", function () {
+  const passwordInput = document.getElementById("signupPassword");
+  const eyeIcon = document.getElementById("signupEyeIcon");
+
+  if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      eyeIcon.classList.replace("fa-eye", "fa-eye-slash"); 
+  } else {
+      passwordInput.type = "password";
+      eyeIcon.classList.replace("fa-eye-slash", "fa-eye");
+  }
+});
