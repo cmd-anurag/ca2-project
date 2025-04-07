@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <title>SwiftHealth</title>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chicle&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <script>
+        const apiEndpoint = "http://localhost:3000/user"; 
+
+        fetch(apiEndpoint)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then((data) => {
+                // document.getElementById("id").innerHTML = data.id || "0000";
+                document.getElementById("name").innerHTML = data.name || "Tejasvita";
+                document.getElementById("email").innerHTML = data.email || "sth@mail.com";
+                // document.getElementById("role").innerHTML = data.role || "0000";
+                document.getElementById("phone").innerHTML = data.phone || "xxxxxxxxxx";
+                document.getElementById("address").innerHTML = data.address || "city, state, country";
+
+                // document.getElementById("id").innerHTML = data.patient.id || "0000";
+                document.getElementById("dob").innerHTML = data.patient.dob || "00/00/00";
+                document.getElementById("gender").innerHTML = data.patient.gender || "pata nhi";
+                // document.getElementById("medicalHistory").innerHTML = data.patient.medicalHistory || "none";
+                document.getElementById("emergencyContact").innerHTML = data.patient.emergencyContact || "xxxxxxxxxx";
+                document.getElementById("bloodType").innerHTML = data.patient.bloodType || "X";
+                document.getElementById("height").innerHTML = data.patient.height || "0 cm";
+                document.getElementById("weight").innerHTML = data.patient.weight || "0 kg";
+            })
+            .catch((error) => {
+                console.error("Fetch error:", error);
+            });
+    </script>
+</head>
+<body class="bg-gray-150">
+    <div class="container ">
+        <!-- Navigation Bar Starts -->
+        <nav id="navbar" class="flex items-center justify-between px-10 lg:px-16 py-6 w-full bg-white">
+            <div id="logo" class="lg:text-4xl text-3xl font-bold text-black cursor-pointer font-[Chicle]">
+                <a href="home.html">SwiftHealth</a>
+            </div>
+
+            <!-- Desktop Navigation Links -->
+            <div class="hidden md:flex lg:flex text-black md:text-[12px] lg:text-[14px] lg:gap-x-7 md:gap-0.4">
+                <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="home.html">Home</a></div>
+                <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="hospitals.html">Hospitals</a></div>
+                <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="aboutus.html">About Us</a></div>
+                <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="services.html">Services</a></div>
+                <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="ContactUs.html">Contact Us</a></div>
+                <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="login.html">Sign Up / Log In</a></div>
+            </div>
+
+            <div class="hidden md:block">
+                <button class="bg-blue-500 text-white hover:bg-black py-3 px-5 rounded-full font-bold">
+                    <a href="bookappointment.html">Book Appointment</a>
+                </button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-3xl">&#9776;</button>
+        </nav>
+
+        <div class="profile flex px-40 gap-15">
+            <div class="left h-full w-[33%] bg-gray-500 text-white p-[3%] rounded-lg ">
+                <!-- a -->
+                <div class="top flex justify-evenly pb-1 ">
+                    <div class="photo h-[30%] ">
+                        <!-- profile photo -->
+                        <img src="./assets/patient.svg" class="h-50 w-40">
+                    </div>
+                        
+                    <div class="parent flex items-center">
+                        <div class="flex justify-center gap-3">
+                            <div class=" ">
+
+                                <div>
+                                <span class="font-semibold">
+                                    NAME:
+                                </span>
+                                <span id="name" class=""></span>
+                                </div>
+
+                                <div>
+                                <span class="font-semibold">
+                                    PHONE:
+                                </span>
+                                <span id="phone" class=""></span>
+                                </div>
+
+                                <div>
+                                <span class="font-semibold">
+                                    EMAIL:
+                                </span>
+                                <span id="email" class=""></span>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="personal  p-4">
+                    <div class="flex justify-center text-xl font-semibold underline pb-2">
+                        PERSONAL INFORMATION
+                    </div>
+
+                    <div class="flex justify-center gap-5">
+                        <div class="text-right font-semibold">
+                            <!-- <div class="">
+                                PASSWORD:
+                            </div> -->
+                            <div class="">
+                                DATE OF BIRTH:
+                            </div>
+                            <div class="">
+                                GENDER:
+                            </div>
+                            <div class="">
+                                EMERGENCY CONTACT:
+                            </div>
+                            <!-- <div class="">
+                                AGE:
+                            </div> -->
+                            <div class="">
+                                ADDRESS:
+                            </div>
+                        </div>
+
+                        <div class="">
+                            <div id=""></div>
+                            <div id="dob"></div>
+                            <div id="gender"></div>
+                            <div id="emergencyContact"></div>
+                            <div id="age"></div>
+                            <div id="address"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right h-full w-[67%] text-white ">
+                <!-- b -->
+                <div class="parent flex text-black bg-gray-500 justify-evenly rounded-lg py-8 mb-5">
+                    <div class="height bg-white p-3 rounded-xl w-43">
+                        <span class="font-semibold flex justify-center">
+                            HEIGHT
+                        </span>
+                        <div class=" flex justify-center p-2">
+                            <img src="./assets/height.svg" alt="" class="h-10 ">
+                        </div>
+                        <span id="height" class="flex justify-center text-xl"></span>
+                    </div>
+                    
+                    <div class="weight bg-white p-3 rounded-xl w-43">
+                        <span class="font-semibold flex justify-center">
+                            WEIGHT
+                        </span>
+                        <div class=" flex justify-center p-1">
+                            <img src="./assets/weight.svg" alt="" class="h-12 pt-3 ">
+                        </div>
+                        <span id="weight" class="flex justify-center text-xl"></span>
+                    </div>
+                    
+                    <div class="blood bg-white p-3 rounded-xl w-43">
+                        <span class="font-semibold flex justify-center">
+                            BLOOD GROUP
+                        </span>
+                        <div class=" flex justify-center p-2">
+                            <img src="./assets/blood_group.svg" alt="" class="h-10 ">
+                        </div>
+                        <span id="bloodType" class="flex justify-center text-xl"></span>
+                    </div>
+                </div>
+
+                <div class="medical bg-gray-500 p-[3%] rounded-lg">
+                    <div class="flex justify-center text-xl font-semibold ">
+                        MEDICAL HISTORY
+                    </div>
+                    <hr>
+                    <!-- previous medical history -->
+                    <div>
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

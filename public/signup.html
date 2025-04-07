@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+    <title>Sign Up | SwiftHealth</title>
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,19 +12,29 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Chicle&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
+    <style>
+        @keyframes progress {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+        }
+        .animate-progress {
+            animation: progress 2s ease-in-out infinite;
+        }
+    </style>
 </head>
 
-<body>
+<body class="bg-gray-50">
     <!-- Healthcare Icon Loader -->
     <div id="loader-element" class="loader fixed inset-0 flex items-center justify-center z-50 backdrop-blur-sm bg-white/30 flex-col gap-5 hidden">
         <div class="flex flex-col items-center gap-5 p-8 bg-white rounded-2xl shadow-xl">
             <!-- Logo -->
             <div class="text-3xl font-bold text-blue-600 font-[Chicle]">SwiftHealth</div>
             
-            <!-- Elegant loading animation -->
+            <!--  loading animation -->
             <div class="relative w-24 h-24 flex items-center justify-center">
                 
-                <!-- Three dots with different animations -->
+                <!-- Three dots -->
                 <div class="flex space-x-4">
                     <div class="w-4 h-4 rounded-full bg-blue-600 animate-pulse"></div>
                     <div class="w-4 h-4 rounded-full bg-blue-500 animate-bounce" style="animation-delay: 0.3s"></div>
@@ -40,56 +50,140 @@
             <p class="text-gray-600 font-medium text-sm">Creating your healthcare profile...</p>
         </div>
     </div>
-    
-    <style>
-        @keyframes progress {
-            0% { width: 0%; }
-            50% { width: 70%; }
-            100% { width: 100%; }
-        }
-        .animate-progress {
-            animation: progress 2s ease-in-out infinite;
-        }
-    </style>
 
-
-    <div class="h-screen flex justify-center items-center">
-
-        <div class="lg:w-2/3 lg:mx-auto lg:h-4/5 h-screen w-9/10 flex lg:flex-row flex-col mt-5">
-            <div
-                class="flex flex-col justify-around p-10 rounded-xl bg-[url(https://products.ls.graphics/mesh-gradients/images/38.-Sky-Blue_1.jpg)] bg-cover bg-center lg:w-1/2 lg:h-full h-1/4">
-                <div id="logo" class="text-white lg:text-5xl text-4xl font-bold text-black font-[Chicle]">SwiftHealth
+    <div class="min-h-screen flex justify-center items-center py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl w-full flex flex-col lg:flex-row overflow-hidden rounded-3xl shadow-2xl">
+            <!-- Left Column - Brand/Info -->
+            <div class="lg:w-1/2 bg-gradient-to-br from-blue-600 via-indigo-500 to-blue-500 relative flex flex-col justify-between p-10 text-white overflow-hidden">
+                <!-- Logo and Branding -->
+                <div class="relative z-10">
+                    <div class="text-5xl font-bold font-[Chicle] flex items-center mb-6">
+                        <i class="fas fa-heartbeat mr-3"></i>
+                        SwiftHealth
+                    </div>
+                    <p class="text-lg text-blue-100 mb-4">Your Complete Healthcare Solution</p>
                 </div>
-                <div>
-                    <h1 class="text-white font-bold text-xl lg:text-5xl">Your Healthcare Assistant Awaits !</h1>
+                
+                <!-- Main Message -->
+                <div class="relative z-10 mb-8">
+                    <h1 class="text-3xl lg:text-5xl font-bold leading-tight mb-6">Your Healthcare Assistant Awaits!</h1>
+                    <p class="text-xl text-blue-100 mb-8">Join thousands of users managing their health effortlessly.</p>
+                    
+                    <!-- Features List -->
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <div class="rounded-full bg-white/20 p-2 mr-3">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <span>Easy appointment scheduling</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="rounded-full bg-white/20 p-2 mr-3">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                            <span>Connect with top specialists</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="rounded-full bg-white/20 p-2 mr-3">
+                                <i class="fas fa-notes-medical"></i>
+                            </div>
+                            <span>Secure health record management</span>
+                        </div>
+                    </div>
                 </div>
+                
+                <!-- Decorative Elements -->
+                <div class="absolute -bottom-24 -right-24 w-64 h-64 bg-white/10 rounded-full"></div>
+                <div class="absolute top-32 -right-16 w-32 h-32 bg-white/10 rounded-full"></div>
+                <div class="absolute -top-16 -left-16 w-48 h-48 bg-white/10 rounded-full"></div>
             </div>
-
-            <div class="p-10 shadow-xl lg:w-1/2 lg:h-full flex justify-evenly flex-col gap-3 rounded-xl bg-white">
-                <h1 class="lg:text-5xl text-3xl font-extrabold">Sign Up</h1>
-                <p class="text-gray-500">Welcome! Please register your account.</p>
-                <input id="name-input" type="text" placeholder="Name" class="p-3 border border-gray-500 rounded-lg">
-                <input id="email-input" type="email" placeholder="E-mail Address" class="p-3 border border-gray-500 rounded-lg">
-                <input id="password-input" type="password" placeholder="Password" class="p-3 border border-gray-500 rounded-lg">
-                <button id="signupbtn" type="submit"
-                    class="bg-blue-700 w-1/2 mx-auto p-3 text-white rounded-xl cursor-pointer hover:bg-blue-800 duration-250">Sign
-                    Up</button>
-                <p class="text-center">Already have an account?<a class="ms-2 text-blue-500"
-                        href="./login.html">Login</a></p>
-                <div class="relative flex flex-row items-center justify-center gap-3">
-                    <hr class="w-full border-gray-300">
-                    <span>OR</span>
-                    <hr class="w-full border-gray-300">
+            
+            <!-- Right Column - Signup Form -->
+            <div class="lg:w-1/2 bg-white p-8 lg:p-12 flex flex-col justify-center">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-2">Create your account</h2>
+                    <p class="text-gray-600 mb-8">Start your journey to better health management</p>
+                    
+                    <!-- Signup Form -->
+                    <form class="space-y-6">
+                        <!-- Name Input -->
+                        <div class="relative">
+                            <div class="flex items-center border-2 border-gray-300 rounded-lg p-3 transition-all duration-300 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200">
+                                <i class="fas fa-user text-gray-400 mr-3"></i>
+                                <input id="name-input" type="text" placeholder="Full Name" class="w-full focus:outline-none text-gray-700">
+                            </div>
+                            <p id="invalidname" class="hidden text-red-500 text-sm mt-1">Please enter your name</p>
+                        </div>
+                        
+                        <!-- Email Input -->
+                        <div class="relative">
+                            <div class="flex items-center border-2 border-gray-300 rounded-lg p-3 transition-all duration-300 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200">
+                                <i class="fas fa-envelope text-gray-400 mr-3"></i>
+                                <input id="email-input" type="email" placeholder="Email Address" class="w-full focus:outline-none text-gray-700">
+                            </div>
+                            <p id="invalidemail" class="hidden text-red-500 text-sm mt-1">Please enter a valid email</p>
+                            <p id="registered-email" class="hidden text-red-500 text-sm mt-1">This email is already registered as a user. Please login instead of sign in</p>
+                        </div>
+                        
+                        <!-- Password Input -->
+                        <div class="relative">
+                            <div class="flex items-center border-2 border-gray-300 rounded-lg p-3 transition-all duration-300 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200">
+                                <i class="fas fa-lock text-gray-400 mr-3"></i>
+                                <input id="password-input" type="password" placeholder="Password" class="w-full focus:outline-none text-gray-700">
+                                <button type="button" class="password-toggle">
+                                    <i class="fas fa-eye text-gray-400 hover:text-gray-600 transition-colors"></i>
+                                </button>
+                            </div>
+                            <p id="invalidpass" class="hidden text-red-500 text-sm mt-1">Password must be at least 8 characters</p>
+                        </div>
+                        
+                        <!-- Signup Button -->
+                        <div>
+                            <button id="signupbtn" type="button" class="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
+                                <i class="fas fa-user-plus mr-2"></i>
+                                Create Account
+                            </button>
+                        </div>
+                        
+                        <!-- Login Link -->
+                        <div class="text-center">
+                            <p class="text-gray-600">Already have an account? 
+                                <a href="./login.html" class="font-medium text-blue-600 hover:text-blue-500 hover:underline transition-colors">
+                                    Sign in
+                                </a>
+                            </p>
+                        </div>
+                        
+                        <!-- Divider -->
+                        <div class="relative flex items-center justify-center my-4">
+                            <div class="w-full border-t border-gray-300"></div>
+                            <div class="px-3 bg-white text-gray-500 text-sm">OR</div>
+                            <div class="w-full border-t border-gray-300"></div>
+                        </div>
+                        
+                        <!-- Social Login Option -->
+                        <div>
+                            <button type="button" class="w-full flex justify-center items-center py-3 px-4 border-2 border-gray-300 rounded-lg shadow-sm bg-white text-gray-700 hover:bg-gray-50 hover:shadow transition duration-300 ease-in-out">
+                                <img src="https://www.svgrepo.com/show/355037/google.svg" class="w-5 h-5 mr-2" alt="Google logo">
+                                Sign up with Google
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                <p class="p-3 text-center border border-gray-500 rounded-lg"><i
-                        class="fa-brands fa-google text-red-500"></i> Sign Up with Google</p>
             </div>
         </div>
-
-
     </div>
+
     <script src="./js/signup.js"></script>
     <script src="./js/script.js"></script>
-</body>
+    
+    <script>
+    // Password visibility toggle
+    document.addEventListener('DOMContentLoaded', function() {
+        
+    });
+    </script>
 
+
+</body>
 </html>

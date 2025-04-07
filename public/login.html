@@ -7,6 +7,7 @@
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Chicle&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -27,7 +28,13 @@
                 <label class="text-gray-500">E-mail Address</label>
                 <input id="emailinput" type="email" class="p-4 border border-gray-500 rounded-lg">
                 <label class="text-gray-500">Password</label>
-                <input id="passwordinput" type="password" class="p-4 border border-gray-500 rounded-lg">
+                <div class="relative">
+                    <input id="passwordinput" type="password" class="p-4 border border-gray-500 rounded-lg w-full">
+                    <button type="button" id="togglePassword" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600">
+                        <i id="eyeIcon" class="fas fa-eye"></i>
+                    </button>
+                </div>
+                <!-- <input id="passwordinput" type="password" class="p-4 border border-gray-500 rounded-lg"> -->
                 <div class="flex items-center justify-between">
                     <p><input type="checkbox"> Remember me ?</p>
                     <p class="text-right text-gray-500 ">Forgot Password?</p>

@@ -70,3 +70,20 @@ passwordField.addEventListener("focus", () => {
     passwordField.placeholder = "";
     passwordField.classList.remove("ring-2", "ring-red-500", "text-red-700");
 })
+
+
+
+document.getElementById("togglePassword").addEventListener("click", function () {
+    const passwordInput = document.getElementById("passwordinput");
+    const eyeIcon = document.getElementById("eyeIcon");
+
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        eyeIcon.classList.remove("fa-eye");
+        eyeIcon.classList.add("fa-eye-slash");
+    } else {
+        passwordInput.type = "password";
+        eyeIcon.classList.remove("fa-eye-slash");
+        eyeIcon.classList.add("fa-eye"); 
+    }
+});
