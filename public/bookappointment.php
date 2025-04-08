@@ -29,10 +29,6 @@ if (isset($nameArray[0])) {
 if (isset($nameArray[1])) {
     $lastname = $nameArray[1];
 }
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -47,9 +43,19 @@ if (isset($nameArray[1])) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chicle&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        @keyframes progress {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+        }
+        .animate-progress {
+            animation: progress 2s ease-in-out infinite;
+        }
+    </style>
 </head>
 
-<body class="bg-gray-150">
+<body class="bg-gray-100">
     <!-- Navigation Starts-->
     <!-- Top Bar -->
     <div id="top" class="bg-blue-400 text-base text-white py-3 flex lg:items-center lg:justify-between w-full px-4">
@@ -61,7 +67,7 @@ if (isset($nameArray[1])) {
     </div>
 
     <!-- Navigation Bar Starts -->
-    <nav id="navbar" class="flex items-center justify-between px-10 lg:px-16 py-6 w-full bg-white">
+    <nav id="navbar" class="flex items-center justify-between px-10 lg:px-16 py-6 w-full bg-white shadow-sm">
         <div id="logo" class="lg:text-4xl text-3xl font-bold text-black cursor-pointer font-[Chicle]">
             <a href="home.html">SwiftHealth</a>
         </div>
@@ -75,8 +81,8 @@ if (isset($nameArray[1])) {
             <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="ContactUs.html">Contact Us</a></div>
         </div>
 
-        <div class="hidden md:block">
-            <i class="fa-solid fa-user"></i>
+        <div class="hidden md:flex items-center px-4 py-2 bg-gray-50 rounded-full">
+            <i class="fa-solid fa-user text-blue-500"></i>
             <span class="ml-3 text-lg">
                 <?php echo e($userName); ?>
             </span>
@@ -88,13 +94,13 @@ if (isset($nameArray[1])) {
 
     <!-- Mobile Menu -->
     <div id="mobile-menu"
-        class="fixed inset-0 bg-white text-black flex flex-col items-center justify-center text-xl space-y-6 transform -translate-y-full transition-transform duration-500 ease-in-out">
+        class="fixed inset-0 bg-white text-black flex flex-col items-center justify-center text-xl space-y-6 transform -translate-y-full transition-transform duration-500 ease-in-out z-50">
         <button id="close-btn" class="absolute top-5 right-6 text-3xl">&#10006;</button>
         <a href="home.html" class="hover:text-blue-500">Home</a>
+        <a href="dashboard.php" class="hover:text-blue-500">My Dashboard</a>
         <a href="aboutus.html" class="hover:text-blue-500">About Us</a>
         <a href="services.html" class="hover:text-blue-500">Services</a>
         <a href="ContactUs.html" class="hover:text-blue-500">Contact Us</a>
-        <a href="login.html" class="hover:text-blue-500">Sign Up / Log In</a>
         <div class="bg-blue-500 text-white hover:bg-blue-950 cursor-pointer px-4 py-3 text-sm font-bold rounded-full">
             <a href="bookappointment.php">Book Appointment</a>
         </div>
@@ -103,30 +109,26 @@ if (isset($nameArray[1])) {
     <!-- Navigation Ends-->
 
     <!-- Banner Starts -->
-    <div id="banner" class="bg-indigo-100 rounded-[50px] h-96 mx-5 my-5 bg-cover bg-center text-center p-6 sm:p-10">
-
-        <div class="lg:text-6xl text-4xl mt-17 font-semibold font-[Sour_Gummy]">Make An Appointment</div><br><br>
-        <span class="bg-blue-500 text-white px-5 py-3 text-md font-bold rounded-full my-auto duration-200">
+    <div id="banner" class="bg-indigo-100 rounded-[50px] h-96 mx-5 my-5 bg-cover bg-center text-center p-6 sm:p-10 flex flex-col items-center justify-center shadow-md">
+        <div class="lg:text-6xl text-4xl font-semibold font-[Sour_Gummy] text-gray-800 mb-8">Make An Appointment</div>
+        <span class="bg-blue-500 text-white px-5 py-3 text-md font-bold rounded-full shadow-md transition-all hover:bg-blue-600">
             <a class="cursor-pointer hover:underline" href="./home.html">HOME</a> / APPOINTMENT
         </span>
     </div>
     <!-- Banner Ends -->
 
-
-
     <!-- Book Appointment-->
-
     <div class="bg-white rounded-[50px] mx-5 p-6 sm:p-10 lg:flex items-start shadow-lg">
         <div class="lg:w-1/2 md:w-1/2 space-y-4">
             <div class="flex gap-4">
-                <input value="<?php echo e($firstname); ?>" class="bg-indigo-200 text-md rounded-[10px] p-3 w-1/2" placeholder="First Name" type="text" id="firstname">
-                <input value="<?php echo e($lastname); ?>" class="bg-indigo-200 text-md rounded-[10px] p-3 w-1/2" placeholder="Last Name" type="text" id="lastname">
+                <input value="<?php echo e($firstname); ?>" class="bg-indigo-100 text-md rounded-[10px] p-3 w-1/2 border border-indigo-200 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all" placeholder="First Name" type="text" id="firstname">
+                <input value="<?php echo e($lastname); ?>" class="bg-indigo-100 text-md rounded-[10px] p-3 w-1/2 border border-indigo-200 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all" placeholder="Last Name" type="text" id="lastname">
             </div>
-            <input disabled value="<?php echo e($userEmail); ?>" class="bg-indigo-200 text-md rounded-[10px] p-3 w-full" placeholder="Email Address" type="email">
-            <input class="bg-indigo-200 text-md rounded-[10px] p-3 w-full" placeholder="Phone Number" type="text">
+            <input disabled value="<?php echo e($userEmail); ?>" class="bg-indigo-100 text-md rounded-[10px] p-3 w-full border border-indigo-200 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all" placeholder="Email Address" type="email">
+            <input class="bg-indigo-100 text-md rounded-[10px] p-3 w-full border border-indigo-200 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all" placeholder="Phone Number" type="text">
             <div class="flex gap-4">
-                <input class="bg-indigo-200 text-md rounded-[10px] p-3 w-1/2" placeholder="Choose a Date" type="date" min="<?php echo date('Y-m-d'); ?>" id="appdate">
-                <select class="bg-indigo-200 text-md rounded-[10px] p-3 w-1/2" id="specializationInput">
+                <input class="bg-indigo-100 text-md rounded-[10px] p-3 w-1/2 border border-indigo-200 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all" placeholder="Choose a Date" type="date" min="<?php echo date('Y-m-d'); ?>" id="appdate">
+                <select class="bg-indigo-100 text-md rounded-[10px] p-3 w-1/2 border border-indigo-200 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all" id="specializationInput">
                     <option selected disabled>Select a specialization</option>
                     <option>Allergy & Immunology</option>
                     <option>Anesthesiology</option>
@@ -177,96 +179,95 @@ if (isset($nameArray[1])) {
                     <option>Veterinary Medicine</option>
                 </select>
             </div>
-            <textarea id="remarksInput" class="bg-indigo-200 text-md rounded-[10px] p-3 w-full" placeholder="Enter remarks or additional details here"></textarea>
-            <button id="book-button" class="bg-blue-500 text-white hover:bg-black py-3 px-6 rounded-full font-bold cursor-pointer duration-200">Book Appointment</button>
+            <textarea id="remarksInput" class="bg-indigo-100 text-md rounded-[10px] p-3 w-full border border-indigo-200 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all h-32" placeholder="Enter remarks or additional details here"></textarea>
+            <button id="book-button" class="bg-blue-500 text-white hover:bg-blue-600 py-3 px-6 rounded-full font-bold cursor-pointer transition-all duration-200 shadow-md hover:shadow-lg">Book Appointment</button>
         </div>
 
         <div class="lg:w-1/2 md:w-1/2 lg:mt-0 mt-10 ms-3 lg:text-left px-6">
             <h2 class="text-4xl font-bold text-black">Make an appointment</h2>
-            <p class="text-lg text-gray-500 mt-2">Schedule your handyman service with ease. Choose a date and time that works best for you.</p>
+            <p class="text-lg text-gray-500 mt-2">Schedule your healthcare service with ease. Choose a date and specialist that works best for you.</p>
 
             <div class="flex items-center lg:justify-start gap-4 mt-6">
-                <div class="text-4xl text-blue-500"><i class="fa-solid fa-phone"></i></div>
+                <div class="bg-blue-100 p-3 rounded-full">
+                    <div class="text-2xl text-blue-500"><i class="fa-solid fa-phone"></i></div>
+                </div>
                 <div>
                     <p class="text-lg font-bold">Customer Services</p>
                     <p class="text-gray-500">+1 (555) 123-4567</p>
                 </div>
             </div>
 
-            <div class="flex items-center justify-center lg:justify-start gap-4 mt-6">
-                <div class="text-4xl text-blue-500"><i class="fa-solid fa-phone"></i></div>
+            <div class="flex items-center lg:justify-start gap-4 mt-6">
+                <div class="bg-blue-100 p-3 rounded-full">
+                    <div class="text-2xl text-blue-500"><i class="fa-solid fa-clock"></i></div>
+                </div>
                 <div>
                     <p class="text-lg font-bold">Opening Hours</p>
-                    <p class="text-gray-500">Mon - Sat (09:00 - 21:00 Sunday (Closed))</p>
+                    <p class="text-gray-500">Mon - Sat (09:00 - 21:00)<br>Sunday (Closed)</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center lg:justify-start gap-4 mt-6">
+                <div class="bg-blue-100 p-3 rounded-full">
+                    <div class="text-2xl text-blue-500"><i class="fa-solid fa-location-dot"></i></div>
+                </div>
+                <div>
+                    <p class="text-lg font-bold">Our Location</p>
+                    <p class="text-gray-500">123 Health Avenue, Medical District<br>New York, NY 10001</p>
                 </div>
             </div>
         </div>
-
     </div>
-
-    <!-- Appintment Ends-->
+    <!-- Appointment Ends-->
 
     <!-- How We Work -->
-
     <div id="choose-us" class="bg-purple-50 rounded-[50px] mx-5 mt-10 lg:p-20 p-5">
         <div>
-            <div class="text-m text-blue-700 text-center">How We Work</div>
+            <div class="text-m text-blue-700 text-center font-medium">How We Work</div>
             <div class="text-4xl lg:text-5xl text-black font-bold text-center lg:mx-[15%] py-5">We work to achieve better health outcomes</div>
             <div class="text-lg text-gray-500 text-center lg:mx-[20%]">We are committed to improving health outcomes through personalized care, innovative treatments, and a focus on prevention.</div>
         </div>
-        <div id="content" class="lg:flex lg:justify-evenly mt-15">
-            <div class="lg:flex md:flex">
-                <div class="text-center m-5">
-                    <img class="rounded-[50%] mx-auto text-5xl" src="https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2024/12/work-step-img-3.jpg">
-                    <br>
-                    <span class="rounded-[50%] bg-blue-500 text-white text-center py-2 px-3">1</span>
-                    <br><br>
-                    <span class="text-xl text-black font-bold">Create Account</span>
-                    <br>
-                    <span class="text-md text-center text-gray-650">Join our community by creating an account today.</span>
-                    <br>
+        <div id="content" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+            <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition-all text-center">
+                <img class="rounded-full mx-auto w-24 h-24 object-cover" src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Create Account">
+                <div class="mt-4">
+                    <span class="inline-block rounded-full bg-blue-500 text-white text-center w-8 h-8 leading-8">1</span>
+                    <h3 class="text-xl font-bold mt-3">Create Account</h3>
+                    <p class="text-gray-600 mt-2">Join our community by creating an account today.</p>
                 </div>
-                <div class="text-center m-5">
-                    <img class="rounded-[50%] mx-auto text-5xl" src="https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2024/12/work-step-img-3.jpg">
-                    <br>
-                    <span class="rounded-[50%] bg-blue-500 text-white text-center py-2 px-3">2</span>
-                    <br><br>
-                    <span class="text-xl text-black font-bold">Book Appointment</span>
-                    <br>
-                    <span class="text-md text-center text-gray-650">Effortlessly book an appointment according to you.</span>
-                    <br>
+            </div>
+            
+            <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition-all text-center">
+                <img class="rounded-full mx-auto w-24 h-24 object-cover" src="https://images.unsplash.com/photo-1624727828489-a1e03b79bba8?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Book Appointment">
+                <div class="mt-4">
+                    <span class="inline-block rounded-full bg-blue-500 text-white text-center w-8 h-8 leading-8">2</span>
+                    <h3 class="text-xl font-bold mt-3">Book Appointment</h3>
+                    <p class="text-gray-600 mt-2">Effortlessly book an appointment according to your needs.</p>
                 </div>
-                <div class="text-center m-5">
-                    <img class="rounded-[50%] mx-auto text-5xl" src="https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2024/12/work-step-img-3.jpg">
-                    <br>
-                    <span class="rounded-[50%] bg-blue-500 text-white text-center py-2 px-3">3</span>
-                    <br><br>
-                    <span class="text-xl text-black font-bold">Schedule Appointment</span>
-                    <br>
-                    <span class="text-md text-center text-gray-650">Our scheduling algorithm will assign a doctor to you.</span>
-                    <br>
+            </div>
+            
+            <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition-all text-center">
+                <img class="rounded-full mx-auto w-24 h-24 object-cover" src="https://images.unsplash.com/photo-1584982751601-97dcc096659c?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Schedule Appointment">
+                <div class="mt-4">
+                    <span class="inline-block rounded-full bg-blue-500 text-white text-center w-8 h-8 leading-8">3</span>
+                    <h3 class="text-xl font-bold mt-3">Schedule Appointment</h3>
+                    <p class="text-gray-600 mt-2">Our scheduling algorithm will assign a doctor to you.</p>
                 </div>
-                <div class="text-center m-5">
-                    <img class="rounded-[50%] mx-auto text-5xl" src="https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2024/12/work-step-img-3.jpg">
-                    <br>
-                    <span class="rounded-[50%] bg-blue-500 text-white text-center py-2 px-3">4</span>
-                    <br><br>
-                    <span class="text-xl text-black font-bold">Start Consultation</span>
-                    <br>
-                    <span class="text-md text-center text-gray-650">Consult the doctor after approval.</span>
-                    <br>
+            </div>
+            
+            <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition-all text-center">
+                <img class="rounded-full mx-auto w-24 h-24 object-cover" src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Start Consultation">
+                <div class="mt-4">
+                    <span class="inline-block rounded-full bg-blue-500 text-white text-center w-8 h-8 leading-8">4</span>
+                    <h3 class="text-xl font-bold mt-3">Start Consultation</h3>
+                    <p class="text-gray-600 mt-2">Consult the doctor after approval.</p>
                 </div>
             </div>
         </div>
     </div>
-
     <!--How We Work Ends-->
 
-
-
-
     <!-- FOOTER -->
-    
     <footer class="bg-indigo-950 text-white rounded-[50px] mx-3 my-5 lg:p-10 p-5">
             <div class="container mx-auto grid md:grid-cols-3 gap-10">
                 <!-- Logo & Description -->
@@ -341,8 +342,6 @@ if (isset($nameArray[1])) {
                 </div>
             </div>
     </footer>
-
-
     <!-- FOOTER ENDS-->
 
     <!-- Modal Backdrop (hidden by default) -->
@@ -397,7 +396,6 @@ if (isset($nameArray[1])) {
             
             <!-- Elegant loading animation -->
             <div class="relative w-24 h-24 flex items-center justify-center">
-                
                 <!-- Three dots with different animations -->
                 <div class="flex space-x-4">
                     <div class="w-4 h-4 rounded-full bg-blue-600 animate-pulse"></div>
@@ -414,21 +412,8 @@ if (isset($nameArray[1])) {
             <p class="text-gray-600 font-medium text-sm">Finding the best doctors for you...</p>
         </div>
     </div>
-    
-    <style>
-        @keyframes progress {
-            0% { width: 0%; }
-            50% { width: 70%; }
-            100% { width: 100%; }
-        }
-        .animate-progress {
-            animation: progress 2s ease-in-out infinite;
-        }
-    </style>
-    <!-- FOOTER ENDS-->
+
     <script src="./js/bookapp.js"></script>
     <script src="./js/script.js"></script>
-
 </body>
-
 </html>
