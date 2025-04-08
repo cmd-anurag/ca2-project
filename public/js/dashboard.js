@@ -29,7 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const typingIndicator = document.getElementById("typing-indicator");
   const username = document.getElementById("user_name")?.innerText || "You";
 
-  
   if (!chatPopup || !chatToggleBtn || !chatMessages) return;
 
   // Show/hide chat popup with animation
@@ -48,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Add a new message to the chat area
   function addMessage(sender, message, isAI = false) {
     const messageElem = document.createElement("div");
-    
+
     if (isAI) {
       // AI message
       messageElem.className = "flex items-start mb-4";
@@ -68,11 +67,13 @@ document.addEventListener("DOMContentLoaded", function () {
           <p class="text-sm">${message}</p>
         </div>
         <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center ml-2 flex-shrink-0">
-          <span class="text-white text-xs font-bold">${username.charAt(0).toUpperCase()}</span>
+          <span class="text-white text-xs font-bold">${username
+            .charAt(0)
+            .toUpperCase()}</span>
         </div>
       `;
     }
-    
+
     chatMessages.appendChild(messageElem);
     chatMessages.scrollTop = chatMessages.scrollHeight;
   }
@@ -80,11 +81,11 @@ document.addEventListener("DOMContentLoaded", function () {
   async function sendMessage() {
     const userInput = chatInputField.value.trim();
     if (userInput === "") return;
-    
+
     // Display user message
     addMessage(username, userInput, false);
     chatInputField.value = "";
-    
+
     // Show typing indicator
     typingIndicator.classList.remove("hidden");
     chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -100,21 +101,25 @@ document.addEventListener("DOMContentLoaded", function () {
           body: formData,
         }
       );
-      
+
       // Hide typing indicator
       typingIndicator.classList.add("hidden");
-      
+
       const data = await response.json();
       const reply = data.candidates[0].content.parts[0].text;
-      
+
       // Display AI message
       addMessage("AI", reply, true);
     } catch (error) {
       // Hide typing indicator
       typingIndicator.classList.add("hidden");
-      
+
       console.error("Error:", error);
-      addMessage("AI", "Sorry, I'm having trouble processing your request. Please try again later.", true);
+      addMessage(
+        "AI",
+        "Sorry, I'm having trouble processing your request. Please try again later.",
+        true
+      );
     }
   }
 
@@ -123,4 +128,82 @@ document.addEventListener("DOMContentLoaded", function () {
   chatInputField.addEventListener("keypress", function (e) {
     if (e.key === "Enter") sendMessage();
   });
+});
+
+//  element references
+const emergencyBtn = document.getElementById("emergency-btn");
+const emergencyModal = document.getElementById("emergency-modal");
+const confirmEmergencyBtn = document.getElementById("confirm-emergency");
+const cancelEmergencyBtn = document.getElementById("cancel-emergency");
+const emergencyStatusModal = document.getElementById("emergency-status-modal");
+const statusContent = document.getElementById("status-content");
+const closeStatusBtn = document.getElementById("close-status");
+
+emergencyBtn.addEventListener("click", function () {
+  emergencyModal.classList.remove("hidden");
+});
+
+cancelEmergencyBtn.addEventListener("click", function () {
+  emergencyModal.classList.add("hidden");
+});
+
+closeStatusBtn.addEventListener("click", function () {
+  emergencyStatusModal.classList.add("hidden");
+});
+
+confirmEmergencyBtn.addEventListener("click", async function () {
+
+  emergencyModal.classList.add("hidden");
+
+
+  statusContent.innerHTML = `
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 text-blue-600 mb-4">
+            <i class="fas fa-spinner fa-spin text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 mb-2">Sending Alert</h3>
+        <p class="text-gray-600">Contacting your emergency contact...</p>
+    `;
+  emergencyStatusModal.classList.remove("hidden");
+
+  try {
+   
+    const response = await fetch("../backend/emergencymail.php", {
+      method: "POST",
+      credentials: "include",
+    });
+
+    if (!response.ok) {
+      throw new Error(`Server returned ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    
+    if (data.success) {
+      statusContent.innerHTML = `
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 text-green-600 mb-4">
+                    <i class="fas fa-check-circle text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">Alert Sent Successfully</h3>
+                <p class="text-gray-600">${data.message}</p>
+            `;
+    } else {
+      statusContent.innerHTML = `
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-100 text-red-600 mb-4">
+                    <i class="fas fa-exclamation-circle text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">Alert Failed</h3>
+                <p class="text-gray-600">${data.message}</p>
+            `;
+    }
+  } catch (error) {
+    console.error("Emergency alert error:", error);
+    statusContent.innerHTML = `
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-100 text-red-600 mb-4">
+                <i class="fas fa-exclamation-circle text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Something Went Wrong</h3>
+            <p class="text-gray-600">Unable to send emergency alert. Please call emergency services directly.</p>
+        `;
+  }
 });
