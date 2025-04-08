@@ -279,12 +279,12 @@ $past_stmt->close();
                         <i class="fas fa-ambulance text-red-500 mr-2"></i> Emergency Access
                     </h3>
                     <p class="text-gray-600 mb-4">Need immediate medical attention? Click the emergency button below.</p>
-                    <a href="../backend/emergencymail.php" class="block">
-                        <button id="emergency-btn" class="w-full bg-gradient-to-r from-red-600 to-red-700 text-white py-4 rounded-lg font-bold hover:from-red-700 hover:to-red-800 transition-all duration-300 cursor-pointer shadow-md flex items-center justify-center">
-                            <i class="fas fa-exclamation-circle mr-2 text-xl"></i>
-                            Emergency
-                        </button>
-                    </a>
+                    <button id="emergency-btn" class="w-full bg-gradient-to-r from-red-600 to-red-700 text-white py-4 rounded-lg font-bold hover:from-red-700 hover:to-red-800 transition-all duration-300 cursor-pointer shadow-md flex items-center justify-center">
+                        <i class="fas fa-exclamation-circle mr-2 text-xl"></i>
+                        Emergency
+                    </button>
+                    <!-- Added alert status message container -->
+                    <div id="emergency-status" class="mt-3 text-center hidden"></div>
                 </div>
             </div>
             
@@ -328,12 +328,52 @@ $past_stmt->close();
     </div>
 </div>
 
-<!-- Chat Button (Modified for better visibility) -->
+<!-- Emergency confirmation modal -->
+<div id="emergency-modal" class="fixed inset-0 backdrop-blur-sm bg-opacity-50 z-50 flex items-center justify-center hidden">
+    <div class="bg-white rounded-xl shadow-2xl p-6 max-w-md w-full mx-4 transform transition-all">
+        <div class="text-center mb-4">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-100 text-red-600 mb-4">
+                <i class="fas fa-exclamation-triangle text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900">Emergency Alert Confirmation</h3>
+        </div>
+        
+        <p class="text-gray-700 mb-6 text-center">
+            Are you sure you want to send an emergency alert? This will immediately notify your emergency contact.
+        </p>
+        
+        <div class="flex justify-center space-x-3">
+            <button id="cancel-emergency" class="px-5 py-3 bg-gray-200 text-gray-800 rounded-lg font-medium hover:bg-gray-300 transition-colors">
+                Cancel
+            </button>
+            <button id="confirm-emergency" class="px-5 py-3 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition-colors flex items-center">
+                <i class="fas fa-bell mr-2"></i>
+                Send Alert
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Emergency status modal -->
+<div id="emergency-status-modal" class="fixed inset-0 backdrop-blur-sm bg-opacity-50 z-50 flex items-center justify-center hidden">
+    <div class="bg-white rounded-xl shadow-2xl p-6 max-w-md w-full mx-4">
+        <div id="status-content" class="text-center">
+            <!-- Status content will be inserted here by JavaScript -->
+        </div>
+        <div class="mt-6 text-center">
+            <button id="close-status" class="px-5 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                Close
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Chat Button -->
 <button id="chat-toggle-btn" class="fixed bottom-8 right-8 bg-gradient-to-r from-blue-600 to-blue-700 text-white w-16 h-16 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 focus:outline-none cursor-pointer flex items-center justify-center z-50 transition-all duration-300">
     <i class="fa-regular fa-message text-2xl"></i>
 </button>
 
-<!-- Chat Popup (Enhanced) -->
+<!-- Chat Popup -->
 <div id="chat-popup" class="fixed bottom-8 right-8 bg-white border border-gray-200 rounded-xl shadow-2xl w-80 md:w-96 h-[650px] hidden flex flex-col overflow-hidden transition-all duration-300 ease-in-out z-40">
     <!-- Header -->
     <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-4 flex justify-between items-center">
@@ -390,26 +430,6 @@ $past_stmt->close();
     </div>
 </div>
 
-<script>
 
-    document.getElementById("emergency-btn").addEventListener("click", function () {
-        fetch("../backend/emergencymail.php", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-            },
-            body: new URLSearchParams({
-                patient_name: $patient_name,
-                patient_id: $patient_id
-            }),
-        })
-
-        .then(response => response.json())
-        .then(data => alert(data.message))
-        .catch(error => console.error("Error:", error));
-    });
-
-
-</script>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
