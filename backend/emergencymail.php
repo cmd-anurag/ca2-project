@@ -4,11 +4,6 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 
-require '../vendor/autoload.php';
-
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
-
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     header("Access-Control-Allow-Origin: http://localhost/");
     header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
@@ -30,47 +25,59 @@ ini_set('display_errors', 1);
 //     die(json_encode(["success" => false, "message" => "Invalid request method."]));
 // }
 
+
+require '../vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 $sender = $_ENV["ALERT_SENDER_MAIL"];
 $sender_pass = $_ENV["ALERT_SENDER_PASSWORD"];
 
 
 require "../backend/database/connectDB.php";
 
+// echo $sender . $sender_pass;
 
-// if (!$sender || !$sender_pass || !$db_host || !$db_user || !$db_name) {
-//     die(json_encode(["success" => false, "message" => "Missing environment variables."]));
-// }
+if (!$sender || !$sender_pass) {
+    die(json_encode(["success" => false, "message" => "Missing environment variables."]));
+}
 
+// Check if user is logged in
+if (!isset($_SESSION['user']['email'])) {
+    die(json_encode(["success" => false, "message" => "User not logged in."]));
+}
+
+$user_id = $_SESSION['user']['id'];
 
 $input = json_decode(file_get_contents('php://input'), true);
 
 
-// $patient_name = filter_var($input["patient_name"], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-// $patient_id = filter_var($input["patient_id"], FILTER_SANITIZE_NUMBER_INT);
-
-// $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
-// if ($conn->connect_error) {
-//     die(json_encode(["success" => false, "message" => "Database connection failed."]));
-// }
-
-
 $stmt = $conn->prepare("SELECT emergency_contact FROM patients WHERE id = ?");
-$stmt->bind_param("i", $patient_id);
+$stmt->bind_param("i", $user_id);
 $stmt->execute();
-$stmt->bind_result($emergency_contact);
-$stmt->fetch();
+$result = $stmt->get_result();
+
+if ($result->num_rows === 0) {
+    $stmt->close();
+    $conn->close();
+    die(json_encode(["success" => false, "message" => "Patient not found with this email."]));
+}
+
+$patient = $result->fetch_assoc();
+
+$patient_name = $_SESSION['user']['name'];
+$emergency_contact = $patient['emergency_contact'];
+
 $stmt->close();
-$conn->close();
 
-
-
-// if (!$emergency_contact || !filter_var($emergency_contact, FILTER_VALIDATE_EMAIL)) {
-//     die(json_encode(["success" => false, "message" => "Invalid or missing emergency contact email."]));
-// }
+if (!$emergency_contact || !filter_var($emergency_contact, FILTER_VALIDATE_EMAIL)) {
+    die(json_encode(["success" => false, "message" => "Invalid or missing emergency contact email."]));
+}
 
 $mail = new PHPMailer(true);
-
-$emergency_contact0 ="2005aditya.k@gmail.com";
+// $mail->SMTPDebug = 2; // Enable verbose debug output
+// $mail->Debugoutput = 'echo'; // Output to browser
 
 try {
     $mail->isSMTP();
@@ -83,23 +90,16 @@ try {
     
 
     $mail->setFrom($sender, 'SwiftHealth Emergency Alert');
-    $mail->addAddress($emergency_contact0);
+    $mail->addAddress($emergency_contact);
     $mail->isHTML(true);
 
     $mail->Subject = 'Emergency Alert - Immediate Attention Required';
 
     $mail->Body = "
         <h2>Emergency Alert</h2>
+        <p><strong>Patient Name:</strong> $patient_name</p>
         <p>This patient has triggered an emergency alert. Please respond immediately.</p>
     ";
-    
-    // $mail->Body = "
-    //     <h2>Emergency Alert</h2>
-    //      <p><strong>Patient Name:</strong> $patient_name</p>
-    //      <p><strong>Patient ID:</strong> $patient_id</p>
-    //     <p>This patient has triggered an emergency alert. Please respond immediately.</p>
-    // ";
-
 
     $mail->send();
     echo json_encode(["success" => true, "message" => "Emergency email sent successfully."]);
