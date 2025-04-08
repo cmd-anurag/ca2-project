@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+
+require '../backend/includes/is_loggedin.php';
+$userEmail = $_SESSION['user']['email'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,72 +37,133 @@
     </style>
 
     <script>
-        const apiEndpoint = "http://localhost:3000/user";
+        //  replace the existing fetch code with async/await
+        async function fetchUserProfile() {
+            const apiEndpoint = "../backend/get_user.php";
+            
+ 
+            const userEmail = "<?php echo $userEmail; ?>";
+            // console.log( userEmail);
+            
+            
+            const formData = new FormData();
+            formData.append('email', userEmail);
 
-        fetch(apiEndpoint)
-            .then((response) => {
+            try {
+                // Fetch data from the API
+                const response = await fetch(apiEndpoint, {
+                    method: 'POST',
+                    body: formData
+                });
+                
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
-                return response.json();
-            })
-            .then((data) => {
+                
+                const result = await response.json();
+                // console.log("API Response:", result); 
+                
+                if (!result.success) {
+                    throw new Error(result.message || "Failed to fetch user data");
+                }
+                
+
+                if (!result.data) {
+                    console.error("No user data returned from API.");
+                    document.getElementById("name").innerHTML = "User Not Found";
+                    return;
+                }
+                
+
+                const data = result.data;
+                
+                // Populate user information fields
                 document.getElementById("name").innerHTML = data.name || "Tejasvita Ganesh";
-                document.getElementById("email").innerHTML = data.email || "tejasvita@swifthealth.com";
+                document.getElementById("email").innerHTML = userEmail;
                 document.getElementById("phone").innerHTML = data.phone || "+91 9876543210";
                 document.getElementById("address").innerHTML = data.address || "123, Model Town, Bangalore, Haryana";
+                document.getElementById("address-short").innerHTML = data.address ? data.address.split(',').slice(-2).join(', ') : "Bangalore, India";
 
-                document.getElementById("dob").innerHTML = data.patient.dob || "15/08/2004";
-                document.getElementById("gender").innerHTML = data.patient.gender || "Female";
-                document.getElementById("emergencyContact").innerHTML = data.patient.emergencyContact || "+91 9876543211";
-                document.getElementById("bloodType").innerHTML = data.patient.bloodType || "B+";
-                document.getElementById("height").innerHTML = data.patient.height || "165 cm";
-                document.getElementById("weight").innerHTML = data.patient.weight || "65 kg";
+                document.getElementById("dob").innerHTML = data.date_of_birth || "15/08/2004";
+                document.getElementById("gender").innerHTML = data.gender || "Female";
+                document.getElementById("emergencyContact").innerHTML = data.emergency_contact || "+91 9876543211";
+                document.getElementById("bloodType").innerHTML = data.blood_type || "B+";
+                document.getElementById("height").innerHTML = data.height ? data.height + " cm" : "165 cm";
+                document.getElementById("weight").innerHTML = data.weight ? data.weight + " kg" : "65 kg";
                 
-                // Populate medical history
-                const medicalHistory = data.medicalHistory || [
-                    { condition: "Allergic Rhinitis", diagnosed: "2022", status: "Active" },
-                    { condition: "Hypertension", diagnosed: "2020", status: "Controlled" }
-                ];
-                
+
                 const historyList = document.getElementById("medical-history-list");
-                medicalHistory.forEach(item => {
-                    const li = document.createElement("li");
-                    li.className = "mb-2 pb-2 border-b border-gray-200";
-                    li.innerHTML = `
-                        <div class="flex justify-between">
-                            <span class="font-medium">${item.condition}</span>
-                            <span class="text-sm">${item.diagnosed}</span>
-                        </div>
-                        <span class="text-sm ${item.status === 'Active' ? 'text-orange-500' : 'text-green-500'}">${item.status}</span>
-                    `;
-                    historyList.appendChild(li);
-                });
-
-                let height = data.patient.height;
-                let weight = data.patient.weight;
-                let calcBMI = (height, weight) => {
-                    let BMI = Math.round(weight / Math.pow(height, 2) * 10000 * 10);
-                    return BMI / 10;
+                if (historyList) {
+                    historyList.innerHTML = ''; // Clear existing content
+                    
+                    if (data.medical_history && data.medical_history.trim() !== '') {
+                        //  a single entry for the plain text medical history
+                        const li = document.createElement("li");
+                        li.className = "mb-2 pb-2 border-b border-gray-200";
+                        li.innerHTML = `
+                            <div class="flex justify-between">
+                                <span class="font-medium">Medical History</span>
+                                <span class="text-sm">Current</span>
+                            </div>
+                            <span class="text-sm text-gray-700">${data.medical_history}</span>
+                        `;
+                        historyList.appendChild(li);
+                    }
                 }
-                let BMI = calcBMI(height, weight);
-                document.getElementById("BMI").innerHTML = BMI || "2";
 
-                // let BMIPer = BMI * 5/2;
-                // console.log(BMIPer);
+                // Calculate BMI
+                let height = parseFloat(data.height) || 165;
+                let weight = parseFloat(data.weight) || 65;
+                
+                let calcBMI = (height, weight) => {
+                    let BMI = Math.round(weight / Math.pow(height / 100, 2) * 10) / 10;
+                    return BMI;
+                }
+                
+                let BMI = calcBMI(height, weight);
+                const bmiElement = document.getElementById("BMI");
+                if (bmiElement) {
+                    bmiElement.innerHTML = BMI;
+                }
+                
+                // Update BMI category label
+                const bmiLabel = document.querySelector(".text-green-800");
+                if (bmiLabel) {
+                    if (BMI < 18.5) {
+                        bmiLabel.textContent = "Underweight";
+                        bmiLabel.className = "ml-2 text-sm bg-blue-100 text-blue-800 py-1 px-2 rounded-full";
+                    } else if (BMI < 25) {
+                        bmiLabel.textContent = "Normal";
+                        bmiLabel.className = "ml-2 text-sm bg-green-100 text-green-800 py-1 px-2 rounded-full";
+                    } else if (BMI < 30) {
+                        bmiLabel.textContent = "Overweight";
+                        bmiLabel.className = "ml-2 text-sm bg-yellow-100 text-yellow-800 py-1 px-2 rounded-full";
+                    } else {
+                        bmiLabel.textContent = "Obese";
+                        bmiLabel.className = "ml-2 text-sm bg-orange-100 text-orange-800 py-1 px-2 rounded-full";
+                    }
+                }
                 
                 let calcBMIPercentage = (BMI) => {
-                    if (BMI < 18) return (BMI / 18) * 12.5;
-                    else if (BMI < 25) return 12.5 + ((BMI - 18) / 7) * 25;
-                    else if (BMI < 30) return 37.5 + ((BMI - 25) / 5) * 25;
-                    return 62.5 + ((BMI - 30) / 20) * 37.5;
+                    if (BMI < 18.5) return (BMI / 18.5) * 25;
+                    else if (BMI < 25) return 25 + ((BMI - 18.5) / 6.5) * 25;
+                    else if (BMI < 30) return 50 + ((BMI - 25) / 5) * 25;
+                    return 75 + ((BMI - 30) / 10) * 25;
                 };
-                document.getElementById("bar").style = `width: ${calcBMIPercentage(BMI)}%`;
+                
+                const barElement = document.getElementById("bar");
+                if (barElement) {
+                    barElement.style.width = `${calcBMIPercentage(BMI)}%`;
+                }
+                
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+                document.getElementById("name").innerHTML = "Error Loading Profile";
+            }
+        }
 
-            })
-            .catch((error) => {
-                console.error("Fetch error:", error);
-            });
+        // Call the function when the page loads
+        document.addEventListener('DOMContentLoaded', fetchUserProfile);
     </script>
 </head>
 <body class="bg-gray-50">
@@ -107,13 +178,12 @@
         <!-- Desktop Navigation Links -->
         <div class="hidden md:flex lg:flex text-black md:text-[12px] lg:text-[14px] lg:gap-x-7 md:gap-0.4">
             <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="home.html">Home</a></div>
-            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="ContactUs.html">Contact Us</a></div>
-            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="login.html">Sign Up / Log In</a></div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="dashboard.php">Dashboard</a></div>
         </div>
 
         <div class="hidden md:block">
-            <button class="bg-blue-500 text-white hover:bg-black py-3 px-5 rounded-full font-bold">
-                <a href="bookappointment.html">Book Appointment</a>
+            <button class="bg-blue-500 text-white hover:bg-black py-3 px-5 rounded-full font-bold duration-300">
+                <a href="bookappointment.php">Book Appointment</a>
             </button>
         </div>
 
@@ -155,9 +225,9 @@
                         <div class="gradient-bg p-6 relative">
                             <div class="flex items-center justify-between">
                                 <h2 class="text-xl font-semibold text-white">Personal Profile</h2>
-                                <button class="text-white bg-white/20 hover:bg-white/30 p-2 rounded-full">
+                                <a href="editProfile.php" id="edit-profile-link" class="text-white bg-white/20 hover:bg-white/30 p-2 rounded-full">
                                     <i class="fas fa-edit"></i>
-                                </button>
+                                </a>
                             </div>
                             <div class="flex items-center mt-4">
                                 <div class="h-20 w-20 rounded-full bg-white flex items-center justify-center shadow-lg mr-4">
@@ -235,6 +305,13 @@
                                     </div>
                                 </div>
                             </div>
+                            
+                            <!-- Add Edit Profile button -->
+                            <div class="mt-6">
+                                <a href="editProfile.php" id="edit-profile-button" class="block w-full text-center bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition-colors">
+                                    <i class="fas fa-user-edit mr-2"></i>Edit Profile
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -301,46 +378,11 @@
                         <div class="p-6">
                             <div class="flex items-center justify-between mb-4">
                                 <h2 class="text-xl font-semibold text-gray-800">Medical History</h2>
-                                <button class="text-blue-500 hover:text-blue-700 flex items-center">
-                                    <i class="fas fa-download mr-1"></i>
-                                    <span class="text-sm">Download Records</span>
-                                </button>
                             </div>
                             
                             <ul id="medical-history-list" class="mb-4">
                                 <!-- Medical history will be populated by JavaScript -->
                             </ul>
-                            
-                            <div class="mt-6">
-                                <h3 class="font-medium text-gray-800 mb-3">Recent Reports</h3>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                    <div class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
-                                        <div class="h-10 w-10 rounded-lg bg-red-100 flex items-center justify-center mr-3">
-                                            <i class="fas fa-file-pdf text-red-500"></i>
-                                        </div>
-                                        <div class="flex-grow">
-                                            <p class="font-medium text-gray-800">Blood Test Report</p>
-                                            <p class="text-sm text-gray-500">21 Mar 2025</p>
-                                        </div>
-                                        <button class="text-blue-500 hover:text-blue-700">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                    </div>
-                                    
-                                    <div class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
-                                        <div class="h-10 w-10 rounded-lg bg-green-100 flex items-center justify-center mr-3">
-                                            <i class="fas fa-file-medical text-green-500"></i>
-                                        </div>
-                                        <div class="flex-grow">
-                                            <p class="font-medium text-gray-800">General Checkup</p>
-                                            <p class="text-sm text-gray-500">15 Feb 2025</p>
-                                        </div>
-                                        <button class="text-blue-500 hover:text-blue-700">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -388,7 +430,12 @@
         // Mobile menu toggle functionality
         document.getElementById('menu-btn').addEventListener('click', function() {
             const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
+            mobileMenu.style.transform = 'translateY(0)';
+        });
+        
+        document.getElementById('close-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.style.transform = 'translateY(-100%)';
         });
     </script>
 </body>
