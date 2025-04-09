@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eye Care | SwiftHealth</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chicle&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-gray-150">
+    <!-- Navigation Starts-->
+    <!-- Top Bar -->
+    <div id="top" class="bg-blue-400 text-base text-white py-3 flex lg:items-center lg:justify-between w-full px-4">
+        <div class="text-sm lg:text-lg text-left w-2/3">
+            Working Hour: 08:00 AM to 09:00 PM | Email: info@domainname.com
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="fa-brands fa-facebook"></i>
+            <span class="text-sm"> | Contact: +1 234 567 890</span>
+        </div>
+    </div>
+
+    <!-- Navigation Bar Starts -->
+    <nav id="navbar" class="flex items-center justify-between px-10 lg:px-16 py-6 w-full bg-white">
+        <div id="logo" class="lg:text-4xl text-3xl font-bold text-black cursor-pointer font-[Chicle]">
+            <a href="../home.html">SwiftHealth</a>
+        </div>
+
+
+        <!-- Desktop Navigation Links -->
+        <div class="hidden md:flex lg:flex text-black md:text-[17px] lg:text-[18px] lg:gap-x-7 md:gap-1">
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1">
+                <a href="../home.html">Home</a>
+            </div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1">
+                <a href="../aboutus.html">About Us</a>
+            </div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1">
+                <a href="../services.html">Services</a>
+            </div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1">
+                <a href="../ContactUs.html">Contact Us</a>
+            </div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1">
+                <a href="../login.html">Log In</a>
+            </div>
+        </div>
+
+        <div class="hidden md:block">
+            <button class="bg-blue-500 text-white hover:bg-black py-3 px-5 rounded-full font-bold">
+                <a href="../bookappointment.php">
+                    Book Appointment
+                </a>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-btn" class="md:hidden text-3xl">&#9776;</button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu"
+        class="fixed inset-0 bg-white text-black flex flex-col items-center justify-center text-xl space-y-6 transform -translate-y-full transition-transform duration-500 ease-in-out">
+        <button id="close-btn" class="absolute top-5 right-6 text-3xl">&#10006;</button>
+        <a href="../home.html" class="hover:text-blue-500">Home</a>
+        <a href="../aboutus.html" class="hover:text-blue-500">About Us</a>
+        <a href="../services.html" class="hover:text-blue-500">Services</a>
+        <a href="../ContactUs.html" class="hover:text-blue-500">Contact Us</a>
+        <a href="../login.html" class="hover:text-blue-500">Sign Up / Log In</a>
+        <div class="bg-blue-500 text-white hover:bg-blue-950 cursor-pointer px-4 py-3 text-sm font-bold rounded-full">
+            <a href="../bookappointment.php">Book Appointment</a>
+        </div>
+    </div>
+
+    <!-- Navigation Ends-->
+
+    <!-- Banner Starts -->
+    <div id="banner" class="bg-indigo-100 rounded-[50px] h-96 mx-5 my-5 bg-cover bg-center text-center p-6 sm:p-10">
+
+        <div class="lg:text-6xl text-4xl mt-17 font-semibold font-[Sour_Gummy]">Eye Care</div>
+        <br>
+        <br>
+        <span class="bg-blue-500 text-white px-5 py-3 text-md font-bold rounded-full my-auto duration-200">
+            <a class="cursor-pointer hover:underline" href="../home.html">HOME</a> / <a href="../services.html">Services</a> / Eye Care
+        </span>
+    </div>
+    <!-- Banner Ends -->
+
+
+    
+
+
+
+
+    <div class="flex flex-col lg:flex-row w-full my-5">
+        <!-- Sidebar Section -->
+        <aside class="w-full lg:w-1/4 px-5">
+            <div class="border border-black p-5 rounded-[50px] shadow-lg">
+            <h2 class="font-bold text-xl my-3">Services Category</h2>
+
+            <nav class="space-y-2 text-lg">
+                <a href="urology.html" class="block hover:text-blue-600">
+                    Urology
+                </a>
+                <hr class="text-gray-300">
+                <a href="neurology.html" class="block hover:text-blue-600">
+                    Neurology
+                </a>
+                <hr class="text-gray-300">
+                <a href="eyecare.html" class="block hover:text-blue-600">
+                    Eye Care
+                </a>
+                <hr class="text-gray-300">
+                <a href="vaccination.html" class="block hover:text-blue-600">
+                    Vaccination
+                </a>
+                <hr class="text-gray-300">
+                <a href="chroniccare.html" class="block hover:text-blue-600">
+                    Chronic Care
+                </a>
+                <hr class="text-gray-300">
+                <a href="pharmacy.html" class="block hover:text-blue-600">
+                    Pharmacy
+                </a>
+            </nav>
+            </div>
+
+            <!-- Help Box -->
+            <div class="bg-blue-700 hover:bg-black p-5 rounded-[50px] my-10 text-white text-center transition-colors duration-300">
+                <h3 class="text-3xl mt-6 font-semibold">Need Help?</h3>
+                <p class="my-3">
+                    Schedule your initial consultation today and start your journey towards a pain-free, healthier smile. Contact us now!
+                </p>
+                <div class="mt-6">
+                    <a href="../ContactUs.html" class="bg-white hover:bg-blue-500 hover:text-white text-blue-500 font-bold py-3 px-6 rounded-full transition-colors duration-200 inline-block">
+                    Contact Us
+                    </a>
+                </div>
+            </div>
+        </aside>
+        
+        <main class="w-full lg:w-3/4 p-5 lg:p-10">
+            <div class="mb-10">
+                <img src="https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2024/12/service-img-3.jpg" alt="Diagnostic Services" class="w-full max-w-3xl mx-auto rounded-[50px]">
+            </div>
+            
+
+            <div class="space-y-5 my-5">
+                <h1 class="text-4xl lg:text-5xl font-bold">Cutting-edge Diagnostic Services</h1>
+                <p class="text-gray-700 text-base lg:text-lg leading-relaxed">
+                    Modern healthcare relies on advanced diagnostic tools and technologies to deliver accurate and efficient results. Imaging systems, laboratory tests, and non-invasive procedures provide detailed insights into health conditions, ensuring precise diagnosis and effective treatment planning.
+                    <br><br>
+                    We understand that every patient has unique healthcare needs. Our approach focuses on creating personalized care plans tailored to your health goals. We also emphasize patient education, offering guidance on preventive care, wellness practices, and lifestyle adjustments to support overall well-being.
+                    <br><br>
+                    At our dispensary, we prioritize precision and innovation in healthcare. Utilizing state-of-the-art diagnostic tools, we ensure every patient receives accurate assessments and tailored treatments.
+                </p>
+            </div>
+            
+            <div class="space-y-5 my-5">
+                <h1 class="text-4xl lg:text-5xl font-bold">Comfort and convenience</h1>
+                <p class="text-gray-700 text-base lg:text-lg leading-relaxed">
+                    At our dispensary, we are committed to providing a healthcare experience that is as comfortable and convenient as possible. From the moment you step through our doors, you will be greeted by a warm and welcoming environment designed to put you at ease. Our state-of-the-art facilities are equipped with modern technology to ensure your visit is efficient and effective. We understand the importance of your time, which is why we’ve streamlined our processes to minimize waiting times and make appointments easy to schedule. Our friendly and professional staff is always available to assist you, answer your questions, and guide you through every step of your visit. Whether you’re here for a quick consultation, to pick up prescriptions, or for a more in-depth treatment, our goal is to ensure that your experience is seamless, stress-free, and tailored to your needs. Your comfort and convenience remain our top priorities as we strive to deliver exceptional care every time you visit.
+                </p>
+                <div class="flex ">
+                    <div class="w-1/2">
+                        <div class="my-2">
+                            <i class="fa-solid fa-circle-check text-blue-600"></i> Skilled Experts At Your Service
+                        </div>
+                        <div class="my-2">
+                            <i class="fa-solid fa-circle-check text-blue-600"></i> Innovative Tools For Better Health
+                        </div>
+                    </div>
+                    <div class="w-1/2">
+                        <div class="my-2">
+                            <i class="fa-solid fa-circle-check text-blue-600"></i> Comprehensive Care For Every Need
+                        </div>
+                        <div class="my-2">
+                            <i class="fa-solid fa-circle-check text-blue-600"></i> Always Ready, Always Caring
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- FAQ Section -->
+            <section id="services" class="rounded-[50px] mt-10 p-5 lg:p-10 bg-gray-50 shadow-inner">
+                <div class="space-y-6">
+                    <div class="text-blue-600 ">
+                        <i class="fa-solid fa-stethoscope text-blue-600"></i> Frequently Asked Questions
+                    </div>
+                    <div class="text-4xl font-bold">
+                        Helping you understand healthcare
+                    </div>
+                    <div class="text-3xl text-blue-700">
+                        What should I bring to my first appointment?
+                    </div>
+                    <div class="text-md text-gray-600">
+                        For your first visit, please bring a valid ID, your insurance card, any current medications or a list of them, and any relevant medical records
+                    </div>
+                    <div class="border-b border-gray-300 pb-5">
+                        <div class="faq-question text-black font-bold hover:text-blue-600 cursor-pointer flex justify-between items-center">
+                            <span class="text-lg">What should I bring to my first appointment?</span>
+                            <i class="fa-solid fa-angle-down"></i>
+                        </div>
+                    <div class="faq-answer hidden text-gray-500 mt-3">
+                        Please bring a valid ID, insurance card, any current medications or list, and relevant medical records.
+                    </div>
+                    </div>
+                    
+                    <div class="border-b border-gray-300 pb-5">
+                        <div class="faq-question text-black font-bold hover:text-blue-600 cursor-pointer flex justify-between items-center">
+                            <span class="text-lg">How do I schedule an appointment?</span>
+                            <i class="fa-solid fa-angle-down"></i>
+                        </div>
+                        <div class="faq-answer hidden text-gray-500 mt-3">
+                            You can call our front desk, use our website's booking form, or visit our clinic to schedule an appointment.
+                        </div>
+                    </div>
+
+                    <div class="border-b border-gray-300 pb-5">
+                        <div class="faq-question text-black font-bold hover:text-blue-600 cursor-pointer flex justify-between items-center">
+                            <span class="text-lg">What insurance plans do you accept?</span>
+                            <i class="fa-solid fa-angle-down"></i>
+                        </div>
+                        <div class="faq-answer hidden text-gray-500 mt-3">
+                            We accept a wide range of insurance providers. Please check our insurance page or contact support for the latest list.
+                        </div>
+                    </div>
+
+                    <div class="border-b border-gray-300 pb-5">
+                        <div class="faq-question text-black font-bold hover:text-blue-600 cursor-pointer flex justify-between items-center">
+                            <span class="text-lg">Can I get a prescription refill without an appointment?</span>
+                            <i class="fa-solid fa-angle-down"></i>
+                        </div>
+                        <div class="faq-answer hidden text-gray-500 mt-3">
+                            Yes, refills can be requested via our online portal or by contacting our pharmacy directly.
+                        </div>
+                    </div>
+
+                    <div class="border-b border-gray-300 pb-5">
+                        <div class="faq-question text-black font-bold hover:text-blue-600 cursor-pointer flex justify-between items-center">
+                            <span class="text-lg">What should I expect during my first visit?</span>
+                            <i class="fa-solid fa-angle-down"></i>
+                        </div>
+                        <div class="faq-answer hidden text-gray-500 mt-3">
+                            A detailed consultation, physical examination, and initial diagnostic tests tailored to your needs.
+                        </div>
+                    </div>
+
+                    <div class="border-b border-gray-300 pb-5">
+                        <div class="faq-question text-black font-bold hover:text-blue-600 cursor-pointer flex justify-between items-center">
+                            <span class="text-lg">How are treatment plans customized for individual needs?</span>
+                            <i class="fa-solid fa-angle-down"></i>
+                        </div>
+                        <div class="faq-answer hidden text-gray-500 mt-3">
+                            We use diagnostics, medical history, and patient goals to create tailored treatment plans.
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+
+
+
+
+
+
+
+    <!--Appointment-->
+
+
+    <div class="w-full">
+        <div class="bg-indigo-950 m-5 rounded-[50px] flex justify-evenly pt-5 px-auto">
+            <!-- <div class="hidden lg:visible md:visible mx-auto mt-[55px]"><img src="https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2024/12/cta-img-1.png"></div> -->
+            <div class="my-auto text-center mx-2">
+                <div class="text-white lg:text-5xl md:text-3xl text-xl my-auto">
+                    Take the first step to better health
+                </div>
+                <br>
+                <div>
+                    <span class="bg-blue-600 text-white hover:text-black hover:bg-white cursor-pointer px-2 py-3 my-2 lg:text-xl md:text-md text-[10px] font-bold rounded-full text-center duration-200">
+                        <a href="bookappointment.php">Book A Appointment Now</a>
+                    </span>
+                </div><br>
+                <div class="text-white text-sm my-auto">
+                    It only takes 2 minutes to complete
+                </div>
+                <br>
+            </div>
+            <div class=""><img src="https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2024/12/cta-img-2.png"></div>
+        </div>
+    </div>
+
+
+
+    <!-- Appointment Ends-->
+
+
+
+    <!-- FOOTER -->
+    
+    <footer class="bg-indigo-950 text-white rounded-[50px] mx-3 my-5 lg:p-10 p-5">
+            <div class="container mx-auto grid md:grid-cols-3 gap-10">
+                <!-- Logo & Description -->
+                <div>
+                    <div id="logo" class="lg:text-4xl text-3xl font-bold text-indigo-50 font-[Chicle]">SwiftHealth</div>
+                    <p class="text-gray-400 mt-3">
+                        We offer a wide range of healthcare services to meet your needs.
+                    </p>
+                </div>
+                
+                <!-- Links Section -->
+                <div class="grid grid-cols-2 gap-10">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">Healthcare</h3>
+                        <ul class="text-gray-400 space-y-2">
+                            <li><a href="#" class="hover:underline">Doctors</a></li>
+                            <li><a href="#" class="hover:underline">Diagnostics</a></li>
+                            <li><a href="#" class="hover:underline">Caregiver</a></li>
+                            <li><a href="#" class="hover:underline">Hospitality</a></li>
+                            <li><a href="#" class="hover:underline">Emergency</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">Quick Links</h3>
+                        <ul class="text-gray-400 space-y-2">
+                            <li><a href="home.html" class="hover:underline">Home</a></li>
+                            <li><a href="aboutus.html" class="hover:underline">About Us</a></li>
+                            <li><a href="#" class="hover:underline">FAQs</a></li>
+                            <li><a href="#" class="hover:underline">Blog</a></li>
+                            <li><a href="team.html" class="hover:underline">Our Team</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Contact Section -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-3">Contact Us</h3>
+                    <ul class="text-gray-400 space-y-3">
+                        <li class="flex items-center space-x-3">
+                            <i class="fa-solid fa-envelope text-indigo-500"></i>
+                            <span>contact@swifthealth.com</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fa-solid fa-phone text-indigo-500"></i>
+                            <span>+1 234 567 890</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fa-solid fa-map-marker-alt text-indigo-500"></i>
+                            <span>123 Main Street, City, Country</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <hr class="border-gray-700 my-6">
+            
+            <!-- Footer -->
+            <div class="flex flex-col md:flex-row justify-between items-center text-gray-400 text-sm">
+                <div class="flex space-x-5 mt-3 md:mt-0">
+                    <a href="#" class="bg-blue-700 py-3 px-4 rounded-full">
+                        <i class="fa-brands fa-dribbble text-white"></i>
+                    </a>
+                    <a href="#" class="bg-blue-700 py-3 px-4 rounded-full">
+                        <i class="fa-brands fa-facebook-f text-white"></i>
+                    </a>
+                    <a href="#" class="bg-blue-700 py-3 px-4 rounded-full">
+                        <i class="fa-brands fa-instagram text-white"></i>
+                    </a>
+                </div>
+                <div class="flex space-x-3 mt-3 md:mt-0">
+                    <a href="#" class="hover:underline">Privacy Policy</a>
+                    <span>•</span>
+                    <a href="#" class="hover:underline">Terms & Conditions</a>
+                </div>
+            </div>
+    </footer>
+
+
+    <!-- FOOTER ENDS-->
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".faq-question").forEach((question) => {
+                question.addEventListener("click", function () {
+                    const answer = this.nextElementSibling;
+                    const icon = this.querySelector("i");
+                    
+                    answer.classList.toggle("hidden");
+                    
+                    if (answer.classList.contains("hidden")) {
+                        icon.classList.replace("fa-angle-up", "fa-angle-down");
+                    } else {
+                        icon.classList.replace("fa-angle-down", "fa-angle-up");
+                    }
+                });
+            });
+        });
+    </script>
+        
+    <script src="../js/script.js"></script>
+    
+</body>
+</html>
