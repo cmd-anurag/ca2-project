@@ -303,6 +303,90 @@
     <!-- Appointment Ends-->
 
 
+    <!--Testimonials-->
+
+
+
+    <div id="choose-us" class="text-center bg-[url('https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2025/01/our-testimonial-bg.png')] bg-cover bg-center py-16">
+        <div>
+          <div class="text-m text-blue-700 m-5">Testimonials</div>
+          <div class="text-4xl lg:text-5xl font-bold lg:mx-[15%] py-5">Patient stories of care and recovery</div>
+          <div class="text-lg text-gray-500 lg:mx-[20%]">Discover inspiring stories of recovery and healing from those we've had the privilege to serve.</div>
+        </div>
+        
+
+        <div class="relative max-w-4xl mx-auto mt-10 overflow-hidden">
+            <div id="testimonial-slider" class="flex transition-transform duration-700 ease-in-out">
+                <div class="min-w-full px-4">
+                    <div class="bg-white shadow-lg p-6 rounded-lg text-center">
+                        <div class="text-yellow-600 text-xl mb-2">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-gray-600 mb-4">The staff was incredibly supportive and made sure I felt heard and comfortable.</p>
+                        <img src="https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2024/12/author-1.jpg" class="rounded-full w-16 h-16 mx-auto mb-2">
+                        <p class="font-semibold">Mary James</p>
+                    </div>
+                </div>
+                
+
+                <div class="min-w-full px-4">
+                    <div class="bg-white shadow-lg p-6 rounded-lg text-center">
+                        <div class="text-yellow-600 text-xl mb-2">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-gray-600 mb-4">Truly grateful for the level of care and professionalism I experienced here.</p>
+                        <img src="https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2024/12/author-2.jpg" class="rounded-full w-16 h-16 mx-auto mb-2">
+                        <p class="font-semibold">Mrs. Linda</p>
+                    </div>
+                </div>
+                
+
+                <div class="min-w-full px-4">
+                    <div class="bg-white shadow-lg p-6 rounded-lg text-center">
+                        <div class="text-yellow-600 text-xl mb-2">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-gray-600 mb-4">Exceptional care and attention to detail. I highly recommend them!</p>
+                        <img src="https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2024/12/author-3.jpg" class="rounded-full w-16 h-16 mx-auto mb-2">
+                        <p class="font-semibold">Mr. James</p>
+                    </div>
+                </div>
+            </div>
+            
+
+
+            <div class="absolute inset-0 flex justify-between items-center px-4">
+                <button onclick="moveSlide(-1)" class="bg-white p-2 rounded-full shadow hover:bg-gray-100">
+                    <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
+                <button onclick="moveSlide(1)" class="bg-white p-2 rounded-full shadow hover:bg-gray-100">
+                    <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--Testimonials Ends-->
+
+
 
     <!-- FOOTER -->
     
@@ -404,6 +488,25 @@
                 });
             });
         });
+
+
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('#testimonial-slider > div');
+        const slider = document.getElementById('testimonial-slider');
+        
+        function moveSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide < 0) currentSlide = slides.length - 1;
+            if (currentSlide >= slides.length) currentSlide = 0;
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+            // Optional: Auto-slide every 5 seconds
+        setInterval(() => {
+            moveSlide(1);
+        }, 5000);
+
+        
     </script>
         
     <script src="../js/script.js"></script>
