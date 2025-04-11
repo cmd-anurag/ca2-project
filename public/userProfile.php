@@ -78,18 +78,18 @@ $userEmail = $_SESSION['user']['email'];
                 const data = result.data;
                 
                 // Populate user information fields
-                document.getElementById("name").innerHTML = data.name || "Tejasvita Ganesh";
+                document.getElementById("name").innerHTML = data.name || "";
                 document.getElementById("email").innerHTML = userEmail;
-                document.getElementById("phone").innerHTML = data.phone || "+91 9876543210";
-                document.getElementById("address").innerHTML = data.address || "123, Model Town, Bangalore, Haryana";
-                document.getElementById("address-short").innerHTML = data.address ? data.address.split(',').slice(-2).join(', ') : "Bangalore, India";
+                document.getElementById("phone").innerHTML = data.phone || "";
+                document.getElementById("address").innerHTML = data.address || "";
+                document.getElementById("address-short").innerHTML = data.address ? data.address.split(',').slice(-2).join(', ') : "";
 
-                document.getElementById("dob").innerHTML = data.date_of_birth || "15/08/2004";
-                document.getElementById("gender").innerHTML = data.gender || "Female";
-                document.getElementById("emergencyContact").innerHTML = data.emergency_contact || "+91 9876543211";
-                document.getElementById("bloodType").innerHTML = data.blood_type || "B+";
-                document.getElementById("height").innerHTML = data.height ? data.height + " cm" : "165 cm";
-                document.getElementById("weight").innerHTML = data.weight ? data.weight + " kg" : "65 kg";
+                document.getElementById("dob").innerHTML = data.date_of_birth || "";
+                document.getElementById("gender").innerHTML = data.gender || "";
+                document.getElementById("emergencyContact").innerHTML = data.emergency_contact || "";
+                document.getElementById("bloodType").innerHTML = data.blood_type || "";
+                document.getElementById("height").innerHTML = data.height ? data.height + " cm" : "";
+                document.getElementById("weight").innerHTML = data.weight ? data.weight + " kg" : "";
                 
 
                 const historyList = document.getElementById("medical-history-list");
@@ -176,9 +176,12 @@ $userEmail = $_SESSION['user']['email'];
 
 
         <!-- Desktop Navigation Links -->
-        <div class="hidden md:flex lg:flex text-black md:text-[12px] lg:text-[14px] lg:gap-x-7 md:gap-0.4">
+        <div class="hidden md:flex lg:flex text-black md:text-[17px] lg:text-[18px] lg:gap-x-7 md:gap-1">
             <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="home.html">Home</a></div>
-            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="dashboard.php">Dashboard</a></div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="dashboard.php">My Dashboard</a></div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="aboutus.html">About Us</a></div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="services.html">Services</a></div>
+            <div class="hover:text-blue-500 duration-200 cursor-pointer p-1"><a href="ContactUs.html">Contact Us</a></div>
         </div>
 
         <div class="hidden md:block">
