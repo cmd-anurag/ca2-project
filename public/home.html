@@ -9,6 +9,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chicle&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body class="bg-gray-150">
 
@@ -139,20 +145,20 @@
             <div class="text-4xl text-black font-bold my-4 text-center mb-5">Comprehensive services for your health</div>
         </div>
         <div id="Service" class="lg:flex md:flex lg:gap-x-5 md:gap-x-5">
-            <div id="S-1" class="bg-white rounded-[50px] my-5 hover:my-3">
+            <div id="S-1" class="bg-white rounded-[50px] my-5 transition-all duration-300 card-hover">
                 <div class="text-center text-xl font-bold px-5 pt-5">Urology</div>
                 <hr class="m-7">
                 <div class="text-center text-md text-gray-500 px-5 pb-5">Our neurology department provides expert care for conditions affecting the brain, spine, and nervous system</div>
                 <div class="px-10 pb-10"><img class="rounded-[20px]" src="https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2024/12/service-img-1.jpg"></div>
             </div>
-            <div id="S-2" class="bg-white rounded-[50px] my-5 hover:my-3">
+            <div id="S-2" class="bg-white rounded-[50px] my-5 transition-all duration-300 card-hover">
                 <div class="text-center text-xl font-bold px-5 pt-5">Neurology</div>
                 <hr class="m-7">
                 <div class="text-center text-md text-gray-500 px-5 pb-5">Special care focuses on providing tailored attention to address unique health needs, ensuring optimal well-being and comfort.</div>
                 <div class="px-10 pb-10"><img class="rounded-[20px]" src="https://demo.awaikenthemes.com/dispnsary/wp-content/uploads/2024/12/service-img-2.jpg"></div>
                 
             </div>
-            <div id="S-3" class="bg-white rounded-[50px] my-5 hover:my-3">
+            <div id="S-3" class="bg-white rounded-[50px] my-5 transition-all duration-300 card-hover">
                 <div class="text-center text-xl font-bold px-5 pt-5">Eyecare</div>
                 <hr class="m-7">
                 <div class="text-center text-md text-gray-500 px-5 pb-5">Lab testing for accurately monitoring your health and identifying potential issues early for effective treatment.</div>
@@ -558,8 +564,7 @@
             if (currentSlide >= slides.length) currentSlide = 0;
             slider.style.transform = `translateX(-${currentSlide * 100}%)`;
         }
-
-            // Optional: Auto-slide every 5 seconds
+        
         setInterval(() => {
             moveSlide(1);
         }, 5000);
