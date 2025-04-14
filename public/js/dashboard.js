@@ -151,59 +151,77 @@ closeStatusBtn.addEventListener("click", function () {
   emergencyStatusModal.classList.add("hidden");
 });
 
-confirmEmergencyBtn.addEventListener("click", async function () {
-
+confirmEmergencyBtn.addEventListener("click", function () {
   emergencyModal.classList.add("hidden");
 
-
+  // Show initial status
   statusContent.innerHTML = `
-        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 text-blue-600 mb-4">
-            <i class="fas fa-spinner fa-spin text-2xl"></i>
-        </div>
-        <h3 class="text-xl font-bold text-gray-900 mb-2">Sending Alert</h3>
-        <p class="text-gray-600">Contacting your emergency contact...</p>
-    `;
+    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 text-blue-600 mb-4">
+        <i class="fas fa-spinner fa-spin text-2xl"></i>
+    </div>
+    <h3 class="text-xl font-bold text-gray-900 mb-2">Getting Location & Sending Alert</h3>
+    <p class="text-gray-600">Please wait...</p>
+  `;
   emergencyStatusModal.classList.remove("hidden");
 
-  try {
-   
-    const response = await fetch("../backend/emergencymail.php", {
-      method: "POST",
-      credentials: "include",
-    });
-
-    if (!response.ok) {
-      throw new Error(`Server returned ${response.status}`);
-    }
-
-    const data = await response.json();
-
+  // Try to get location, 
+  if ("geolocation" in navigator) {
     
-    if (data.success) {
-      statusContent.innerHTML = `
-                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 text-green-600 mb-4">
-                    <i class="fas fa-check-circle text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-2">Alert Sent Successfully</h3>
-                <p class="text-gray-600">${data.message}</p>
-            `;
-    } else {
-      statusContent.innerHTML = `
-                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-100 text-red-600 mb-4">
-                    <i class="fas fa-exclamation-circle text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-2">Alert Failed</h3>
-                <p class="text-gray-600">${data.message}</p>
-            `;
+    navigator.geolocation.getCurrentPosition(
+      sendAlert,  
+      () => sendAlert(), 
+      { timeout: 5000, maximumAge: 0 }
+    );
+  } else {
+    sendAlert();
+  }
+  
+
+  async function sendAlert(position = null) {
+    
+    const requestBody = {};
+    if (position) {
+      requestBody.latitude = position.coords.latitude;
+      requestBody.longitude = position.coords.longitude;
     }
-  } catch (error) {
-    console.error("Emergency alert error:", error);
-    statusContent.innerHTML = `
-            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-100 text-red-600 mb-4">
-                <i class="fas fa-exclamation-circle text-2xl"></i>
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Something Went Wrong</h3>
-            <p class="text-gray-600">Unable to send emergency alert. Please call emergency services directly.</p>
+    
+    try {
+      const response = await fetch("../backend/emergencymail.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(requestBody)
+      });
+      
+      const data = await response.json();
+      
+      
+      if (data.success) {
+        statusContent.innerHTML = `
+          <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 text-green-600 mb-4">
+              <i class="fas fa-check-circle text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Alert Sent Successfully</h3>
+          <p class="text-gray-600">${data.message}</p>
         `;
+      } else {
+        statusContent.innerHTML = `
+          <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-100 text-red-600 mb-4">
+              <i class="fas fa-exclamation-circle text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Alert Failed</h3>
+          <p class="text-gray-600">${data.message || "Could not send emergency alert."}</p>
+        `;
+      }
+    } catch (error) {
+      console.error("Emergency alert error:", error);
+      statusContent.innerHTML = `
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-100 text-red-600 mb-4">
+            <i class="fas fa-exclamation-triangle text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 mb-2">Network Error</h3>
+        <p class="text-gray-600">Could not connect to server. Please try again later.</p>
+      `;
+    }
   }
 });
