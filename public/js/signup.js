@@ -55,13 +55,12 @@ signupbtn.addEventListener("click", async () => {
 
     if (!result.success) {
       registeredEmail.classList.remove('hidden');
+      loader.classList.add("hidden");
       return;
     }
   } catch (error) {
-    console.log(error);
-  }
-  finally{
     loader.classList.add("hidden");
+    console.log(error);
   }
 
   let response;
