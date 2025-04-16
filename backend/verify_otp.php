@@ -34,65 +34,63 @@ try {
         die();
     }
 
-    require __DIR__ . "/database/connectDB.php";
+
+    $config = require __DIR__ . '/../config/db_config.php';
+    $dsn = sprintf(
+        'mysql:host=%s;port=%s;dbname=%s;charset=utf8mb4',
+        $config['DB_HOST'],
+        $config['DB_PORT'],
+        $config['DB_NAME']
+    );
+    $pdo = new PDO($dsn, $config['DB_USERNAME'], $config['DB_PASSWORD'], [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    ]);
 
     $name     = $_SESSION['creds']['name'];
     $email    = $_SESSION['creds']['email'];
     $password = $_SESSION['creds']['password'];
 
     // -------------------------------------------- TRANSACTION BEGINS ---------------------------------------------------   
-    $conn->begin_transaction();
+    $pdo->beginTransaction();
 
     $insertQuery = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
-    $stmt = $conn->prepare($insertQuery);
-
+    $stmt = $pdo->prepare($insertQuery);
     if (!$stmt) {
         echo json_encode([
             "success" => false,
-            "message" => "Error preparing user statement: " . $conn->error
+            "message" => "Error preparing user statement."
         ]);
-        $conn->rollback();
+        $pdo->rollBack();
         die();
     }
-
-    $stmt->bind_param("sss", $name, $email, $password);
-
-    if (!$stmt->execute()) {
+    if (!$stmt->execute([$name, $email, $password])) {
         echo json_encode([
             "success" => false,
-            "message" => "Error creating user: " . $stmt->error
+            "message" => "Error creating user."
         ]);
-        $stmt->close();
-        $conn->rollback();
+        $pdo->rollBack();
         die();
     }
+    $user_id = $pdo->lastInsertId();
 
-    $user_id = $conn->insert_id;
-    $stmt->close();
-
-
-    $stmt2 = $conn->prepare("INSERT INTO patients (id) VALUES (?)");
+    $stmt2 = $pdo->prepare("INSERT INTO patients (id) VALUES (?)");
     if (!$stmt2) {
         echo json_encode([
             "success" => false,
-            "message" => "Error preparing patient statement: " . $conn->error
+            "message" => "Error preparing patient statement."
         ]);
-        $conn->rollback();
+        $pdo->rollBack();
         die();
     }
-
-    $stmt2->bind_param("i", $user_id);
-    if (!$stmt2->execute()) {
+    if (!$stmt2->execute([$user_id])) {
         echo json_encode([
             "success" => false,
-            "message" => "Error creating patient: " . $stmt2->error
+            "message" => "Error creating patient."
         ]);
-        $stmt2->close();
-        $conn->rollback();
+        $pdo->rollBack();
         die();
     }
-    $stmt2->close();
-
 
     unset($_SESSION['creds']);
     $_SESSION['user'] = ["email" => $email];
@@ -101,7 +99,7 @@ try {
         "success" => true,
         "message" => "Successfully registered the user."
     ]);
-    $conn->commit();
+    $pdo->commit();
     // -------------------------------------- TRANSACTION ENDS -----------------------------------------------------------
 
 } catch (Exception $e) {
