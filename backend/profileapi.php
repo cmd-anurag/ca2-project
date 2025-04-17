@@ -15,7 +15,7 @@ $height = $_POST["height"];
 $weight = $_POST["weight"];
 $emergency_contact = $_POST["emergency_contact"];
 
-require __DIR__ . "/database/connectDB.php";
+require "../backend/database/connectDB.php";
 
 if (empty($id) || empty($dob) || empty($gender) || empty($medical_history) || empty($blood_type) ||
     empty($phone) || empty($address) || empty($height) || empty($weight) || empty($emergency_contact)) {
