@@ -210,7 +210,7 @@ $initials = strtoupper(substr($userName, 0, 1));
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <i class="fa-solid fa-ruler-vertical text-gray-400"></i>
                                 </div>
-                                <input type="number" id="height" name="height" value="<?= htmlspecialchars($userData['height'] ?? '') ?>" 
+                                <input type="number" id="height" name="height" step="1" min="1" value="<?= htmlspecialchars(isset($userData['height']) ? round((float)$userData['height']) : '') ?>" 
                                     class="pl-10 block w-full rounded-md border-gray-300 focus:ring-blue-500 focus:border-blue-500 shadow-sm py-2 px-4" required>
                             </div>
                         </div>
@@ -221,7 +221,7 @@ $initials = strtoupper(substr($userName, 0, 1));
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <i class="fa-solid fa-weight-scale text-gray-400"></i>
                                 </div>
-                                <input type="number" id="weight" name="weight" value="<?= htmlspecialchars($userData['weight'] ?? '') ?>" 
+                                <input type="number" id="weight" name="weight" step="1" min="1" value="<?= htmlspecialchars(isset($userData['weight']) ? round((float)$userData['weight']) : '') ?>" 
                                     class="pl-10 block w-full rounded-md border-gray-300 focus:ring-blue-500 focus:border-blue-500 shadow-sm py-2 px-4" required>
                             </div>
                         </div>
