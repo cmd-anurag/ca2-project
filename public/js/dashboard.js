@@ -19,39 +19,36 @@ async function logoutUser() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const chatPopup = document.getElementById("chat-popup");
-  const chatToggleBtn = document.getElementById("chat-toggle-btn");
-  const chatCloseBtn = document.getElementById("chat-close-btn");
-  const chatSendBtn = document.getElementById("chat-send-btn");
-  const chatInputField = document.getElementById("chat-input-field");
-  const chatMessages = document.getElementById("chat-messages");
-  const typingIndicator = document.getElementById("typing-indicator");
-  const username = document.getElementById("user_name")?.innerText || "You";
+const chatPopup = document.getElementById("chat-popup");
+const chatToggleBtn = document.getElementById("chat-toggle-btn");
+const chatCloseBtn = document.getElementById("chat-close-btn");
+const chatSendBtn = document.getElementById("chat-send-btn");
+const chatInputField = document.getElementById("chat-input-field");
+const chatMessages = document.getElementById("chat-messages");
+const typingIndicator = document.getElementById("typing-indicator");
+const username = document.getElementById("user_name")?.innerText || "You";
 
-  if (!chatPopup || !chatToggleBtn || !chatMessages) return;
 
-  // Show/hide chat popup with animation
-  chatToggleBtn.addEventListener("click", () => {
-    chatPopup.classList.toggle("hidden");
-    if (!chatPopup.classList.contains("hidden")) {
-      chatInputField.focus();
-    }
-  });
+chatToggleBtn.addEventListener("click", () => {
+  chatPopup.classList.toggle("hidden");
+  if (!chatPopup.classList.contains("hidden")) {
+    chatInputField.focus();
+  }
+});
 
-  // Close chat popup
-  chatCloseBtn.addEventListener("click", () => {
-    chatPopup.classList.add("hidden");
-  });
 
-  // Add a new message to the chat area
-  function addMessage(sender, message, isAI = false) {
-    const messageElem = document.createElement("div");
+chatCloseBtn.addEventListener("click", () => {
+  chatPopup.classList.add("hidden");
+});
 
-    if (isAI) {
-      // AI message
-      messageElem.className = "flex items-start mb-4";
-      messageElem.innerHTML = `
+// new messg
+function addMessage(sender, message, isAI = false) {
+  const messageElem = document.createElement("div");
+
+  if (isAI) {
+    // AI message
+    messageElem.className = "flex items-start mb-4";
+    messageElem.innerHTML = `
         <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center mr-2 flex-shrink-0">
           <i class="fa-solid fa-robot text-blue-600 text-sm"></i>
         </div>
@@ -59,10 +56,10 @@ document.addEventListener("DOMContentLoaded", function () {
           <p class="text-sm text-gray-800">${message}</p>
         </div>
       `;
-    } else {
-      // user message
-      messageElem.className = "flex items-start justify-end mb-4";
-      messageElem.innerHTML = `
+  } else {
+    // user message
+    messageElem.className = "flex items-start justify-end mb-4";
+    messageElem.innerHTML = `
         <div class="bg-blue-600 text-white rounded-lg rounded-tr-none py-2 px-3 max-w-[80%] shadow-sm">
           <p class="text-sm">${message}</p>
         </div>
@@ -72,65 +69,64 @@ document.addEventListener("DOMContentLoaded", function () {
             .toUpperCase()}</span>
         </div>
       `;
-    }
-
-    chatMessages.appendChild(messageElem);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
   }
 
-  async function sendMessage() {
-    const userInput = chatInputField.value.trim();
-    if (userInput === "") return;
+  chatMessages.appendChild(messageElem);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
 
-    // Display user message
-    addMessage(username, userInput, false);
-    chatInputField.value = "";
+async function sendMessage() {
+  const userInput = chatInputField.value.trim();
+  if (userInput === "") return;
 
-    // Show typing indicator
-    typingIndicator.classList.remove("hidden");
-    chatMessages.scrollTop = chatMessages.scrollHeight;
+  // Display user message
+  addMessage(username, userInput, false);
+  chatInputField.value = "";
 
-    const formData = new FormData();
-    formData.append("userinput", userInput);
+  // Show typing indicator
+  typingIndicator.classList.remove("hidden");
+  chatMessages.scrollTop = chatMessages.scrollHeight;
 
-    try {
-      const response = await fetch(
-        "http://localhost/ca2-project/backend/ai_api.php",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+  const formData = new FormData();
+  formData.append("userinput", userInput);
 
-      // Hide typing indicator
-      typingIndicator.classList.add("hidden");
+  try {
+    const response = await fetch(
+      "http://localhost/ca2-project/backend/ai_api.php",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
 
-      const data = await response.json();
-      const reply = data.candidates[0].content.parts[0].text;
+    // Hide typing indicator
+    typingIndicator.classList.add("hidden");
 
-      // Display AI message
-      addMessage("AI", reply, true);
-    } catch (error) {
-      // Hide typing indicator
-      typingIndicator.classList.add("hidden");
+    const data = await response.json();
+    const reply = data.candidates[0].content.parts[0].text;
 
-      console.error("Error:", error);
-      addMessage(
-        "AI",
-        "Sorry, I'm having trouble processing your request. Please try again later.",
-        true
-      );
-    }
+    // Display AI message
+    addMessage("AI", reply, true);
+  } catch (error) {
+    // Hide typing indicator
+    typingIndicator.classList.add("hidden");
+
+    console.error("Error:", error);
+    addMessage(
+      "AI",
+      "Sorry, I'm having trouble processing your request. Please try again later.",
+      true
+    );
   }
+}
 
-  // Event listeners for sending messages
-  chatSendBtn.addEventListener("click", sendMessage);
-  chatInputField.addEventListener("keypress", function (e) {
-    if (e.key === "Enter") sendMessage();
-  });
+// Event listeners for sending messages
+chatSendBtn.addEventListener("click", sendMessage);
+chatInputField.addEventListener("keypress", function (e) {
+  if (e.key === "Enter") sendMessage();
 });
 
-//  element references
+
 const emergencyBtn = document.getElementById("emergency-btn");
 const emergencyModal = document.getElementById("emergency-modal");
 const confirmEmergencyBtn = document.getElementById("confirm-emergency");
@@ -154,7 +150,7 @@ closeStatusBtn.addEventListener("click", function () {
 confirmEmergencyBtn.addEventListener("click", function () {
   emergencyModal.classList.add("hidden");
 
-  // Show initial status
+  // initial status
   statusContent.innerHTML = `
     <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 text-blue-600 mb-4">
         <i class="fas fa-spinner fa-spin text-2xl"></i>
@@ -164,38 +160,33 @@ confirmEmergencyBtn.addEventListener("click", function () {
   `;
   emergencyStatusModal.classList.remove("hidden");
 
-  // Try to get location, 
+  // Try to get location,
   if ("geolocation" in navigator) {
-    
-    navigator.geolocation.getCurrentPosition(
-      sendAlert,  
-      () => sendAlert(), 
-      { timeout: 5000, maximumAge: 0 }
-    );
+    navigator.geolocation.getCurrentPosition(sendAlert, () => sendAlert(), {
+      timeout: 5000,
+      maximumAge: 0,
+    });
   } else {
     sendAlert();
   }
-  
 
   async function sendAlert(position = null) {
-    
     const requestBody = {};
     if (position) {
       requestBody.latitude = position.coords.latitude;
       requestBody.longitude = position.coords.longitude;
     }
-    
+
     try {
       const response = await fetch("../backend/emergencymail.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify(requestBody)
+        body: JSON.stringify(requestBody),
       });
-      
+
       const data = await response.json();
-      
-      
+
       if (data.success) {
         statusContent.innerHTML = `
           <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 text-green-600 mb-4">
@@ -210,7 +201,9 @@ confirmEmergencyBtn.addEventListener("click", function () {
               <i class="fas fa-exclamation-circle text-2xl"></i>
           </div>
           <h3 class="text-xl font-bold text-gray-900 mb-2">Alert Failed</h3>
-          <p class="text-gray-600">${data.message || "Could not send emergency alert."}</p>
+          <p class="text-gray-600">${
+            data.message || "Could not send emergency alert."
+          }</p>
         `;
       }
     } catch (error) {
