@@ -8,7 +8,7 @@ const closeModal = document.getElementById("close-modal");
 const modalCloseBtn = document.getElementById("modal-close-btn");
 const loader = document.getElementById("loader-element");
 
-// Function to show modal
+//show modal
 function showModal(success, message) {
     loader.classList.add("hidden");
     modalMessage.textContent = message;
@@ -35,7 +35,7 @@ function showModal(success, message) {
     }, 10);
 }
 
-// Function to hide modal
+//hide modal
 function hideModal() {
     modalBackdrop.classList.add("opacity-0");
     modalContainer.classList.remove("scale-100");

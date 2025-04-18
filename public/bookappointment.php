@@ -29,6 +29,9 @@ if (isset($nameArray[0])) {
 if (isset($nameArray[1])) {
     $lastname = $nameArray[1];
 }
+if(!isset($lastname)) {
+    $lastname = '';
+}
 ?>
 
 <!DOCTYPE html>
