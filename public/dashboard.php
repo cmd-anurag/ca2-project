@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +20,7 @@
 <body>
 
   <?php
-  session_start();
+  
   // check if the user is not logged in
   require __DIR__ . "/../backend/includes/is_loggedin.php";
 

@@ -36,7 +36,7 @@ loginbutton.addEventListener("click", async () => {
 
     let response;
     try {
-        response = await fetch("http://localhost/ca2-project/backend/user_login.php", {
+        response = await fetch("/backend/user_login.php", {
             method: "POST",
             credentials: "include",
             body: formdata
